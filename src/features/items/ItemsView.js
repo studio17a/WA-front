@@ -11,11 +11,15 @@ import {
 } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import ItemsTable from "./ItemsTable";
+import { setItemModalMode } from "./itemModalModeSlice";
 import { useParams } from "react-router-dom";
 import { Spinner } from "@chakra-ui/react";
+import { useDispatch, useSelector } from "react-redux";
 import { useGetItemsQuery } from "../items/itemsApiSlice";
 import ItemsModal from "./ItemsModal";
+
 const ItemsView = () => {
+  const dispatch = useDispatch();
   let content = <Spinner />;
   const { garageId } = useParams();
   const {
@@ -28,6 +32,9 @@ const ItemsView = () => {
     refetchOnFocus: true,
     refetchOnMountOrArgChange: true,
   });
+  useEffect(() => {
+    dispatch(setItemModalMode(null));
+  }, []);
   // if (isLoading) console.log(items);
   if (isError) console.log(error);
   if (isSuccess) {

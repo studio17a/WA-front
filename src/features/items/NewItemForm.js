@@ -69,23 +69,24 @@ const NewItemForm = ({ mode = "add" }) => {
       let formmode = itemModalMode;
       if (formmode === null || formmode === "service") formmode = "add";
       console.log(`formmode`);
-      console.log(formmode);
+      console.log(selectedUserObj);
       const { message, item } = await handleItem({
         id: selectedItems?._id,
         garage: garageId,
         mode: formmode,
-        user: checkedItem
-          ? selectedUserObj
-            ? selectedUserObj._id
-            : UserInfo._id
-          : null,
+        user: selectedUserObj,
+        // user: checkedItem
+        //   ? selectedUserObj
+        //     ? selectedUserObj._id
+        //     : UserInfo._id
+        //   : null,
         selectedUserId: selectedUserObj ? selectedUserObj._id : UserInfo._id,
         name,
         storage,
         description,
         ean,
         notes,
-        author: selectedUserObj ? selectedUserObj._id : UserInfo._id,
+        author: selectedUserObj ? selectedUserObj : UserInfo._id,
         authorname: UserInfo.username,
       }).unwrap();
       if (itemModalMode !== "edit") {

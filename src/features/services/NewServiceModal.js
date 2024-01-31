@@ -140,15 +140,17 @@ const NewServiceModal = ({ children, open, method }) => {
     }
   });
   let allItemsList = "";
-  allItemsList = selectedItems?.map((i, index) => {
-    if (i.toDo !== "del") {
-      return (
-        <>
-          <ItemDetails view="raw" index={index} modal="true" item={i} />
-        </>
-      );
-    }
-  });
+  if (isServiceModalOpen) {
+    allItemsList = selectedItems?.map((i, index) => {
+      if (i.toDo !== "del") {
+        return (
+          <>
+            <ItemDetails view="raw" index={index} modal="true" item={i} />
+          </>
+        );
+      }
+    });
+  }
   useEffect(() => {
     if (saveService == true) {
       saveTheService();
