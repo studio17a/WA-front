@@ -1,0 +1,257 @@
+html,
+body {
+  background-color: #edf9ff;
+}
+.infodot {
+  position: absolute;
+  margin: -45px 0px 0px -10px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: red;
+  color: #fff;
+  font-size: 0.8em;
+  padding: 3px 7px 0px 8px;
+  font-weight: bold;
+}
+.pageHeader {
+  background-image: url("images/warsztappc.png");
+  background-size: 50px;
+  background-position: 20px 3px;
+  padding: 5px 25px 17px 15px;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 58px;
+  background-color: #fff;
+  border-radius: 55px;
+  cursor: pointer;
+  cursor: hand;
+}
+.pageHeader:hover {
+  background-color: #eeeeee;
+}
+.pageHeader:hover .warsztApp {
+  color: #88d0ec;
+}
+.pageHeader div {
+  margin-left: 60px;
+  margin-top: 10px;
+}
+.warsztApp {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  padding-top: 3px;
+  font-weight: bold;
+  font-size: 0.9em;
+  color: #32a8c0;
+}
+.thHour,
+/* .thMinute {
+  max-width: 20px;
+} */
+.proper {
+  font-size: 0.9em;
+}
+.darkGray {
+  color: #646262;
+}
+.small {
+  font-size: 0.8em;
+}
+.big {
+  font-size: 1.4em;
+}
+.scrollX {
+  overflow-x: auto;
+}
+.scrollY {
+  overflow-y: auto;
+}
+.pabsolute {
+  position: absolute;
+}
+.prelative {
+  position: relative;
+  height: auto;
+}
+.left20 {
+  margin-left: 20px;
+}
+
+.w100 {
+  position: relative;
+  width: 100%;
+}
+
+.left {
+  text-align: left !important;
+}
+
+.h100 {
+  height: 100%;
+}
+
+.link {
+  color: "#4caaad" !important;
+}
+
+.darkgray {
+  color: #555;
+}
+
+.userRow {
+  border: "1px solid #c4e9f5";
+  cursor: pointer;
+  cursor: hand;
+}
+
+.userRow:hover {
+  background-color: "#c4e9f5";
+}
+
+.gray {
+  color: #afafaf;
+}
+.bgwhite {
+  background-color: #ffffff;
+}
+.datePicker {
+  border: 1px solid rgb(233, 233, 233);
+  border-radius: 6px;
+  width: 150px;
+  text-align: center;
+  font-size: 1.2em;
+  color: rgb(90, 179, 218);
+  font-weight: bold;
+  padding: 5px 15px;
+  cursor: pointer;
+  cursor: hand;
+}
+.datePicker:hover {
+  border: 1px solid rgb(99, 186, 230);
+}
+.hour div {
+  margin-left: -20px;
+  height: inherit;
+  background-color: #ffffff;
+}
+.hour {
+  color: rgb(214, 214, 214);
+  font-size: 1.8em;
+  border-width: 0 1px 0 0;
+  border-color: #000000;
+  border-style: dashed;
+  width: fit-content;
+  /* 
+  font-family: Sans-Serif;
+  text-align: center; */
+}
+.minute {
+  padding: 10px 0px;
+  /* max-width: 20px; */
+  border-width: 0 1px 0 0;
+  border-color: #000000;
+  border-style: dashed;
+  font-family: Sans-Serif;
+  text-align: center;
+}
+.bold {
+  font-weight: bold;
+}
+.medium {
+  font-size: 1.5em;
+}
+TableContainer {
+  border-radius: 10;
+  border: 1px solid rgb(228, 228, 228);
+}
+Table {
+  color: rgb(83, 83, 83);
+  table-layout: auto !important;
+  text-align: center;
+}
+.publicAppointment {
+  margin: 0 auto;
+  font-size: 0.8em;
+  padding: 5px 15px;
+}
+.itemsBox {
+  border: 1px solid #eaeaea;
+  border-radius: 10px;
+  max-width: 1000px;
+  position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.vehiclesBox {
+  border: 1px solid #eaeaea;
+  border-radius: 10px;
+  position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.fixedTable {
+  position: relative;
+  max-height: 70vh;
+  max-width: 90vw;
+  overflow: auto;
+  overflow-y: scroll;
+}
+.rawItemsClass {
+  overflow: hidden;
+}
+
+.topMenuWrapper {
+  margin: 0 auto;
+  padding: 0px;
+  text-align: center;
+  width: 100vw;
+  overflow-x: auto;
+}
+
+.infoRow {
+  position: relative;
+  margin: 5px 0px 5px 0px;
+  padding: 2px 5px 2px 10px;
+  background-color: #eaf9ff;
+  border-radius: 10px;
+  font-size: 0.9em;
+  color: #555555;
+  cursor: pointer;
+  cursor: hand;
+}
+.infoRow:hover {
+  background-color: #c4e9f5;
+}
+
+.infoNew {
+  font-weight: bold;
+}
+
+.infoRed {
+  font-weight: 200;
+}
+
+/*
+Td {
+  color: #5e5252;
+  background-color: #fff;
+  border-width: 0 1px 0 0;
+  border-style: dashed;
+}
+.rowspan {
+  border-top: 3px solid #000000;
+}
+
+.completed {
+  background-color: #e1ffd9;
+}
+.incomplete {
+  background-color: #f0f0f0;
+}
+.loading {
+  background-color: #5e5252;
+}
+.ready {
+  background-color: #b82525;
+} */
