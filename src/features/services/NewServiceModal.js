@@ -169,7 +169,7 @@ const NewServiceModal = ({ children, open, method }) => {
     }
   }, [serviceModalMode]);
   useEffect(() => {
-    // console.log(selectedVehicle);
+    console.log(selectedItems);
     if (
       selectedVehicle[0]?.user._id &&
       selectedVehicle[0]?.user._id !== selectedUserObj?._id
@@ -472,7 +472,7 @@ const NewServiceModal = ({ children, open, method }) => {
                           </Box>
                         </TabPanel>
                         <TabPanel>
-                          <NewItemForm />
+                          <NewItemForm mode={"add"} />
                         </TabPanel>
                       </TabPanels>
                     </Tabs>

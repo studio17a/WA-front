@@ -54,7 +54,7 @@ const TopMenu = () => {
   const homeButton = (
     <>
       <Button onClick={() => navigate(`/`)} colorScheme="cyan" color="#fff">
-        d<FontAwesomeIcon icon={faHouse} />
+        <FontAwesomeIcon icon={faHouse} />
       </Button>
     </>
   );

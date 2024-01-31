@@ -67,7 +67,7 @@ const NewItemForm = ({ mode = "add" }) => {
 
     if (canSave) {
       let formmode = itemModalMode;
-      if (formmode == null) formmode = "add";
+      if (formmode === null || formmode === "service") formmode = "add";
       console.log(`formmode`);
       console.log(formmode);
       const { message, item } = await handleItem({
@@ -88,7 +88,7 @@ const NewItemForm = ({ mode = "add" }) => {
         author: selectedUserObj ? selectedUserObj._id : UserInfo._id,
         authorname: UserInfo.username,
       }).unwrap();
-      if (itemModalMode != "edit") {
+      if (itemModalMode !== "edit") {
         if (item) {
           if (selectedItems === null) {
             dispatch(
@@ -134,7 +134,9 @@ const NewItemForm = ({ mode = "add" }) => {
   return (
     <>
       <VStack spacing="25px">
-        <h2>dodaj przedmiot {itemModalMode}</h2>
+        <h2>
+          dodaj przedmiot {itemModalMode} {mode}
+        </h2>
         <Checkbox
           onChange={(e) => setCheckedItem(e.target.checked)}
           colorScheme="green"
