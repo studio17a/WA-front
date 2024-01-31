@@ -38,6 +38,7 @@ import { setStToDel } from "../st/stToDelSlice";
 import SetServiceEditable from "./SetServiceEditable";
 import { useSelector } from "react-redux";
 import SetServiceDone from "./SetServiceDone";
+import PdfComponent from "../pdf/PdfComponent";
 
 const ServiceRow = ({
   toApprove,
@@ -100,6 +101,7 @@ const ServiceRow = ({
             {toApprove === "approved" ? (
               <SetServiceDone appointment={appointment} />
             ) : null}
+            <PdfComponent />
           </HStack>
         </Td>
         <Td
