@@ -33,14 +33,16 @@ const TRow = ({ item, view, index }) => {
       <Td>
         {view !== "raw" && view !== "review" && (
           <HStack>
-            {itemModalMode !== "service" && <DelItemComponent iid={item._id} />}
-            <Button
-              colorScheme="yellow"
-              size="sm"
-              onClick={() => setUpItemModal({ mode: "edit", item: item })}
-            >
-              <EditIcon w={4} h={4} color="#fff" />
-            </Button>
+            <DelItemComponent iid={item._id} />
+            {itemModalMode !== "service" && (
+              <Button
+                colorScheme="yellow"
+                size="sm"
+                onClick={() => setUpItemModal({ mode: "edit", item: item })}
+              >
+                <EditIcon w={4} h={4} color="#fff" />
+              </Button>
+            )}
           </HStack>
         )}
       </Td>
@@ -107,16 +109,16 @@ const TRow = ({ item, view, index }) => {
           <Td>
             {view !== "raw" && view !== "review" && (
               <HStack>
+                <DelItemComponent iid={item._id} />
                 {itemModalMode !== "service" && (
-                  <DelItemComponent iid={item._id} />
+                  <Button
+                    colorScheme="yellow"
+                    size="sm"
+                    onClick={() => setUpItemModal({ mode: "edit", item: item })}
+                  >
+                    <EditIcon w={4} h={4} color="#fff" />
+                  </Button>
                 )}
-                <Button
-                  colorScheme="yellow"
-                  size="sm"
-                  onClick={() => setUpItemModal({ mode: "edit", item: item })}
-                >
-                  <EditIcon w={4} h={4} color="#fff" />
-                </Button>
               </HStack>
             )}
           </Td>
@@ -170,7 +172,7 @@ const TRow = ({ item, view, index }) => {
           <Td>
             {view !== "raw" && view !== "review" && (
               <HStack>
-                {itemModalMode !== "service" && (
+                {itemModalMode === "service" && (
                   <DelListItemComponent index={index} item={item} />
                 )}
                 {itemModalMode !== "service" && (
