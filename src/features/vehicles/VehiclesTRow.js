@@ -14,13 +14,19 @@ import {
 import DelVehicleComponent from "./DelVehicleComponent";
 import EditVehicleComponent from "./EditVehicleComponent";
 import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import ForwardVehicleComponent from "./ForwardVehicleComponent";
 import { useNavigate, Link, useLocation } from "react-router-dom";
 import RemoveVehicleFromUserComponent from "./RemoveVehicleFromUserComponent";
+import { setIsVehiclesModalOpen } from "./isVehiclesModalOpenSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { setVehicleModalMode } from "./vehicleModalModeSlice";
+import { setUserObj } from "../users/selectedUserSlice";
+import { setVehiclesByUser } from "./vehiclesByUserSlice";
 
 const VehiclesTRow = ({ vehicle, view }) => {
+  const dispatch = useDispatch();
   const { garageId } = useParams();
   const navigate = useNavigate();
   // console.log(vehicle);
@@ -32,7 +38,12 @@ const VehiclesTRow = ({ vehicle, view }) => {
       </Td>
       <Td
         color="teal"
-        onClick={() => navigate(`/dash/${garageId}/vehicles/${vehicle._id}`)}
+        onClick={() => {
+          dispatch(setIsVehiclesModalOpen(true));
+          dispatch(setVehicleModalMode("service"));
+          dispatch(setUserObj(vehicle.user));
+          dispatch(setVehiclesByUser(vehicle));
+        }}
       >
         <HStack>
           <div>
