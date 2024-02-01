@@ -2,6 +2,7 @@ import { Button } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilePdf } from "@fortawesome/free-solid-svg-icons";
 import MyDoc from "./MyDoc";
+
 import { PDFDownloadLink } from "@react-pdf/renderer";
 
 function PdfComponent({ appointment }) {
