@@ -16,34 +16,29 @@ import { useParams } from "react-router-dom";
 
 const VehiclesView = () => {
   const { garageId } = useParams();
-  const { vehicles, isLoading, isSuccess, isError, error } =
-    useGetVehiclesQuery(
-      "vehiclesList",
-      {
-        selectFromResult: ({ data }) => ({
-          vehicles: data?.ids.map((id) => data?.entities[id]),
-        }),
-      },
-      { gid: garageId },
-    );
-
-  // const {
-  //   data: vehicles,
-  //   isLoading,
-  //   isSuccess,
-  //   isError,
-  //   error,
-  // } = useGetVehiclesQuery();
-
   let content = <Spinner />;
+  const {
+    data: vehicles,
+    isLoading,
+    isSuccess,
+    isError,
+    error,
+  } = useGetVehiclesQuery({ gid: garageId }, "vehiclesList", {
+    refetchOnFocus: true,
+    refetchOnMountOrArgChange: true,
+  });
+
   // const { ids, entities } = vehicles;
   // const vehiclesList = ids?.map((vid) => entities[vid]);
-  console.log(vehicles);
-  content = (
-    <>
-      <VehiclesTable vehiclesRaw={vehicles} />
-    </>
-  );
+  if (isSuccess) {
+    const { ids, entities } = vehicles;
+    const vehiclesList = ids?.map((iid) => entities[iid]);
+    content = (
+      <>
+        <VehiclesTable user={null} view="full" vehiclesRaw={vehiclesList} />
+      </>
+    );
+  }
   return content;
 };
 export default VehiclesView;

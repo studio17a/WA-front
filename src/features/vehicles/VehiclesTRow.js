@@ -57,7 +57,6 @@ const VehiclesTRow = ({ vehicle, view }) => {
       </Td>
       <Td className=" small">
         <p>
-          {view}
           rok: <b>{vehicle.year}</b>
         </p>
         <p>

@@ -10,7 +10,7 @@ import {
   Td,
   TableCaption,
   TableContainer,
-  Input, 
+  Input,
   FormControl,
   useDisclosure,
   useToast,
@@ -34,12 +34,12 @@ import { useGetVehiclesByUserIdMutation } from "./vehiclesApiSlice";
 import { useState, useEffect } from "react";
 import { setUserObj } from "../users/selectedUserSlice";
 
-const VeiclesTable = ({ user, vehiclesRaw }) => {
+const VeiclesTable = ({ user, vehiclesRaw, view }) => {
   const [vehicles, setVehicles] = useState([]);
   // const [tableContent, setTableContent] = useState("");
 
   useEffect(() => {
-    console.log(`sss: ${user?._id}`);
+    // console.log(`sss: ${user?._id}`);
     // console.log(vehiclesRaw);
     setVehicles(vehiclesRaw);
   }, []);
@@ -50,7 +50,7 @@ const VeiclesTable = ({ user, vehiclesRaw }) => {
     dispatch(setIsVehiclesModalOpen(true));
     dispatch(setVehicleModalMode(mode));
 
-    dispatch(setUserObj(user));
+    if (user !== null) dispatch(setUserObj(user));
   };
   return (
     <>
@@ -93,7 +93,7 @@ const VeiclesTable = ({ user, vehiclesRaw }) => {
                 </Td>
               </Tr>
             )}
-            <VehiclesTBody vehicles={vehicles} />
+            <VehiclesTBody view={view} vehicles={vehicles} />
           </Tbody>
         </Table>
       </TableContainer>

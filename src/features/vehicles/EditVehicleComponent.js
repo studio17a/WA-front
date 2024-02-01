@@ -8,7 +8,6 @@ import { setVehicle } from "./selectedVehicleSlice";
 import { setUserObj } from "../users/selectedUserSlice";
 
 const EditVehicleComponent = ({ vehicle }) => {
-  console.log(vehicle);
   const dispatch = useDispatch();
   const setUpModal = (mode) => {
     dispatch(setUserObj(vehicle.user));

@@ -11,15 +11,19 @@ import {
 } from "@chakra-ui/react";
 import VehiclesTRow from "./VehiclesTRow";
 const VehiclesTBody = ({ vehicles, view }) => {
+  console.log(view);
   let tableContent = null;
-  console.log(vehicles);
   if (Array.isArray(vehicles[0])) {
     tableContent = vehicles[0]?.map((vehicle, index) => {
       return <VehiclesTRow vehicle={vehicle} view={view} />;
     });
   } else {
     tableContent = vehicles?.map((vehicle, index) => {
-      return <VehiclesTRow vehicle={vehicle} view={view} />;
+      if (view === "full") {
+        if (index < 25) return <VehiclesTRow vehicle={vehicle} view={view} />;
+      } else {
+        return <VehiclesTRow vehicle={vehicle} view={view} />;
+      }
     });
   }
   return <>{tableContent}</>;
