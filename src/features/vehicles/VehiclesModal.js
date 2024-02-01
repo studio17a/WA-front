@@ -12,6 +12,7 @@ import { useDispatch } from "react-redux";
 import { setIsVehiclesModalOpen } from "./isVehiclesModalOpenSlice";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import ServiceDetails from "../services/ServiceDetails";
 import { useDisclosure } from "@chakra-ui/react";
 import NewVehicleForm from "./NewVehicleForm";
 import { Button } from "@chakra-ui/react";
@@ -65,6 +66,8 @@ const VehiclesModal = ({ children, mode }) => {
                 {vehicleModalMode !== "add" && <ChangeUserComponent />}
                 <NewVehicleForm isAdmin={VehicleInfo.isAdmin} mode={mode} />
               </>
+            ) : vehicleModalMode === "service" ? (
+              <ServiceDetails />
             ) : (
               <VehiclesTable
                 user={selectedUserObj}
