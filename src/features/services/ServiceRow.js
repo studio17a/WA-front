@@ -101,7 +101,7 @@ const ServiceRow = ({
             {toApprove === "approved" ? (
               <SetServiceDone appointment={appointment} />
             ) : null}
-            <PdfComponent />
+            <PdfComponent appointment={appointment} />
           </HStack>
         </Td>
         <Td
