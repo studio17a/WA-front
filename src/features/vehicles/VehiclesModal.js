@@ -1,4 +1,12 @@
 import {
+  TableContainer,
+  Table,
+  Thead,
+  Tbody,
+  Tfoot,
+  Tr,
+  Th,
+  Td,
   Modal,
   ModalOverlay,
   ModalContent,
@@ -12,7 +20,7 @@ import { useDispatch } from "react-redux";
 import { setIsVehiclesModalOpen } from "./isVehiclesModalOpenSlice";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import ServiceDetails from "../services/ServiceDetails";
+import ServiceRow from "../services/ServiceRow";
 import { useDisclosure } from "@chakra-ui/react";
 import NewVehicleForm from "./NewVehicleForm";
 import { Button } from "@chakra-ui/react";
@@ -21,6 +29,7 @@ import useAuth from "../../hooks/useAuth";
 import ChangeUserComponent from "../users/ChangeUserComponent";
 
 const VehiclesModal = ({ children, mode }) => {
+  const selectedVehicle = useSelector((state) => state.selectedVehicle.vehicle);
   const selectedUserObj = useSelector(
     (state) => state.selectedUser.selectedUser,
   );
@@ -67,7 +76,12 @@ const VehiclesModal = ({ children, mode }) => {
                 <NewVehicleForm isAdmin={VehicleInfo.isAdmin} mode={mode} />
               </>
             ) : vehicleModalMode === "service" ? (
-              <ServiceDetails />
+              <Table>
+                <Tbody>
+                  {" "}
+                  <ServiceRow modal="true" st={selectedVehicle.st} />
+                </Tbody>
+              </Table>
             ) : (
               <VehiclesTable
                 user={selectedUserObj}
