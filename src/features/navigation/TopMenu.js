@@ -41,7 +41,6 @@ const TopMenu = () => {
       {UserInfo?.isManager ||
         (UserInfo?.isAdmin && (
           <Button
-            isDisabled="true"
             onClick={() => navigate(`/dash/${garageId}/vehicles`)}
             colorScheme="cyan"
             color="#fff"
