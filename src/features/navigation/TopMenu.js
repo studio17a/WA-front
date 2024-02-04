@@ -121,8 +121,8 @@ const TopMenu = () => {
       <HStack padding="10px">
         {userPanelButton}
         {homeButton}
-        {usersButton}
         {carsButton}
+        {usersButton}
         {itemsButton}
         {calendarButton}
         {day && nearestButton}
