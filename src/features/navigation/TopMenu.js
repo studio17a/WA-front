@@ -123,8 +123,8 @@ const TopMenu = () => {
         {homeButton}
         {carsButton}
         {usersButton}
-        {itemsButton}
         {calendarButton}
+        {itemsButton}
         {day && nearestButton}
         {day && datePicker}
       </HStack>
