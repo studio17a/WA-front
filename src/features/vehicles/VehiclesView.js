@@ -35,7 +35,7 @@ const VehiclesView = () => {
     const vehiclesList = ids?.map((iid) => entities[iid]);
     content = (
       <>
-        <VehiclesTable user={null} view="full" vehiclesRaw={vehiclesList} />
+        {/* <VehiclesTable user={null} view="full" vehiclesRaw={vehiclesList} /> */}
       </>
     );
   }
