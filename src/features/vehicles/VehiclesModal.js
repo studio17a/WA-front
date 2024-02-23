@@ -7,6 +7,7 @@ import {
   Tr,
   Th,
   Td,
+  Box,
   Modal,
   ModalOverlay,
   ModalContent,
@@ -27,9 +28,9 @@ import { Button } from "@chakra-ui/react";
 import VehiclesTable from "./VehiclesTable";
 import useAuth from "../../hooks/useAuth";
 import ChangeUserComponent from "../users/ChangeUserComponent";
+import ServiceDetailsTable from "../services/ServiceDetailsTable";
 
 const VehiclesModal = ({ children, mode }) => {
-  const selectedVehicle = useSelector((state) => state.selectedVehicle.vehicle);
   const selectedUserObj = useSelector(
     (state) => state.selectedUser.selectedUser,
   );
@@ -63,7 +64,7 @@ const VehiclesModal = ({ children, mode }) => {
       <span onClick={onOpen}>{children}</span>
       <Modal isOpen={isOpen} onClose={closeModal}>
         <ModalOverlay />
-        <ModalContent maxWidth="80%">
+        <ModalContent maxWidth="95%">
           <ModalHeader> </ModalHeader>
           <ModalCloseButton />
           <ModalBody padding="10px 100px 60px 100px">
@@ -76,12 +77,43 @@ const VehiclesModal = ({ children, mode }) => {
                 <NewVehicleForm isAdmin={VehicleInfo.isAdmin} mode={mode} />
               </>
             ) : vehicleModalMode === "service" ? (
-              <Table>
-                <Tbody>
-                  {" "}
-                  <ServiceRow modal="true" st={selectedVehicle.st} />
-                </Tbody>
-              </Table>
+              <Box
+                border="1px solid #eee"
+                borderRadius="10px"
+                overflowY="auto"
+                className="left"
+                position="relative"
+                maxWidth="100%"
+              >
+                <TableContainer overflowY="scroll" className=" fixedTable">
+                  <Table variant="simple">
+                    <Thead>
+                      <Th></Th>
+                      <Th>data</Th>
+                      <Th>pojazd szczegóły</Th>
+                      <Th>usługa</Th>
+                      <Th>części</Th>
+                      <Th>stan</Th>
+                      <Th>uwagi</Th>
+                    </Thead>
+                    <Tbody>
+                      <ServiceDetailsTable />
+                    </Tbody>
+                    <Thead>
+                      <Th></Th>
+                      <Th>data</Th>
+                      <Th>pojazd szczegóły</Th>
+                      <Th>usługa</Th>
+                      <Th>części</Th>
+                      <Th>stan</Th>
+                      <Th>uwagi</Th>
+                    </Thead>
+                    <Tbody>
+                      <ServiceDetailsTable />
+                    </Tbody>
+                  </Table>
+                </TableContainer>
+              </Box>
             ) : (
               <VehiclesTable
                 user={selectedUserObj}

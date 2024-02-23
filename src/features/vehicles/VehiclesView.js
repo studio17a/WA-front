@@ -12,6 +12,7 @@ import {
 import VehiclesTable from "./VehiclesTable";
 import { Spinner } from "@chakra-ui/react";
 import { useGetVehiclesQuery } from "./vehiclesApiSlice";
+import VehiclesModal from "./VehiclesModal";
 import { useParams } from "react-router-dom";
 
 const VehiclesView = () => {
@@ -35,7 +36,8 @@ const VehiclesView = () => {
     const vehiclesList = ids?.map((iid) => entities[iid]);
     content = (
       <>
-        {/* <VehiclesTable user={null} view="full" vehiclesRaw={vehiclesList} /> */}
+        <VehiclesModal key="vehiclesModal" />
+        <VehiclesTable user={null} view="full" vehiclesRaw={vehiclesList} />
       </>
     );
   }
