@@ -49,8 +49,8 @@ export const servicesApiSlice = apiSlice.injectEndpoints({
       // ],
     }),
     getServicesByVehicleId: builder.mutation({
-      query: (vehicleId) => ({
-        url: `/services/details/${vehicleId}`,
+      query: ({ garageId, vehicleId }) => ({
+        url: `/services/details/${garageId}/${vehicleId}`,
         validateStatus: (response, result) => {
           return response.status === 200 && !result.isError;
         },
