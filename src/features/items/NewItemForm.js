@@ -143,7 +143,7 @@ const NewItemForm = ({ mode = "add" }) => {
           colorScheme="green"
           isChecked={checkedItem}
         >
-          dodaj na wyłączność
+          własność klienta
         </Checkbox>
         <FormControl id="name" isRequired>
           <FormLabel>Nazwa</FormLabel>

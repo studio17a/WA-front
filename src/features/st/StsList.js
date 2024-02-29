@@ -36,6 +36,8 @@ const StsList = () => {
         garageId: garageId,
         name: obj.name,
         predefined: obj.predefined,
+        authorname: obj.authorname,
+        modifiedAt: obj.modifiedAt,
         toDo: "add",
       }),
     );

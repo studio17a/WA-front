@@ -30,22 +30,24 @@ const TRow = ({ item, view, index }) => {
   console.log(index);
   const [content, setContent] = useState(
     <Tr>
-      <Td>
-        {view !== "raw" && view !== "review" && (
-          <HStack>
-            <DelItemComponent iid={item._id} />
-            {itemModalMode !== "service" && (
-              <Button
-                colorScheme="yellow"
-                size="sm"
-                onClick={() => setUpItemModal({ mode: "edit", item: item })}
-              >
-                <EditIcon w={4} h={4} color="#fff" />
-              </Button>
-            )}
-          </HStack>
-        )}
-      </Td>
+      {view !== "serviceRow" && (
+        <Td>
+          {view !== "raw" && view !== "review" && (
+            <HStack>
+              <DelItemComponent iid={item._id} />
+              {itemModalMode !== "service" && (
+                <Button
+                  colorScheme="yellow"
+                  size="sm"
+                  onClick={() => setUpItemModal({ mode: "edit", item: item })}
+                >
+                  <EditIcon w={4} h={4} color="#fff" />
+                </Button>
+              )}
+            </HStack>
+          )}
+        </Td>
+      )}
       <Td>
         <p className="gray">{item?._id}</p>
         <span className="proper darkGray">
@@ -106,22 +108,26 @@ const TRow = ({ item, view, index }) => {
       console.log(item);
       setContent(
         <Tr>
-          <Td>
-            {view !== "raw" && view !== "review" && (
-              <HStack>
-                <DelItemComponent iid={item._id} />
-                {itemModalMode !== "service" && (
-                  <Button
-                    colorScheme="yellow"
-                    size="sm"
-                    onClick={() => setUpItemModal({ mode: "edit", item: item })}
-                  >
-                    <EditIcon w={4} h={4} color="#fff" />
-                  </Button>
-                )}
-              </HStack>
-            )}
-          </Td>
+          {view !== "serviceRow" && (
+            <Td>
+              {view !== "raw" && view !== "review" && (
+                <HStack>
+                  <DelItemComponent iid={item._id} />
+                  {itemModalMode !== "service" && (
+                    <Button
+                      colorScheme="yellow"
+                      size="sm"
+                      onClick={() =>
+                        setUpItemModal({ mode: "edit", item: item })
+                      }
+                    >
+                      <EditIcon w={4} h={4} color="#fff" />
+                    </Button>
+                  )}
+                </HStack>
+              )}
+            </Td>
+          )}
           <Td>
             <p className="gray">{item?._id}</p>
             <span className="proper darkGray">
@@ -169,28 +175,32 @@ const TRow = ({ item, view, index }) => {
       console.log(item);
       setContent(
         <Tr>
-          <Td>
-            {view !== "raw" && view !== "review" && (
-              <HStack>
-                {itemModalMode === "service" && (
-                  <DelListItemComponent index={index} item={item} />
-                )}
-                {itemModalMode !== "service" && (
-                  <DelItemComponent iid={item._id} />
-                )}{" "}
-                {itemModalMode !== "service" && (
-                  <Button
-                    colorScheme="yellow"
-                    size="sm"
-                    onClick={() => setUpItemModal({ mode: "edit", item: item })}
-                  >
-                    <EditIcon w={4} h={4} color="#fff" />
-                  </Button>
-                )}
-              </HStack>
-            )}
-            {view === "raw" && <ForwardItemComponent />}
-          </Td>
+          {view !== "serviceRow" && (
+            <Td>
+              {view !== "raw" && view !== "review" && (
+                <HStack>
+                  {itemModalMode === "service" && (
+                    <DelListItemComponent index={index} item={item} />
+                  )}
+                  {itemModalMode !== "service" && (
+                    <DelItemComponent iid={item._id} />
+                  )}{" "}
+                  {itemModalMode !== "service" && (
+                    <Button
+                      colorScheme="yellow"
+                      size="sm"
+                      onClick={() =>
+                        setUpItemModal({ mode: "edit", item: item })
+                      }
+                    >
+                      <EditIcon w={4} h={4} color="#fff" />
+                    </Button>
+                  )}
+                </HStack>
+              )}
+              {view === "raw" && <ForwardItemComponent />}
+            </Td>
+          )}
           <Td>
             <p className="gray">{item?._id}</p>
             <span className="proper darkGray">

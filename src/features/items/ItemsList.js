@@ -78,7 +78,7 @@ const ItemsList = () => {
                   color="#217194"
                 />{" "}
                 <div p={5} className="proper" color="#217194">
-                  Części przypisane do klienta:
+                  Części klienta:
                 </div>
               </HStack>
             </Button>

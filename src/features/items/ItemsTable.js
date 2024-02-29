@@ -183,6 +183,7 @@ const ItemsTable = ({ itemsRaw, view }) => {
                 <Th>marka/model</Th>
                 <Th>magazyn</Th>
                 <Th>ilość</Th>
+                <Th>sprzed</Th>
                 <Th>uwagi</Th>
                 <Th>zmodyfikowano</Th>
               </Tr>

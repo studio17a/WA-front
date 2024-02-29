@@ -39,6 +39,7 @@ import SetServiceEditable from "./SetServiceEditable";
 import { useSelector } from "react-redux";
 import SetServiceDone from "./SetServiceDone";
 import PdfComponent from "../pdf/PdfComponent";
+import ItemDetails from "../items/ItemDetails";
 
 const ServiceRow = ({
   toApprove,
@@ -76,7 +77,7 @@ const ServiceRow = ({
   };
   if (appointment) {
     let items = appointment.items?.map((item) => (
-      <ItemRowPart key={appointment._id} item={item} />
+      <ItemDetails view="serviceRow" key={appointment._id} item={item} />
     ));
     // console.log(appointment.sts);
     return (
@@ -145,7 +146,36 @@ const ServiceRow = ({
 
         <Td bg={serviceStatusColor} className={myClass}>
           {appointment._id}
-          {appointment.items && items}
+          {appointment.items && (
+            <Box
+              border="1px solid #eee"
+              background={"#fff"}
+              borderRadius="10px"
+              overflowY="auto"
+              className="left w100 fixedTable"
+              maxWidth="580px"
+            >
+              <TableContainer
+                overflowY="scroll"
+                className="left w100 fixedTable"
+              >
+                <Table variant="simple">
+                  <Thead>
+                    <Tr>
+                      <Th>nazwa</Th>
+                      <Th>opis</Th>
+                      <Th>marka/model</Th>
+                      <Th>magazyn</Th>
+                      <Th>ilość</Th>
+                      <Th>uwagi</Th>
+                      <Th>zmodyfikowano</Th>
+                    </Tr>
+                  </Thead>
+                  <Tbody>{items}</Tbody>
+                </Table>
+              </TableContainer>
+            </Box>
+          )}
         </Td>
         <Td bg={serviceStatusColor} className={myClass}>
           {appointment.sts &&
