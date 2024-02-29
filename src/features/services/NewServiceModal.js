@@ -460,6 +460,8 @@ const NewServiceModal = ({ children, open, method }) => {
                               <Table variant="simple">
                                 <Thead>
                                   <Tr>
+                                    <Th>-</Th>
+                                    <Th>nazwa</Th>
                                     <Th>opis</Th>
                                     <Th>marka/model</Th>
                                     <Th>magazyn</Th>
