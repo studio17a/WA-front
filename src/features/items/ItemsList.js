@@ -31,7 +31,7 @@ import {
   PopoverAnchor,
 } from "@chakra-ui/react";
 
-const ItemsList = () => {
+const ItemsList = ({ mode }) => {
   const { garageId } = useParams();
   const dispatch = useDispatch();
   const [userId, setUserId] = useState("");
@@ -46,16 +46,23 @@ const ItemsList = () => {
   const selectedItems = useSelector((state) => state.selectedItems.itemsIds);
 
   useEffect(() => {
-    getItemsByUserId({ userId: selectedUserObj._id });
+    if (mode === "client") {
+      getItemsByUserId({ gid: garageId, userId: selectedUserObj._id });
+    } else {
+      getItemsByUserId({ gid: garageId });
+    }
   }, [selectedUserObj, selectedItems]);
 
   let content;
   if (isLoading) content = <Spinner />;
   if (isError) {
-    // console.log(error?.data?.message);
+    console.log(error);
     content = (
       <>
-        <p>ten klient nie ma jeszcze przypisanych przedmiotow</p>
+        <p>
+          ten klient nie ma jeszcze przypisanych przedmiotow
+          {error?.data?.message}
+        </p>
       </>
     );
   }

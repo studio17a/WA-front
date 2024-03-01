@@ -34,9 +34,13 @@ export const itemsApiSlice = apiSlice.injectEndpoints({
 
     getItemsByUserId: builder.mutation({
       query: ({ gid, userId }) => ({
-        url: `/items/${gid}`,
+        url: userId ? `/items/${gid}` : `/items/${gid}/nouser`,
         method: "POST",
-        body: { userId },
+
+        // body: userId ? { userId } : null,
+        // url: `/items/${gid}`,
+        // method: "POST",
+        body: userId ? { userId } : {},
         validateStatus: (response, result) => {
           // console.log(`userId${userId}`);
           return response.status === 200 && !result.isError;
@@ -61,7 +65,9 @@ export const itemsApiSlice = apiSlice.injectEndpoints({
     }),
     getItemsByUserIdAndService: builder.mutation({
       query: ({ gid, userId }) => ({
-        url: `/items/${gid}/itemsbyuseridandservice/${userId}`,
+        url: userId
+          ? `/items/${gid}/itemsbyuseridandservice/${userId}`
+          : "/items/nouser",
         method: "POST",
         body: { userId },
         validateStatus: (response, result) => {

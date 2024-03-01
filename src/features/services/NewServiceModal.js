@@ -7,6 +7,7 @@ import useTitle from "../../hooks/useTitle";
 import UsersPanel from "../users/UsersPanel";
 import MyDatePicker from "../calendar/DatePicker";
 import VehiclesListWithSearch from "../vehicles/VehiclesListWithSearch";
+import ItemsListWithSearch from "../items/ItemsListWithSearch";
 import { Stack, HStack, VStack, Flex } from "@chakra-ui/react";
 import { useHandleServiceMutation } from "./servicesApiSlice";
 // import { useUpdateServiceMutation } from "./servicesApiSlice";
@@ -145,7 +146,7 @@ const NewServiceModal = ({ children, open, method }) => {
       if (i.toDo !== "del") {
         return (
           <>
-            <ItemDetails view="raw" index={index} modal="true" item={i} />
+            <ItemDetails view="rawq" index={index} modal="true" item={i} />
           </>
         );
       }
@@ -157,6 +158,7 @@ const NewServiceModal = ({ children, open, method }) => {
     }
   }, [saveService]);
   useEffect(() => {
+    console.log(selectedStId);
     setStTabIndex(0);
   }, [selectedStId]);
   useEffect(() => {
@@ -445,7 +447,11 @@ const NewServiceModal = ({ children, open, method }) => {
                       </TabList>
                       <TabPanels>
                         <TabPanel align="center">
-                          <ItemsList />
+                          <HStack alignItems="start">
+                            <ItemsList mode="client" />
+                            <ItemsListWithSearch items={[]} />
+                            {/* <ItemsList mode="stack" /> */}
+                          </HStack>
                           <Box
                             border="1px solid #eee"
                             borderRadius="10px"
