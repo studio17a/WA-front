@@ -27,7 +27,7 @@ import {
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setItemsId } from "./selectedItemsSlice";
+import { addItemsId } from "./selectedItemsSlice";
 import { useSelector } from "react-redux";
 
 const ItemsSearchBox = ({ placeholder, data }) => {
@@ -60,7 +60,7 @@ const ItemsSearchBox = ({ placeholder, data }) => {
   const itemSelected = ({ item }) => {
     console.log(item);
     dispatch(
-      setItemsId([
+      addItemsId([
         {
           _id: item._id,
           garage: garageId,
