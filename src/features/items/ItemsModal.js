@@ -21,6 +21,7 @@ import ItemsTable from "./ItemsTable";
 import { Button } from "@chakra-ui/react";
 
 const ItemsModal = ({ children, mode }) => {
+  console.log("");
   let usersList;
   const itemsByUser = useSelector((state) => state.itemsByUser.itemsByUser);
   const selectedUser = useSelector((state) => state.selectedUser.selectedUser);

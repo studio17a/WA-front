@@ -19,6 +19,7 @@ import { useGetItemsQuery } from "../items/itemsApiSlice";
 import ItemsModal from "./ItemsModal";
 
 const ItemsView = () => {
+  console.log("");
   const dispatch = useDispatch();
   let content = <Spinner />;
   const { garageId } = useParams();

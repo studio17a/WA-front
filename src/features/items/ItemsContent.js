@@ -15,6 +15,7 @@ import { faUpRightAndDownLeftFromCenter } from "@fortawesome/free-solid-svg-icon
 import { useParams } from "react-router-dom";
 
 const ItemsContent = ({ userId, user }) => {
+  console.log("");
   const dispatch = useDispatch();
   const { garageId } = useParams();
   const [items, setItems] = useState();
