@@ -13,7 +13,6 @@ import {
   TabPanels,
   Tabs,
 } from "@chakra-ui/react";
-
 import {
   Popover,
   PopoverTrigger,
@@ -32,6 +31,7 @@ import { addItemsId } from "./selectedItemsSlice";
 import { useSelector } from "react-redux";
 
 const ItemsSearchBox = ({ placeholder, data }) => {
+  console.log("zzz");
   const { garageId } = useParams();
   const dispatch = useDispatch();
   //   const selectedItem = useSelector((state) => state.selectedItem.selectedItem);
