@@ -271,7 +271,7 @@ const ServicesList = () => {
                   <Th textAlign="center">min</Th>
                   <Th textAlign="center"></Th>
                   <Th textAlign="center">klient</Th>
-                  <Th textAlign="center">item</Th>
+                  <Th textAlign="center">części</Th>
                   <Th textAlign="center">usługa</Th>
                   <Th textAlign="center">uwagi</Th>
                   <Th textAlign="center"></Th>
@@ -306,7 +306,7 @@ const ServicesList = () => {
                   <Th textAlign="center">min</Th>
                   <Th textAlign="center"></Th>
                   <Th textAlign="center">klient</Th>
-                  <Th textAlign="center">item</Th>
+                  <Th textAlign="center">części</Th>
                   <Th textAlign="center">usługa</Th>
                   <Th textAlign="center">uwagi</Th>
                   <Th textAlign="center"></Th>
