@@ -13,7 +13,6 @@ import {
   TabPanels,
   Tabs,
 } from "@chakra-ui/react";
-
 import {
   Popover,
   PopoverTrigger,
