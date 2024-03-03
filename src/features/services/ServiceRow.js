@@ -145,7 +145,7 @@ const ServiceRow = ({
         </Td>
 
         <Td bg={serviceStatusColor} className={myClass}>
-          {appointment._id}
+          {/* {appointment._id} */}
           {appointment.items && (
             <Box
               border="1px solid #eee"
