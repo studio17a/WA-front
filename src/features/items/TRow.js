@@ -129,7 +129,7 @@ const TRow = ({ item, view, index }) => {
             </Td>
           )}
           <Td>
-            <p className="gray">{item?._id}</p>
+        {/* <p className="gray">{item?._id}</p> */}
             <span className="proper darkGray">
               <b>{item?.name}</b>
             </span>
@@ -202,7 +202,7 @@ const TRow = ({ item, view, index }) => {
             </Td>
           )}
           <Td>
-            <p className="gray">{item?._id}</p>
+        {/* <p className="gray">{item?._id}</p> */}
             <span className="proper darkGray">
               <b>{item?.name}</b>
             </span>
