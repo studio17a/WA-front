@@ -30,6 +30,7 @@ const NewItemForm = ({ mode = "add" }) => {
   const [name, setName] = useState(selectedItems?.name);
   const [storage, setStorage] = useState(selectedItems?.storage);
   const [ean, setEan] = useState(selectedItems?.ean);
+  const [itemq, setItemQ] = useState(selectedItems?.quantity);
   const [notes, setNotes] = useState(selectedItems?.notes);
   const [description, setDescription] = useState(selectedItems?.description);
   const [checkedItem, setCheckedItem] = useState([true]);
@@ -53,6 +54,9 @@ const NewItemForm = ({ mode = "add" }) => {
   };
   const onIdChanged = (e) => {
     setEan(e.target.value);
+  };
+  const onQChanged = (e) => {
+    setItemQ(e.target.value);
   };
   const onNoteChanged = (e) => {
     setNotes(e.target.value);
@@ -84,6 +88,7 @@ const NewItemForm = ({ mode = "add" }) => {
         name,
         storage,
         description,
+        quantity: itemq,
         ean,
         notes,
         author: selectedUserObj ? selectedUserObj : UserInfo._id,
@@ -102,6 +107,7 @@ const NewItemForm = ({ mode = "add" }) => {
                   user: item.user,
                   brand: item.brand,
                   storage: item.storage,
+                  quantity: itemq,
                   description: item.description,
                   model: item.model,
                   notes: item.notes,
@@ -118,6 +124,7 @@ const NewItemForm = ({ mode = "add" }) => {
                 storage: item.storage,
                 description: item.description,
                 model: item.model,
+                quantity: itemq,
                 notes: item.notes,
                 toDo: "add",
                 garage: garageId,
@@ -175,6 +182,14 @@ const NewItemForm = ({ mode = "add" }) => {
             <Input value={ean} placeholder="Wpisz nr " onChange={onIdChanged} />
           ) : (
             <Input placeholder="Wpisz nr " onChange={onIdChanged} />
+          )}
+        </FormControl>
+        <FormControl id="quantity">
+          <FormLabel>Ilość</FormLabel>
+          {mode == "edit" ? (
+            <Input value={ean} placeholder="ilość " onChange={onQChanged} />
+          ) : (
+            <Input placeholder="ilość " onChange={onQChanged} />
           )}
         </FormControl>
         <FormControl id="description">
