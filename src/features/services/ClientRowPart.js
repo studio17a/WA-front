@@ -12,8 +12,8 @@ const ClientRowPart = ({ user, vehicle }) => {
             <b>{vehicle?.reg}</b>
           </div>
           <div>{user.username}</div>
-          <div className="proper"><b>{user.phone}</b></div>
-          <div className="propper gray">{user.email}</div>
+          <div className="proper">tel. <b>{user.phone}</b></div>
+          <div className="propper gray">email: <b>{user.email}</b></div>
         </div>
       </HStack>
     </Box>
