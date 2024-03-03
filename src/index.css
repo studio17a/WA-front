@@ -231,7 +231,9 @@ Table {
 .infoRed {
   font-weight: 200;
 }
-
+.tel {
+  color: #32a8c0;
+}
 /*
 Td {
   color: #5e5252;
