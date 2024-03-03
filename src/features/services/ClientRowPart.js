@@ -8,7 +8,9 @@ const ClientRowPart = ({ user, vehicle }) => {
     <Box w="90%">
       <HStack spacing="24px">
         <div>
-          <div>{vehicle?.reg}</div>
+          <div className="proper tel">
+            <b>{vehicle?.reg}</b>
+          </div>
           <div>{user.username}</div>
           <div>{user.phone}</div>
         </div>
