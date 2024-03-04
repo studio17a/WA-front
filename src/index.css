@@ -27,6 +27,15 @@ body {
   cursor: pointer;
   cursor: hand;
 }
+.center {
+  text-align: center !important;
+}
+h2 {
+  margin-bottom: 15px;
+  border: dashed 1px #eaeaea;
+  border-radius: 5px;
+  padding: 10px;
+}
 .pageHeader:hover {
   background-color: #eeeeee;
 }

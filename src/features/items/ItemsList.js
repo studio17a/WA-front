@@ -32,7 +32,6 @@ import {
 } from "@chakra-ui/react";
 
 const ItemsList = ({ mode }) => {
-  console.log("");
   const { garageId } = useParams();
   const dispatch = useDispatch();
   const [userId, setUserId] = useState("");

@@ -27,7 +27,7 @@ import {
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addItemsId } from "./selectedItemsSlice";
+import { setItemsId } from "./selectedItemsSlice";
 import { useSelector } from "react-redux";
 
 const ItemsSearchBox = ({ placeholder, data }) => {
@@ -60,20 +60,22 @@ const ItemsSearchBox = ({ placeholder, data }) => {
   const itemSelected = ({ item }) => {
     console.log(item);
     dispatch(
-      addItemsId({
-        _id: item._id,
-        garage: garageId,
-        name: item.name,
-        description: item.description,
-        brand: item.brand,
-        model: item.model,
-        storage: item.storage,
-        user: item.user ? item.user : null,
-        quantity: item.quantity,
-        authorname: item.authorname,
-        updatedAt: item.updatedAt,
-        toDo: "add",
-      }),
+      setItemsId([
+        {
+          _id: item._id,
+          garage: garageId,
+          name: item.name,
+          description: item.description,
+          brand: item.brand,
+          model: item.model,
+          storage: item.storage,
+          user: item.user ? item.user : null,
+          quantity: item.quantity,
+          authorname: item.authorname,
+          updatedAt: item.updatedAt,
+          toDo: "add",
+        },
+      ]),
     );
     // dispatch(setItemsId(item));
     setFilteredData([]);
@@ -81,52 +83,39 @@ const ItemsSearchBox = ({ placeholder, data }) => {
   };
   return (
     <>
-      <Popover
-        isOpen={true}
-        closeOnBlur={true}
-        isLazy
-        lazyBehavior="keepMounted"
-      >
-        <PopoverTrigger>
-          <Box>
-            <Input
-              placeholder={placeholder}
-              onChange={searchData}
-              onFocus={(e) => {
-                setOverflow("hidden");
-                searchData(e);
-                setBorder("1px");
-              }}
-              onBlur={(e) => {
-                // console.log(e.relatedTarget);
-                // only re-focus if the user clicked on something
-                // that was NOT an input element
-                if (
-                  e.relatedTarget === null ||
-                  !e.relatedTarget.id.includes("popover-content")
-                ) {
-                  e.target.focus();
-                  setFilteredData([]);
-                  setBorder("0px");
-                  setOverflow("hidden");
-                } else {
-                }
-              }}
-            />
-          </Box>
-        </PopoverTrigger>
-        <PopoverContent border={border} borderColor="gray.200" boxShadow="none">
-          <PopoverBody maxHeight="200px" overflowY={overflow}>
-            {filteredData?.map((d) => {
-              return (
-                <p key={d.id} onClick={() => itemSelected({ item: d })}>
-                  {d.name} {d.reg}
-                </p>
-              );
-            })}
-          </PopoverBody>
-        </PopoverContent>
-      </Popover>
+      <Box>
+        <Input
+          placeholder={placeholder}
+          onChange={searchData}
+          onFocus={(e) => {
+            setOverflow("hidden");
+            searchData(e);
+            setBorder("1px");
+          }}
+          onBlur={(e) => {
+            // console.log(e.relatedTarget);
+            // only re-focus if the user clicked on something
+            // that was NOT an input element
+            if (
+              e.relatedTarget === null ||
+              !e.relatedTarget.id.includes("popover-content")
+            ) {
+              e.target.focus();
+              setFilteredData([]);
+              setBorder("0px");
+              setOverflow("hidden");
+            } else {
+            }
+          }}
+        />
+      </Box>
+      {filteredData?.map((d) => {
+        return (
+          <p key={d.id} onClick={() => itemSelected({ item: d })}>
+            {d.name} {d.reg}
+          </p>
+        );
+      })}
     </>
   );
 };

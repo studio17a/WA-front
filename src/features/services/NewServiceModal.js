@@ -329,7 +329,7 @@ const NewServiceModal = ({ children, open, method }) => {
           <ModalHeader> </ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            {serviceModalMode}:{editedServiceId}
+            {/* {serviceModalMode}:{editedServiceId} */}
             <Container centerContent>
               <Box
                 bg="white"
@@ -358,10 +358,10 @@ const NewServiceModal = ({ children, open, method }) => {
                   borderWidth="1px"
                   borderColor={bColor}
                 >
-                  <div>
-                    klient: {selectedUserObj?.username}
-                    {selectedUserObj?._id}
-                  </div>
+                  <h2 className="center proper">
+                    wybrany klient: <b>{selectedUserObj?.username}</b>
+                    {/* {selectedUserObj?._id} */}
+                  </h2>
                   <Tabs
                     index={tabIndex}
                     onChange={handleTabsChange}
@@ -394,11 +394,15 @@ const NewServiceModal = ({ children, open, method }) => {
                     borderRadius="lg"
                     borderWidth="1px"
                   >
-                    <div margin="5px" padding="5px">
-                      pojazd: {selectedVehicle && selectedVehicle[0]?.reg}{" "}
-                      {selectedVehicle && selectedVehicle.user}
+                    <h2 className="center proper">
+                      <p className="">
+                        pojazd:{" "}
+                        <b>{selectedVehicle && selectedVehicle[0]?.reg} </b>
+                        {selectedVehicle && selectedVehicle.user}
+                      </p>
                       {alert && <TransferVehicle />}
-                    </div>
+                      {/* {selectedUserObj?._id} */}
+                    </h2>
                     <Tabs
                       index={vehicleTabIndex}
                       onChange={handleVehicleTabsChange}
