@@ -78,12 +78,12 @@ const NewItemForm = ({ mode = "add" }) => {
         id: selectedItems?._id,
         garage: garageId,
         mode: formmode,
-        user: selectedUserObj,
-        // user: checkedItem
-        //   ? selectedUserObj
-        //     ? selectedUserObj._id
-        //     : UserInfo._id
-        //   : null,
+        // user: selectedUserObj,
+        user: checkedItem
+          ? selectedUserObj
+            ? selectedUserObj._id
+            : UserInfo._id
+          : null,
         selectedUserId: selectedUserObj ? selectedUserObj._id : UserInfo._id,
         name,
         storage,
