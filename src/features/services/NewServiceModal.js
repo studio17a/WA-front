@@ -133,6 +133,7 @@ const NewServiceModal = ({ children, open, method }) => {
   const [vehicleTabIndex, setVehicleTabIndex] = useState(0);
   const [stTabIndex, setStTabIndex] = useState(0);
   const [itemTabIndex, setItemTabIndex] = useState(0);
+  const [notes, setNotes] = useState("");
   const { isOpen, onOpen, onClose } = useDisclosure({ defaultIsOpen: false });
   let stList = "";
   stList = selectedStId?.map((st, index) => {
@@ -267,6 +268,7 @@ const NewServiceModal = ({ children, open, method }) => {
       date: selectedDate,
       vehicle: selectedVehicle[0],
       hour: selectedHour,
+      notes: notes,
       minute: selectedMinute,
       author: UserInfo._id,
       authorname: UserInfo.username,
@@ -531,10 +533,12 @@ const NewServiceModal = ({ children, open, method }) => {
                 )}
               </VStack>
               <Textarea
+                onChange={(e) => setNotes(e.target.value)}
                 borderColor={bColor}
                 w="100%"
                 margin="10px 0 30px 0"
                 placeholder="Uwagi"
+                value={notes}
               />
               {serviceModalMode == "add" ? (
                 <Button

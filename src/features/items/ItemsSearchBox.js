@@ -27,7 +27,7 @@ import {
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setItemsId } from "./selectedItemsSlice";
+import { addItemsId } from "./selectedItemsSlice";
 import { useSelector } from "react-redux";
 
 const ItemsSearchBox = ({ placeholder, data }) => {
@@ -60,22 +60,20 @@ const ItemsSearchBox = ({ placeholder, data }) => {
   const itemSelected = ({ item }) => {
     console.log(item);
     dispatch(
-      setItemsId([
-        {
-          _id: item._id,
-          garage: garageId,
-          name: item.name,
-          description: item.description,
-          brand: item.brand,
-          model: item.model,
-          storage: item.storage,
-          user: item.user ? item.user : null,
-          quantity: item.quantity,
-          authorname: item.authorname,
-          updatedAt: item.updatedAt,
-          toDo: "add",
-        },
-      ]),
+      addItemsId({
+        _id: item._id,
+        garage: garageId,
+        name: item.name,
+        description: item.description,
+        brand: item.brand,
+        model: item.model,
+        storage: item.storage,
+        user: item.user ? item.user : null,
+        quantity: item.quantity,
+        authorname: item.authorname,
+        updatedAt: item.updatedAt,
+        toDo: "add",
+      }),
     );
     // dispatch(setItemsId(item));
     setFilteredData([]);
