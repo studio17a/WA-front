@@ -78,7 +78,7 @@ const ServiceDetails = ({ st, modal, index }) => {
       alignItems="top"
       bg="white"
       minWidth="100%"
-      bg="white"
+      background="white"
       w="100%"
       p={4}
       borderRadius="lg"
@@ -89,8 +89,8 @@ const ServiceDetails = ({ st, modal, index }) => {
         <VStack align="left">
           {st && (
             <div>
-              {st.name} : vat: {vat} , cena: {price}, szt: {items} , suma:{" "}
-              {(price * items * vat) / 100 + price * items}
+              {st.name} : vat: {vat} , cena: {st.price}, szt: {st.items} , suma:{" "}
+              {(st.price * st.items * st.vat) / 100 + st.price * st.items}
             </div>
           )}
 
@@ -109,7 +109,7 @@ const ServiceDetails = ({ st, modal, index }) => {
                   placeholder="cena jedn."
                   key="cena"
                   name="cena"
-                  value={price}
+                  value={st.price}
                 />
               </FormControl>
               <FormControl>
@@ -118,7 +118,7 @@ const ServiceDetails = ({ st, modal, index }) => {
                   placeholder="sztuk"
                   key="szt"
                   name="szt"
-                  value={items}
+                  value={st.items}
                 />
               </FormControl>
             </HStack>
