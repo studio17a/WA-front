@@ -147,7 +147,13 @@ const NewServiceModal = ({ children, open, method }) => {
       if (i.toDo !== "del") {
         return (
           <>
-            <ItemDetails view="rawq" index={index} modal="true" item={i} />
+            <ItemDetails
+              edit="true"
+              view="rawq"
+              index={index}
+              modal="true"
+              item={i}
+            />
           </>
         );
       }
