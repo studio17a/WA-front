@@ -158,8 +158,8 @@ const MyDoc = ({ appointment }) => {
           <Text style={styles.regular}>
             POJAZD:{" "}
             <Text style={styles.bold}>
-              {appointment.vehicle.reg} - {appointment.vehicle.brand}
-              {appointment.vehicle.model}
+              {appointment.vehicle?.reg} - {appointment.vehicle?.brand}
+              {appointment.vehicle?.model}
             </Text>
           </Text>
         </View>
