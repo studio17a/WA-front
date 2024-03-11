@@ -565,7 +565,7 @@ const NewServiceModal = ({ children, open, method }) => {
                   isLoading={isLoading}
                   onClick={saveAppointment}
                 >
-                  Edytuj wpis
+                  Edytuj wpisy
                 </Button>
               )}
             </Container>
