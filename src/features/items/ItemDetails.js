@@ -23,7 +23,7 @@ import { setStId, addStId, editStId } from "../items/selectedItemsSlice";
 import { useEffect, useState } from "react";
 import TRow from "../items/TRow";
 
-const ItemDetails = ({ item, modal, index, view }) => {
+const ItemDetails = ({ edit, item, modal, index, view }) => {
   const [price, setPrice] = useState(0);
   const [items, setItems] = useState(1);
   const [vat, setVat] = useState(23);
@@ -40,7 +40,11 @@ const ItemDetails = ({ item, modal, index, view }) => {
   //   setVat(st.vat);
   // }, []);
   return (
-    <>{item && <TRow view={view} index={index} modal="true" item={item} />}</>
+    <>
+      {item && (
+        <TRow edit={edit} view={view} index={index} modal="true" item={item} />
+      )}
+    </>
   );
 };
 

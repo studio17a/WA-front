@@ -77,7 +77,12 @@ const ServiceRow = ({
   };
   if (appointment) {
     let items = appointment.items?.map((item) => (
-      <ItemDetails view="serviceRow" key={appointment._id} item={item} />
+      <ItemDetails
+        edit="false"
+        view="serviceRow"
+        key={appointment._id}
+        item={item}
+      />
     ));
     // console.log(appointment.sts);
     return (
@@ -145,7 +150,7 @@ const ServiceRow = ({
         </Td>
 
         <Td bg={serviceStatusColor} className={myClass}>
-          {appointment._id}
+          {/* {appointment._id} */}
           {appointment.items && (
             <Box
               border="1px solid #eee"
@@ -160,7 +165,7 @@ const ServiceRow = ({
                 className="left w100 fixedTable"
               >
                 <Table variant="simple">
-                  <Thead>
+                  <Thead bg={"#fafafa"}>
                     <Tr>
                       <Th>nazwa</Th>
                       <Th>opis</Th>

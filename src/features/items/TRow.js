@@ -24,7 +24,7 @@ import ForwardItemComponent from "./ForwardItemComponent";
 import { set } from "date-fns";
 import { useParams } from "react-router-dom";
 
-const TRow = ({ item, view, index }) => {
+const TRow = ({ edit, item, view, index }) => {
   const dispatch = useDispatch();
   const { garageId } = useParams();
   const [iQuantity, setIQuantity] = useState(1);
@@ -240,14 +240,20 @@ const TRow = ({ item, view, index }) => {
           <Td>{item?.storage}</Td>
           <Td>
             <p>
-              <Input
-                placeholder={item?.quantity}
-                width="50px"
-                margin="0 0 0px 0"
-                padding="0 0 0px 0"
-                bg="#fafafa"
-                onChange={quantityChanged}
-              />{" "}
+              {edit === "true" ? (
+                <Input
+                  placeholder={item?.quantity}
+                  width="50px"
+                  margin="0 0 0px 0"
+                  padding="0 0 0px 0"
+                  bg="#fafafa"
+                  onChange={quantityChanged}
+                />
+              ) : (
+                <>
+                  <span className="small gray">szt:</span> {item?.quantity}
+                </>
+              )}
             </p>
           </Td>
           <Td>{item?.notes}</Td>
