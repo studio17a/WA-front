@@ -8,6 +8,7 @@ import {
   Td,
   TableCaption,
   TableContainer,
+  Input,
 } from "@chakra-ui/react";
 import DelListItemComponent from "../items/DelListItemComponent";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,17 +17,40 @@ import { EditIcon, CloseIcon } from "@chakra-ui/icons";
 import { setIsItemsModalOpen } from "./isItemsModalOpenSlice";
 import { setItemModalMode } from "./itemModalModeSlice";
 import { setUserObj } from "../users/selectedUserSlice";
-import { setItemsId } from "./selectedItemsSlice";
+import { editItemsId, setItemsId } from "./selectedItemsSlice";
 import DelItemComponent from "./DelItemComponent";
 import { useState, useEffect } from "react";
 import ForwardItemComponent from "./ForwardItemComponent";
+import { set } from "date-fns";
+import { useParams } from "react-router-dom";
 
 const TRow = ({ item, view, index }) => {
+  const dispatch = useDispatch();
+  const { garageId } = useParams();
+  const [iQuantity, setIQuantity] = useState(1);
   const itemModalMode = useSelector(
     (state) => state.itemModalMode.itemModalMode,
   );
+  const quantityChanged = (e) => {
+    setIQuantity(e.target.value);
+    dispatch(
+      editItemsId({
+        index: index,
+        _id: item._id,
+        name: item.name,
+        toDo: "add",
+        garage: garageId,
+        user: item.user,
+        brand: item.brand,
+        storage: item.storage,
+        quantity: e.target.value,
+        description: item.description,
+        model: item.model,
+        notes: item.notes,
+      }),
+    );
+  };
   const selectedUser = useSelector((state) => state.selectedUser.selectedUser);
-  const dispatch = useDispatch();
   console.log(index);
   const [content, setContent] = useState(
     <Tr>
@@ -129,7 +153,7 @@ const TRow = ({ item, view, index }) => {
             </Td>
           )}
           <Td>
-        {/* <p className="gray">{item?._id}</p> */}
+            {/* <p className="gray">{item?._id}</p> */}
             <span className="proper darkGray">
               <b>{item?.name}</b>
             </span>
@@ -202,7 +226,7 @@ const TRow = ({ item, view, index }) => {
             </Td>
           )}
           <Td>
-        {/* <p className="gray">{item?._id}</p> */}
+            {/* <p className="gray">{item?._id}</p> */}
             <span className="proper darkGray">
               <b>{item?.name}</b>
             </span>
@@ -216,7 +240,14 @@ const TRow = ({ item, view, index }) => {
           <Td>{item?.storage}</Td>
           <Td>
             <p>
-              <span className="small gray">szt:</span> {item?.quantity}
+              <Input
+                placeholder={item?.quantity}
+                width="50px"
+                margin="0 0 0px 0"
+                padding="0 0 0px 0"
+                bg="#fafafa"
+                onChange={quantityChanged}
+              />{" "}
             </p>
           </Td>
           <Td>{item?.notes}</Td>
