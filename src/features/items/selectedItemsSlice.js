@@ -43,8 +43,7 @@ export const selectedItemsSlice = createSlice({
             return {
               ...itemsId,
               price: action.payload.price,
-              items: action.payload.items,
-              vat: action.payload.vat,
+              quantity: action.payload.quantity,
             };
           } else {
             return itemsId;
