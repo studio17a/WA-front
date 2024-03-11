@@ -36,13 +36,9 @@ import { setUserObj } from "../users/selectedUserSlice";
 
 const VeiclesTable = ({ user, vehiclesRaw, view }) => {
   const [vehicles, setVehicles] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
   // const [tableContent, setTableContent] = useState("");
 
-  useEffect(() => {
-    // console.log(`sss: ${user?._id}`);
-    // console.log(vehiclesRaw);
-    setVehicles(vehiclesRaw);
-  }, []);
   const dispatch = useDispatch();
   // console.log(vehicles);
   const setUpModal = (mode) => {
@@ -52,6 +48,30 @@ const VeiclesTable = ({ user, vehiclesRaw, view }) => {
 
     if (user !== null) dispatch(setUserObj(user));
   };
+  const idChanged = (e) => {
+    const result = vehicles.map((vehicle) => {
+      const searchWord = e.target.value;
+      let allow = true;
+      if (vehicle?._id) {
+        if (vehicle._id.toLowerCase().includes(searchWord.toLowerCase()))
+          return { ...vehicle };
+      }
+      if (vehicle?.reg) {
+        if (vehicle.reg.toLowerCase().includes(searchWord.toLowerCase()))
+          return { ...vehicle };
+      } else return null;
+      if (allow) return null;
+    });
+    const result2 = result.filter((vehicle) => vehicle !== null);
+    setFilteredData(result2);
+  };
+  useEffect(() => {
+    if (vehiclesRaw) {
+      console.log(vehiclesRaw?.length);
+      setFilteredData(vehiclesRaw);
+      setVehicles(vehiclesRaw);
+    }
+  }, [vehiclesRaw]);
   return (
     <>
       <TableContainer
@@ -80,7 +100,24 @@ const VeiclesTable = ({ user, vehiclesRaw, view }) => {
                   />
                 </Button>
               </Th>
-              <Th></Th>
+              <Th>
+                nr/nazwa
+                {view !== "raw" && (
+                  <>
+                    <p>
+                      <Input
+                        placeholder="nr rejestracyjny"
+                        margin="0 0 5px 0"
+                        onBlur={(e) => {
+                          e.target.value = "";
+                        }}
+                        bg="#fafafa"
+                        onChange={idChanged}
+                      />
+                    </p>
+                  </>
+                )}
+              </Th>
               <Th></Th>
               <Th></Th>
             </Tr>
@@ -93,7 +130,7 @@ const VeiclesTable = ({ user, vehiclesRaw, view }) => {
                 </Td>
               </Tr>
             )}
-            <VehiclesTBody view={view} vehicles={vehicles} />
+            <VehiclesTBody view={view} vehicles={filteredData} />
           </Tbody>
         </Table>
       </TableContainer>
