@@ -42,7 +42,7 @@ const ApproveService = ({ appointment }) => {
       user: appointment.user._id,
       notes: "",
     };
-    response = <SendEmail task="approve" body={body} />;
+    response = <SendEmail task="add" body={body} />;
   }
   return (
     <>
