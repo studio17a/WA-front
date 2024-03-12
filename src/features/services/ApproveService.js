@@ -37,7 +37,7 @@ const ApproveService = ({ appointment }) => {
       task: "approve",
       garageId: appointment.garage,
       email: appointment.user.email,
-      date: `${appointment.day}/${appointment.month}/${appointment.year}`,
+      date: `${appointment.date}`,
       hour: appointment.hour,
       minute: appointment.minute,
       user: appointment.user._id,
@@ -48,6 +48,7 @@ const ApproveService = ({ appointment }) => {
   return (
     <>
       {isLoading && <Spinner />}
+      {isSuccess && response}
       {!isLoading && (
         <Button
           bg="#a5d998"
