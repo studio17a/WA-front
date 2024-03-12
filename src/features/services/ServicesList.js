@@ -66,7 +66,7 @@ const ServicesList = () => {
   );
 
   useEffect(() => {
-    socket = io("https://tg3vhf-3500.csb.app", {
+    socket = io("https://warsztap-api.onrender.com", {
       transports: ["websocket", "polling", "flashsocket"],
     });
     socket.emit("setup", UserInfo);
