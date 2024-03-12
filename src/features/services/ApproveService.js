@@ -17,6 +17,7 @@ const ApproveService = ({ appointment }) => {
     useHandleServiceMutation();
   const approveS = async () => {
     approveService({
+      task: "approve",
       id: appointment._id,
       user: appointment.user,
       vehicle: appointment.vehicle,
