@@ -5,11 +5,12 @@ import { Button, Spinner } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 import { EditIcon, CloseIcon, CheckIcon } from "@chakra-ui/icons";
 import { setMinute } from "../services/selectedMinuteSlice";
-
 import SendEmail from "../mailer/SendEmail";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarCheck } from "@fortawesome/free-solid-svg-icons";
 const ApproveService = ({ appointment }) => {
+  let response = "";
   const selectedStId = useSelector((state) => state.selectedSt.stIds);
   const dispatch = useDispatch();
   const [approveService, { isLoading, isSuccess, isError, error }] =
@@ -32,7 +33,7 @@ const ApproveService = ({ appointment }) => {
   };
   if (isSuccess) {
     const body = {
-      task: approve,
+      task: "approve",
       garageId: appointment.garage,
       email: appointment.user.email,
       date: `${appointment.day}/${appointment.month}/${appointment.year}`,
