@@ -116,7 +116,7 @@ const MyDoc = ({ appointment }) => {
     },
   });
   const stList = appointment.sts?.map((st) => (
-    <Text style={styles.regular}>{st.name}</Text>
+    <Text style={styles.regular}>{st?.name}</Text>
   ));
   const itemsList = appointment.items?.map((i) => (
     <Text style={styles.regular}>
