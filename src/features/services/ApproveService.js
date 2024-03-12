@@ -30,6 +30,17 @@ const ApproveService = ({ appointment }) => {
     });
   };
   if (isSuccess) {
+    const body = {
+      task: approve,
+      garageId: appointment.garage,
+      email: appointment.user.email,
+      date: `${appointment.day}/${appointment.month}/${appointment.year}`,
+      hour: appointment.hour,
+      minute: appointment.minute,
+      user: appointment.user._id,
+      notes: "",
+    };
+    response = <SendEmail task="delete" body={body} />;
   }
   return (
     <>
