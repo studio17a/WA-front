@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { EditIcon, CloseIcon, CheckIcon } from "@chakra-ui/icons";
 import { setMinute } from "../services/selectedMinuteSlice";
 
+import SendEmail from "../mailer/SendEmail";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarCheck } from "@fortawesome/free-solid-svg-icons";
 const ApproveService = ({ appointment }) => {
@@ -40,7 +41,7 @@ const ApproveService = ({ appointment }) => {
       user: appointment.user._id,
       notes: "",
     };
-    response = <SendEmail task="delete" body={body} />;
+    response = <SendEmail task="approve" body={body} />;
   }
   return (
     <>
