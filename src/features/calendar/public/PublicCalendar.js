@@ -5,15 +5,18 @@ import { Grid, GridItem, Box } from "@chakra-ui/react";
 import PublicCalendarTable from "./PublicCalendarTable";
 import LoginModal from "../../auth/LoginModal";
 import AppointmentModal from "./AppointmentModal";
+import { useSelector } from "react-redux";
 
 const PublicCalendar = () => {
   const url = window.location.href;
-
+  const selectedGarage = useSelector((state) => state.selectedGarage.garage);
   const { garageId } = useParams();
   const gid = { garageId: garageId };
+  console.log(`selectedGarage`);
+  console.log(selectedGarage);
   return (
     <>
-      <div>g: {garageId}</div>
+      <div>warsztat: {selectedGarage.name}</div>
       <Box
         width="96%"
         margin="2%"

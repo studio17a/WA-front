@@ -53,10 +53,7 @@ const PublicCalendarTable = () => {
     content = (
       <>
         <TableContainer>
-          <Table variant="simple">
-            <TableCaption>Imperial to metric conversion factors</TableCaption>
-            {tableContent}
-          </Table>
+          <Table variant="simple">{tableContent}</Table>
         </TableContainer>
       </>
     );

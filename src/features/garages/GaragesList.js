@@ -24,14 +24,19 @@ const GaragesList = () => {
   }
 
   if (isSuccess) {
-    const { ids } = garages;
+    const { ids, entities } = garages;
     const listOfGarages =
       ids?.length &&
-      ids.map((garageId) => <Garage key={garageId} garageId={garageId} />);
+      ids.map((garageId) => (
+        <Garage key={garageId} garage={entities[garageId]} />
+      ));
     content = (
       <div>
-        list of garages
-        <div>{listOfGarages}</div>
+        <h1>wybierz warsztat: </h1>
+        <p></p>
+        <div margin="20px 20px 20px 20px" padding="20px 20px 20px 20px">
+          {listOfGarages}
+        </div>
         <footer></footer>
       </div>
     );

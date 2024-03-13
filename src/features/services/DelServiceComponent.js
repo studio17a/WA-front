@@ -26,7 +26,7 @@ const DelServiceComponent = ({ appointment }) => {
     const body = {
       garageId: appointment.garage,
       email: appointment.user.email,
-      date: `${appointment.day}/${appointment.month}/${appointment.year}`,
+      date: `${appointment.date}`,
       hour: appointment.hour,
       minute: appointment.minute,
       user: appointment.user._id,

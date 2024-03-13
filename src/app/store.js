@@ -5,6 +5,7 @@ import authReducer from "../features/auth/authSlice";
 import selectedUserReducer from "../features/users/selectedUserSlice";
 import oldSelectedUserReducer from "../features/users/oldSelectedUserSlice";
 import selectedVehicleReducer from "../features/vehicles/selectedVehicleSlice";
+import selectedGarageReducer from "../features/garages/selectedGarageSlice";
 import vehiclesByUserReducer from "../features/vehicles/vehiclesByUserSlice";
 import itemsByUserReducer from "../features/items/itemsByUserSlice";
 import selectedStReducer from "../features/st/selectedStSlice";
@@ -37,6 +38,7 @@ export const store = configureStore({
     oldSelectedUser: oldSelectedUserReducer,
     modalButtonDisabled: modalButtonDisabledReducer,
     selectedVehicle: selectedVehicleReducer,
+    selectedGarage: selectedGarageReducer,
     vehiclesByUser: vehiclesByUserReducer,
     itemsByUser: itemsByUserReducer,
     refresh: refreshSliceReducer,
@@ -55,7 +57,7 @@ export const store = configureStore({
     serviceModalMode: serviceModalModeReducer,
     userModalMode: userModalModeReducer,
     vehicleModalMode: vehicleModalModeReducer,
-    itemModalMode: itemModalModeReducer, 
+    itemModalMode: itemModalModeReducer,
     editedServiceId: editedServiceIdReducer,
   },
   middleware: (getDefaultMiddleware) =>
