@@ -25,6 +25,7 @@ import { set } from "date-fns";
 import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 const TRow = ({ edit, item, view, index }) => {
   const dispatch = useDispatch();
@@ -92,6 +93,11 @@ const TRow = ({ edit, item, view, index }) => {
           <b>{item?.name}</b>
         </span>
         <p className="small gray">ean: {item?.ean}</p>
+      </Td>
+      <Td>
+        <Button size="sm" colorScheme="cyan" backgroundColor="#f2f2f2">
+          <FontAwesomeIcon color="gray" icon={faMagnifyingGlass} />
+        </Button>
       </Td>
       <Td>{item?.description}</Td>
       <Td>
@@ -185,6 +191,11 @@ const TRow = ({ edit, item, view, index }) => {
             </span>
             <p className="small gray">ean: {item?.ean}</p>
           </Td>
+          <Td>
+            <Button size="sm" colorScheme="cyan" backgroundColor="#f2f2f2">
+              <FontAwesomeIcon color="gray" icon={faMagnifyingGlass} />
+            </Button>
+          </Td>
           <Td>{item?.description}</Td>
           <Td>
             <p>{item.brand}</p>
@@ -271,6 +282,11 @@ const TRow = ({ edit, item, view, index }) => {
               <b>{item?.name}</b>
             </span>
             <p className="small gray">ean: {item?.ean}</p>
+          </Td>
+          <Td>
+            <Button size="sm" colorScheme="cyan" backgroundColor="#f2f2f2">
+              <FontAwesomeIcon color="gray" icon={faMagnifyingGlass} />
+            </Button>
           </Td>
           <Td>{item?.description}</Td>
           <Td>

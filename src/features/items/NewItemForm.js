@@ -154,9 +154,7 @@ const NewItemForm = ({ mode = "add" }) => {
   return (
     <>
       <VStack spacing="25px">
-        <h2>
-          dodaj przedmiot {itemModalMode} {mode}
-        </h2>
+        <h2>dodaj przedmiot</h2>
         {mode !== "top" && (
           <Checkbox
             onChange={(e) => setCheckedItem(e.target.checked)}

@@ -162,6 +162,7 @@ const ItemsTable = ({ itemsRaw, view }) => {
                   </>
                 )}
               </Th>
+              <Th>transakcje</Th>
               <Th>opis</Th>
               <Th>marka/model</Th>
               <Th>magazyn</Th>
@@ -178,12 +179,11 @@ const ItemsTable = ({ itemsRaw, view }) => {
               <Tr>
                 <Th></Th>
                 <Th>nr/nazwa</Th>
-                <Th>właściciel/pojazd</Th>
+                <Th>transakcje</Th>
                 <Th>opis</Th>
                 <Th>marka/model</Th>
                 <Th>magazyn</Th>
                 <Th>ilość</Th>
-                <Th>sprzed</Th>
                 <Th>uwagi</Th>
                 <Th>zmodyfikowano</Th>
               </Tr>
