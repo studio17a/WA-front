@@ -90,7 +90,7 @@ const VehiclesModal = ({ children, mode }) => {
                     <Thead>
                       <Th></Th>
                       <Th>data</Th>
-                      <Th>pojazd szczegóły</Th>
+                      <Th>właściciel</Th>
                       <Th>usługa</Th>
                       <Th>części</Th>
                       <Th>stan</Th>
@@ -102,7 +102,7 @@ const VehiclesModal = ({ children, mode }) => {
                     <Thead>
                       <Th></Th>
                       <Th>data</Th>
-                      <Th>pojazd szczegóły</Th>
+                      <Th>właściciel</Th>
                       <Th>usługa</Th>
                       <Th>części</Th>
                       <Th>stan</Th>

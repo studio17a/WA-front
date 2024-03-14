@@ -17,11 +17,13 @@ import {
   ModalBody,
   ModalCloseButton,
 } from "@chakra-ui/react";
-import VehiclesTRow from "../vehicles/VehiclesTRow";
 import StsListItem from "../st/StsListItem";
+import VehiclesTRow from "../vehicles/VehiclesTRow";
 import TRow from "../items/TRow";
 
 const ServiceDetailSRow = ({ service }) => {
+  console.log("service:");
+  console.log(service);
   const itemsList = service.items?.map((item) => (
     <TRow view="service" item={item} />
   ));
@@ -31,7 +33,14 @@ const ServiceDetailSRow = ({ service }) => {
       {" "}
       <Tr>
         <Td></Td>
-        <Td>{service.date}</Td>
+        <Td>
+          <p className="bold">{service.date}</p>
+          {/* <p>{service._id}</p> */}
+          <p className=" gray">
+            {service.hour} : {service.minute}
+          </p>
+        </Td>
+        <Td>{service.user.username}</Td>
         <Td>
           <Box
             border="1px solid #eee"
@@ -40,13 +49,11 @@ const ServiceDetailSRow = ({ service }) => {
             className="left w100 fixedTable"
             maxWidth="580px"
           >
-            <VehiclesTRow view="service" vehicle={service.vehicle} />
+            {service.st?.map((st) => (
+              <StsListItem st={st} />
+            ))}
+            {/* <VehiclesTRow view="service" vehicle={service.vehicle} /> */}
           </Box>
-        </Td>
-        <Td>
-          <Table>
-            <Tbody></Tbody>
-          </Table>
         </Td>
         <Td>
           <Box
@@ -63,7 +70,7 @@ const ServiceDetailSRow = ({ service }) => {
             </TableContainer>
           </Box>
         </Td>
-        <Td></Td>
+        <Td>{service.completed}</Td>
         <Td></Td>
       </Tr>
     </>

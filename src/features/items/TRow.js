@@ -57,7 +57,7 @@ const TRow = ({ edit, item, view, index }) => {
   console.log(index);
   const [content, setContent] = useState(
     <Tr>
-      {view !== "serviceRow" && (
+      {view !== "serviceRow" && view !== "service" && (
         <Td>
           {view !== "raw" && view !== "review" && (
             <HStack>
@@ -94,7 +94,7 @@ const TRow = ({ edit, item, view, index }) => {
         </span>
         <p className="small gray">ean: {item?.ean}</p>
       </Td>
-      {view !== "serviceRow" && (
+      {view !== "serviceRow" && view !== "service" && (
         <Td>
           <Button size="sm" colorScheme="cyan" backgroundColor="#f2f2f2">
             <FontAwesomeIcon color="gray" icon={faMagnifyingGlass} />
@@ -154,7 +154,7 @@ const TRow = ({ edit, item, view, index }) => {
       console.log(item);
       setContent(
         <Tr>
-          {view !== "serviceRow" && (
+          {view !== "serviceRow" && view !== "service" && (
             <Td>
               {view !== "raw" && view !== "review" && (
                 <HStack>
@@ -193,7 +193,7 @@ const TRow = ({ edit, item, view, index }) => {
             </span>
             <p className="small gray">ean: {item?.ean}</p>
           </Td>
-          {view !== "serviceRow" && (
+          {view !== "serviceRow" && view !== "service" && (
             <Td>
               <Button size="sm" colorScheme="cyan" backgroundColor="#f2f2f2">
                 <FontAwesomeIcon color="gray" icon={faMagnifyingGlass} />
@@ -240,7 +240,7 @@ const TRow = ({ edit, item, view, index }) => {
       console.log(item);
       setContent(
         <Tr>
-          {view !== "serviceRow" && (
+          {view !== "serviceRow" && view !== "service" && (
             <Td>
               {view !== "raw" && view !== "review" && (
                 <HStack>
@@ -287,7 +287,7 @@ const TRow = ({ edit, item, view, index }) => {
             </span>
             <p className="small gray">ean: {item?.ean}</p>
           </Td>
-          {view !== "serviceRow" && (
+          {view !== "serviceRow" && view !== "service" && (
             <Td>
               <Button size="sm" colorScheme="cyan" backgroundColor="#f2f2f2">
                 <FontAwesomeIcon color="gray" icon={faMagnifyingGlass} />
