@@ -27,6 +27,7 @@ body {
   cursor: pointer;
   cursor: hand;
 }
+
 .center {
   text-align: center !important;
 }
@@ -120,6 +121,9 @@ h2 {
 
 .gray {
   color: #afafaf;
+}
+.green {
+  color: hsl(93, 75%, 46%);
 }
 .bgwhite {
   background-color: #ffffff;
@@ -243,6 +247,7 @@ Table {
 .tel {
   color: #32a8c0;
 }
+
 /*
 Td {
   color: #5e5252;

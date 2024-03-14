@@ -60,7 +60,7 @@ const ItemsModal = ({ children, mode }) => {
           <ModalCloseButton />
           <ModalBody>
             {itemModalMode !== "review" ? (
-              <NewItemForm mode="edit" />
+              <NewItemForm mode={mode} />
             ) : (
               <ItemsTable itemsRaw={itemsByUser[0]} user={selectedUser} />
             )}

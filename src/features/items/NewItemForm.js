@@ -31,13 +31,17 @@ const NewItemForm = ({ mode = "add" }) => {
   const [storage, setStorage] = useState(selectedItems?.storage);
   const [ean, setEan] = useState(selectedItems?.ean);
   const [itemq, setItemQ] = useState(selectedItems?.quantity);
+  const [brand, setBrand] = useState(selectedItems?.brand);
+  const [model, setModel] = useState(selectedItems?.model);
   const [notes, setNotes] = useState(selectedItems?.notes);
   const [description, setDescription] = useState(selectedItems?.description);
-  const [checkedItem, setCheckedItem] = useState([true]);
+  const [checkedItem, setCheckedItem] = useState(true);
 
-  // useEffect(() => {
-  //   setFormmode(itemModalMode);
-  // }, [itemModalMode]);
+  useEffect(() => {
+    if (mode === "top") {
+      setCheckedItem(false);
+    }
+  }, []);
 
   if (isLoading) {
   }
@@ -60,6 +64,12 @@ const NewItemForm = ({ mode = "add" }) => {
   };
   const onNoteChanged = (e) => {
     setNotes(e.target.value);
+  };
+  const onBrandChanged = (e) => {
+    setBrand(e.target.value);
+  };
+  const onModelChanged = (e) => {
+    setModel(e.target.value);
   };
   const onDescriptionChanged = (e) => {
     setDescription(e.target.value);
@@ -89,6 +99,8 @@ const NewItemForm = ({ mode = "add" }) => {
         storage,
         description,
         quantity: itemq,
+        brand,
+        model,
         ean,
         notes,
         author: selectedUserObj ? selectedUserObj : UserInfo._id,
@@ -145,13 +157,15 @@ const NewItemForm = ({ mode = "add" }) => {
         <h2>
           dodaj przedmiot {itemModalMode} {mode}
         </h2>
-        <Checkbox
-          onChange={(e) => setCheckedItem(e.target.checked)}
-          colorScheme="green"
-          isChecked={checkedItem}
-        >
-          własność klienta
-        </Checkbox>
+        {mode !== "top" && (
+          <Checkbox
+            onChange={(e) => setCheckedItem(e.target.checked)}
+            colorScheme="green"
+            isChecked={checkedItem}
+          >
+            własność klienta
+          </Checkbox>
+        )}
         <FormControl id="name" isRequired>
           <FormLabel>Nazwa</FormLabel>
           {mode == "edit" ? (
@@ -187,7 +201,7 @@ const NewItemForm = ({ mode = "add" }) => {
         <FormControl id="quantity">
           <FormLabel>Ilość</FormLabel>
           {mode == "edit" ? (
-            <Input value={ean} placeholder="ilość " onChange={onQChanged} />
+            <Input value={itemq} placeholder="ilość " onChange={onQChanged} />
           ) : (
             <Input placeholder="ilość " onChange={onQChanged} />
           )}
@@ -201,7 +215,43 @@ const NewItemForm = ({ mode = "add" }) => {
               onChange={onDescriptionChanged}
             />
           ) : (
-            <Input placeholder="Wpisz uwagi" onChange={onDescriptionChanged} />
+            <Input
+              value={description}
+              placeholder="Wpisz uwagi"
+              onChange={onDescriptionChanged}
+            />
+          )}
+        </FormControl>
+        <FormControl id="brand">
+          <FormLabel>marka</FormLabel>
+          {mode == "edit" ? (
+            <Input
+              value={brand}
+              placeholder="Wpisz markę"
+              onChange={onBrandChanged}
+            />
+          ) : (
+            <Input
+              value={brand}
+              placeholder="Wpisz markę"
+              onChange={onBrandChanged}
+            />
+          )}
+        </FormControl>
+        <FormControl id="brand">
+          <FormLabel>model</FormLabel>
+          {mode == "edit" ? (
+            <Input
+              value={model}
+              placeholder="Wpisz model"
+              onChange={onModelChanged}
+            />
+          ) : (
+            <Input
+              value={model}
+              placeholder="Wpisz model"
+              onChange={onModelChanged}
+            />
           )}
         </FormControl>
         <FormControl id="uwagi">

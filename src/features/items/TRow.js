@@ -23,6 +23,8 @@ import { useState, useEffect } from "react";
 import ForwardItemComponent from "./ForwardItemComponent";
 import { set } from "date-fns";
 import { useParams } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 
 const TRow = ({ edit, item, view, index }) => {
   const dispatch = useDispatch();
@@ -74,6 +76,18 @@ const TRow = ({ edit, item, view, index }) => {
       )}
       <Td>
         {/* <p className="gray">{item?._id}</p> */}
+        <p>
+          <HStack>
+            <span>
+              <FontAwesomeIcon
+                className="green small"
+                size={"xs"}
+                icon={faCircleUser}
+              />
+            </span>
+            <span className="green small">własność klienta</span>
+          </HStack>
+        </p>
         <span className="proper darkGray">
           <b>{item?.name}</b>
         </span>
@@ -81,7 +95,7 @@ const TRow = ({ edit, item, view, index }) => {
       </Td>
       <Td>{item?.description}</Td>
       <Td>
-        <p>{item.user?.brand}</p>
+        <p>{item.brand}</p>
         <p>{item.model}</p>
       </Td>
       <Td>{item?.storage}</Td>
@@ -154,6 +168,18 @@ const TRow = ({ edit, item, view, index }) => {
           )}
           <Td>
             {/* <p className="gray">{item?._id}</p> */}
+            <p>
+              <HStack>
+                <span>
+                  <FontAwesomeIcon
+                    className="green small"
+                    size={"xs"}
+                    icon={faCircleUser}
+                  />
+                </span>
+                <span className="green small">własność klienta</span>
+              </HStack>
+            </p>
             <span className="proper darkGray">
               <b>{item?.name}</b>
             </span>
@@ -161,7 +187,7 @@ const TRow = ({ edit, item, view, index }) => {
           </Td>
           <Td>{item?.description}</Td>
           <Td>
-            <p>{item.user?.brand}</p>
+            <p>{item.brand}</p>
             <p>{item.model}</p>
           </Td>
           <Td>{item?.storage}</Td>
@@ -227,6 +253,20 @@ const TRow = ({ edit, item, view, index }) => {
           )}
           <Td>
             {/* <p className="gray">{item?._id}</p> */}
+            {item.user && (
+              <p>
+                <HStack>
+                  <span>
+                    <FontAwesomeIcon
+                      className="green small"
+                      size={"xs"}
+                      icon={faCircleUser}
+                    />
+                  </span>
+                  <span className="green small">własność klienta</span>
+                </HStack>
+              </p>
+            )}
             <span className="proper darkGray">
               <b>{item?.name}</b>
             </span>
@@ -234,7 +274,7 @@ const TRow = ({ edit, item, view, index }) => {
           </Td>
           <Td>{item?.description}</Td>
           <Td>
-            <p>{item.user?.brand}</p>
+            <p>{item.brand}</p>
             <p>{item.model}</p>
           </Td>
           <Td>{item?.storage}</Td>

@@ -42,7 +42,7 @@ const ItemsView = () => {
     const itemsList = ids?.map((iid) => entities[iid]);
     content = (
       <>
-        <ItemsModal key="itemsModal" />
+        <ItemsModal mode={"top"} key="itemsModal" />
         <ItemsTable itemsRaw={itemsList} />
       </>
     );
