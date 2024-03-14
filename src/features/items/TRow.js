@@ -94,11 +94,13 @@ const TRow = ({ edit, item, view, index }) => {
         </span>
         <p className="small gray">ean: {item?.ean}</p>
       </Td>
-      <Td>
-        <Button size="sm" colorScheme="cyan" backgroundColor="#f2f2f2">
-          <FontAwesomeIcon color="gray" icon={faMagnifyingGlass} />
-        </Button>
-      </Td>
+      {view !== "serviceRow" && (
+        <Td>
+          <Button size="sm" colorScheme="cyan" backgroundColor="#f2f2f2">
+            <FontAwesomeIcon color="gray" icon={faMagnifyingGlass} />
+          </Button>
+        </Td>
+      )}
       <Td>{item?.description}</Td>
       <Td>
         <p>{item.brand}</p>
@@ -191,11 +193,13 @@ const TRow = ({ edit, item, view, index }) => {
             </span>
             <p className="small gray">ean: {item?.ean}</p>
           </Td>
-          <Td>
-            <Button size="sm" colorScheme="cyan" backgroundColor="#f2f2f2">
-              <FontAwesomeIcon color="gray" icon={faMagnifyingGlass} />
-            </Button>
-          </Td>
+          {view !== "serviceRow" && (
+            <Td>
+              <Button size="sm" colorScheme="cyan" backgroundColor="#f2f2f2">
+                <FontAwesomeIcon color="gray" icon={faMagnifyingGlass} />
+              </Button>
+            </Td>
+          )}
           <Td>{item?.description}</Td>
           <Td>
             <p>{item.brand}</p>
@@ -283,11 +287,13 @@ const TRow = ({ edit, item, view, index }) => {
             </span>
             <p className="small gray">ean: {item?.ean}</p>
           </Td>
-          <Td>
-            <Button size="sm" colorScheme="cyan" backgroundColor="#f2f2f2">
-              <FontAwesomeIcon color="gray" icon={faMagnifyingGlass} />
-            </Button>
-          </Td>
+          {view !== "serviceRow" && (
+            <Td>
+              <Button size="sm" colorScheme="cyan" backgroundColor="#f2f2f2">
+                <FontAwesomeIcon color="gray" icon={faMagnifyingGlass} />
+              </Button>
+            </Td>
+          )}
           <Td>{item?.description}</Td>
           <Td>
             <p>{item.brand}</p>
