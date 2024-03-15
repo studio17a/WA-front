@@ -120,7 +120,8 @@ const MyDoc = ({ appointment }) => {
   ));
   const itemsList = appointment.items?.map((i) => (
     <Text style={styles.regular}>
-      {i.name} - {i.description}
+      {i.name} - {i.description} - {i.brand} - {i.model}{" "}
+      {i.quantity && <> - {i.quantity} szt.</>}
     </Text>
   ));
   return (
@@ -158,8 +159,13 @@ const MyDoc = ({ appointment }) => {
           <Text style={styles.regular}>
             POJAZD:{" "}
             <Text style={styles.bold}>
-              {appointment.vehicle?.reg} - {appointment.vehicle?.brand}
-              {appointment.vehicle?.model}
+              {appointment.vehicle?.reg}{" "}
+              {appointment.vehicle?.brand && (
+                <>
+                  - {appointment.vehicle?.brand}
+                  {appointment.vehicle?.model}
+                </>
+              )}
             </Text>
           </Text>
         </View>

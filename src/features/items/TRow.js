@@ -9,6 +9,7 @@ import {
   TableCaption,
   TableContainer,
   Input,
+  Textarea,
 } from "@chakra-ui/react";
 import DelListItemComponent from "../items/DelListItemComponent";
 import { useDispatch, useSelector } from "react-redux";
@@ -26,14 +27,41 @@ import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import it from "date-fns/locale/it";
 
 const TRow = ({ edit, item, view, index }) => {
   const dispatch = useDispatch();
   const { garageId } = useParams();
-  const [iQuantity, setIQuantity] = useState(1);
+  const [iQuantity, setIQuantity] = useState(item.quantity);
+  const [iDescription, setIDescripion] = useState(item.description);
+
+  useEffect(() => {
+    setIQuantity(item.quantity);
+    setIDescripion(item.description);
+  }, [item]);
+
   const itemModalMode = useSelector(
     (state) => state.itemModalMode.itemModalMode,
   );
+  const descriptionChanged = (e) => {
+    setIDescripion(e.target.value);
+    dispatch(
+      editItemsId({
+        index: index,
+        _id: item._id,
+        name: item.name,
+        toDo: "add",
+        garage: garageId,
+        user: item.user,
+        brand: item.brand,
+        storage: item.storage,
+        quantity: iQuantity,
+        description: e.target.value,
+        model: item.model,
+        notes: item.notes,
+      }),
+    );
+  };
   const quantityChanged = (e) => {
     setIQuantity(e.target.value);
     dispatch(
@@ -47,7 +75,7 @@ const TRow = ({ edit, item, view, index }) => {
         brand: item.brand,
         storage: item.storage,
         quantity: e.target.value,
-        description: item.description,
+        description: iDescription,
         model: item.model,
         notes: item.notes,
       }),
@@ -94,7 +122,7 @@ const TRow = ({ edit, item, view, index }) => {
         </span>
         <p className="small gray">ean: {item?.ean}</p>
       </Td>
-      {view !== "serviceRow" && view !== "service" && (
+      {view !== "rawq" && view !== "serviceRow" && view !== "service" && (
         <Td>
           <Button size="sm" colorScheme="cyan" backgroundColor="#f2f2f2">
             <FontAwesomeIcon color="gray" icon={faMagnifyingGlass} />
@@ -193,7 +221,7 @@ const TRow = ({ edit, item, view, index }) => {
             </span>
             <p className="small gray">ean: {item?.ean}</p>
           </Td>
-          {view !== "serviceRow" && view !== "service" && (
+          {view !== "rawq" && view !== "serviceRow" && view !== "service" && (
             <Td>
               <Button size="sm" colorScheme="cyan" backgroundColor="#f2f2f2">
                 <FontAwesomeIcon color="gray" icon={faMagnifyingGlass} />
@@ -287,14 +315,31 @@ const TRow = ({ edit, item, view, index }) => {
             </span>
             <p className="small gray">ean: {item?.ean}</p>
           </Td>
-          {view !== "serviceRow" && view !== "service" && (
+          {view !== "rawq" && view !== "serviceRow" && view !== "service" && (
             <Td>
               <Button size="sm" colorScheme="cyan" backgroundColor="#f2f2f2">
                 <FontAwesomeIcon color="gray" icon={faMagnifyingGlass} />
               </Button>
             </Td>
           )}
-          <Td>{item?.description}</Td>
+          <Td>
+            <p>
+              {edit === "true" ? (
+                <Textarea
+                  fontSize={"0.8em"}
+                  value={item?.description}
+                  placeholder={item?.description}
+                  minWidth="100px"
+                  margin="0 0 0px 0"
+                  padding="0 0 0px 0"
+                  bg="#fafafa"
+                  onChange={descriptionChanged}
+                />
+              ) : (
+                <>{item?.description}</>
+              )}
+            </p>
+          </Td>
           <Td>
             <p>{item.brand}</p>
             <p>{item.model}</p>
@@ -319,7 +364,7 @@ const TRow = ({ edit, item, view, index }) => {
             </p>
           </Td>
           <Td>{item?.notes}</Td>
-          <Td>
+          <Td className="gray">
             <p>{item.authorname}</p>
             <p>{item?.createdAt}</p>
             <p>{item?.updatedAt}</p>

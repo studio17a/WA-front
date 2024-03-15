@@ -44,6 +44,7 @@ export const selectedItemsSlice = createSlice({
               ...itemsId,
               price: action.payload.price,
               quantity: action.payload.quantity,
+              description: action.payload.description,
             };
           } else {
             return itemsId;
