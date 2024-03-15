@@ -1,7 +1,7 @@
 import { useGetItemsQuery } from "./itemsApiSlice";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { setItemsId, addItemsId } from "./selectedItemsSlice";
+import { addItemsId } from "./selectedItemsSlice";
 import { useParams, useNavigate } from "react-router-dom";
 import { VStack, HStack, Box } from "@chakra-ui/react";
 
@@ -17,7 +17,7 @@ const ItemsListItem = ({ item, magazyn, name }) => {
   const onItemIdChanged = (obj) => {
     if (selectedItems === null) {
       dispatch(
-        setItemsId([
+        addItemsId([
           {
             _id: obj._id,
             garage: garageId,

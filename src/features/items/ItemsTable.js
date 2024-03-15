@@ -1,281 +1,197 @@
-import { Input, InputGroup, InputRightElement } from "@chakra-ui/input";
-import { Button, useToast, Select } from "@chakra-ui/react";
-import { Stack, HStack, VStack, Checkbox } from "@chakra-ui/react";
-import { FormControl, FormLabel } from "@chakra-ui/form-control";
+import {
+  Button,
+  Table,
+  Thead,
+  Tbody,
+  Tfoot,
+  Tr,
+  Th,
+  Td,
+  TableCaption,
+  TableContainer,
+  Input,
+  FormControl,
+  useDisclosure,
+  useToast,
+  Container,
+  Select,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Textarea,
+  Tabs,
+} from "@chakra-ui/react";
 import { useState, useEffect } from "react";
-import { Textarea } from "@chakra-ui/react";
-import { useHandleItemMutation } from "./itemsApiSlice";
-import { useDispatch } from "react-redux";
-import { setItemsId, addItemsId } from "./selectedItemsSlice";
-import useAuth from "../../hooks/useAuth";
-import { useSelector } from "react-redux";
-import { useParams, useNavigate } from "react-router-dom";
-import { setRefreshVehiclesByUser } from "../../hooks/refreshSlice";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setIsItemsModalOpen } from "./isItemsModalOpenSlice";
+import TBody from "./TBody";
+import { setItemModalMode } from "./itemModalModeSlice";
+import { Spinner } from "@chakra-ui/react";
+import { AddIcon } from "@chakra-ui/icons";
+import { useGetItemsByUsernameMutation } from "./itemsApiSlice";
 
-const NewItemForm = ({ mode = "add" }) => {
+const ItemsTable = ({ itemsRaw, view }) => {
   const { garageId } = useParams();
-  const UserInfo = useAuth();
-  const selectedUserObj = useSelector(
-    (state) => state.selectedUser.selectedUser,
-  );
-  const itemModalMode = useSelector(
-    (state) => state.itemModalMode.itemModalMode,
-  );
-  const selectedItems = useSelector((state) => state.selectedItems.itemsIds);
-
-  const [handleItem, { isLoading, isSuccess, isError, error }] =
-    useHandleItemMutation();
+  const [items, setItems] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [
+    getItemsByUsername,
+    { data: itemsByUsername, isLoading, isSuccess, isError, error },
+  ] = useGetItemsByUsernameMutation();
+  useEffect(() => {
+    if (itemsByUsername) {
+      const { ids, entities } = itemsByUsername;
+      const itemsBU = ids.map((iid) => entities[iid]);
+      if (itemsBU) {
+        setFilteredData(itemsBU);
+        setItems(itemsBU);
+      }
+    }
+  }, [itemsByUsername]);
   const dispatch = useDispatch();
+  const isItemsModalOpen = useSelector(
+    (state) => state.isItemsModalOpen.isItemsModalOpen,
+  );
+  const idChanged = (e) => {
+    const result = items.map((item) => {
+      const searchWord = e.target.value;
+      let allow = true;
+      if (item?._id) {
+        if (item._id.toLowerCase().includes(searchWord.toLowerCase()))
+          return { ...item };
+      }
+      if (item?.name) {
+        if (item.name.toLowerCase().includes(searchWord.toLowerCase()))
+          return { ...item };
+      } else return null;
+      if (allow) return null;
+    });
+    const result2 = result.filter((item) => item !== null);
+    setFilteredData(result2);
+  };
+  const vehicleChanged = (e) => {
+    const result = items.map((item) => {
+      const searchWord = e.target.value;
+      let allow = true;
+      if (item?.vehicle?.reg) {
+        if (item.vehicle?.reg.toLowerCase().includes(searchWord.toLowerCase()))
+          return { ...item };
+      }
+      if (item?.user?.username) {
+        if (
+          item.user?.username.toLowerCase().includes(searchWord.toLowerCase())
+        )
+          return { ...item };
+      } else return null;
+      if (allow) return null;
+    });
+    const result2 = result.filter((item) => item !== null);
+    setFilteredData(result2);
+    // const result = items.filter((item) => {
+    //   const searchWord = e.target.value;
 
-  const [name, setName] = useState(selectedItems?.name);
-  const [storage, setStorage] = useState(selectedItems?.storage);
-  const [ean, setEan] = useState(selectedItems?.ean);
-  const [itemq, setItemQ] = useState(selectedItems?.quantity);
-  const [brand, setBrand] = useState(selectedItems?.brand);
-  const [model, setModel] = useState(selectedItems?.model);
-  const [notes, setNotes] = useState(selectedItems?.notes);
-  const [description, setDescription] = useState(selectedItems?.description);
-  const [checkedItem, setCheckedItem] = useState(true);
+    //   if (item?.vehicle?.reg)
+    //     return item.vehicle?.reg
+    //       .toLowerCase()
+    //       .includes(searchWord.toLowerCase());
+    //   else return null;
+    // });
+  };
 
   useEffect(() => {
-    if (mode === "top") {
-      setCheckedItem(false);
+    if (itemsRaw && !itemsByUsername) {
+      console.log(itemsRaw?.length);
+      setFilteredData(itemsRaw);
+      setItems(itemsRaw);
     }
-  }, []);
+  }, [itemsRaw]);
+  useEffect(() => {
+    setLoading(false);
+  }, [filteredData]);
 
-  if (isLoading) {
+  const setUpModal = (mode) => {
+    dispatch(setItemModalMode(mode));
+    dispatch(setIsItemsModalOpen(true));
+  };
+  // console.log(`isItemsModalOpen ${isItemsModalOpen}`);
+  let myClass = "fixedTable";
+  let scroll = "scroll";
+  if (view == "raw") {
+    scroll = "";
+    myClass = "rawItemsClass";
   }
-  if (isSuccess) {
-    dispatch(setRefreshVehiclesByUser(true));
-  }
-  if (isError) {
-  }
-  const onNameChanged = (e) => {
-    setName(e.target.value);
-  };
-  const onStorageChanged = (e) => {
-    setStorage(e.target.value);
-  };
-  const onIdChanged = (e) => {
-    setEan(e.target.value);
-  };
-  const onQChanged = (e) => {
-    setItemQ(e.target.value);
-  };
-  const onNoteChanged = (e) => {
-    setNotes(e.target.value);
-  };
-  const onBrandChanged = (e) => {
-    setBrand(e.target.value);
-  };
-  const onModelChanged = (e) => {
-    setModel(e.target.value);
-  };
-  const onDescriptionChanged = (e) => {
-    setDescription(e.target.value);
-  };
-
-  const onSaveItemClicked = async (e) => {
-    e.preventDefault();
-    const canSave = name && !isLoading;
-
-    if (canSave) {
-      let formmode = itemModalMode;
-      if (formmode === null || formmode === "service") formmode = "add";
-      console.log(`formmode`);
-      console.log(selectedUserObj);
-      const { message, item } = await handleItem({
-        id: selectedItems?._id,
-        garage: garageId,
-        mode: formmode,
-        // user: selectedUserObj,
-        user: checkedItem
-          ? selectedUserObj
-            ? selectedUserObj._id
-            : UserInfo._id
-          : null,
-        selectedUserId: selectedUserObj ? selectedUserObj._id : UserInfo._id,
-        name,
-        storage,
-        description,
-        quantity: itemq,
-        brand,
-        model,
-        ean,
-        notes,
-        author: selectedUserObj ? selectedUserObj : UserInfo._id,
-        authorname: UserInfo.username,
-      }).unwrap();
-      if (itemModalMode !== "edit") {
-        if (item) {
-          if (selectedItems === null) {
-            dispatch(
-              setItemsId([
-                {
-                  _id: item._id,
-                  name: item.name,
-                  toDo: "add",
-                  garage: garageId,
-                  user: item.user,
-                  brand: item.brand,
-                  storage: item.storage,
-                  // quantity: itemq,
-                  description: item.description,
-                  model: item.model,
-                  notes: item.notes,
-                },
-              ]),
-            );
-          } else {
-            dispatch(
-              addItemsId({
-                _id: item._id,
-                name: item.name,
-                user: item.user,
-                brand: item.brand,
-                storage: item.storage,
-                description: item.description,
-                model: item.model,
-                // quantity: itemq,
-                notes: item.notes,
-                toDo: "add",
-                garage: garageId,
-              }),
-            );
-          }
-        }
-      }
-      console.log(message);
-    } else {
-      // console.log("here2");
-    }
-  };
-
   return (
     <>
-      <VStack spacing="25px">
-        <h2>dodaj przedmiot</h2>
-        {mode !== "top" && (
-          <Checkbox
-            onChange={(e) => setCheckedItem(e.target.checked)}
-            colorScheme="green"
-            isChecked={checkedItem}
-          >
-            własność klienta
-          </Checkbox>
-        )}
-        <FormControl id="name" isRequired>
-          <FormLabel>Nazwa</FormLabel>
-          {mode == "edit" ? (
-            <Input
-              value={name}
-              placeholder="Wpisz nazwę "
-              onChange={onNameChanged}
-            />
-          ) : (
-            <Input placeholder="Wpisz nazwę " onChange={onNameChanged} />
+      <TableContainer overflowY={scroll} className={myClass}>
+        <Table variant="simple">
+          {view != "raw" && (
+            <TableCaption>
+              {filteredData.length > 25 ? "25" : filteredData.length} z{" "}
+              {itemsRaw?.length}
+            </TableCaption>
           )}
-        </FormControl>
-        <FormControl id="storage">
-          <FormLabel>Magazyn</FormLabel>
-          {mode == "edit" ? (
-            <Input
-              value={storage}
-              placeholder="Wpisz magazyn "
-              onChange={onStorageChanged}
-            />
-          ) : (
-            <Input placeholder="Wpisz magazyn " onChange={onStorageChanged} />
+          <Thead>
+            <Tr>
+              <Th>
+                <Button
+                  size="sm"
+                  colorScheme="cyan"
+                  onClick={() => setUpModal("add")}
+                >
+                  <AddIcon w={3} h={3} color="#fff" />
+                </Button>
+              </Th>
+              <Th>
+                nr/nazwa
+                {view !== "raw" && (
+                  <>
+                    <p>
+                      <Input
+                        placeholder="nr/nazwa"
+                        margin="0 0 5px 0"
+                        onBlur={(e) => {
+                          e.target.value = "";
+                        }}
+                        bg="#fafafa"
+                        onChange={idChanged}
+                      />
+                    </p>
+                  </>
+                )}
+              </Th>
+              <Th>transakcje</Th>
+              <Th>opis</Th>
+              <Th>marka/model</Th>
+              <Th>magazyn</Th>
+              <Th>ilość</Th>
+              <Th>uwagi</Th>
+              <Th>zmodyfikowano</Th>
+            </Tr>
+          </Thead>
+          <Tbody>
+            <TBody view={view} items={filteredData} />
+          </Tbody>
+          {view != "raw" && (
+            <Tfoot>
+              <Tr>
+                <Th></Th>
+                <Th>nr/nazwa</Th>
+                <Th>transakcje</Th>
+                <Th>opis</Th>
+                <Th>marka/model</Th>
+                <Th>magazyn</Th>
+                <Th>ilość</Th>
+                <Th>uwagi</Th>
+                <Th>zmodyfikowano</Th>
+              </Tr>
+            </Tfoot>
           )}
-        </FormControl>
-        <FormControl id="id">
-          <FormLabel>Numer</FormLabel>
-          {mode == "edit" ? (
-            <Input value={ean} placeholder="Wpisz nr " onChange={onIdChanged} />
-          ) : (
-            <Input placeholder="Wpisz nr " onChange={onIdChanged} />
-          )}
-        </FormControl>
-        <FormControl id="quantity">
-          <FormLabel>Ilość</FormLabel>
-          {mode == "edit" ? (
-            <Input value={itemq} placeholder="ilość " onChange={onQChanged} />
-          ) : (
-            <Input placeholder="ilość " onChange={onQChanged} />
-          )}
-        </FormControl>
-        <FormControl id="description">
-          <FormLabel>opis</FormLabel>
-          {mode == "edit" ? (
-            <Input
-              value={description}
-              placeholder="Wpisz uwagi"
-              onChange={onDescriptionChanged}
-            />
-          ) : (
-            <Input
-              value={description}
-              placeholder="Wpisz uwagi"
-              onChange={onDescriptionChanged}
-            />
-          )}
-        </FormControl>
-        <FormControl id="brand">
-          <FormLabel>marka</FormLabel>
-          {mode == "edit" ? (
-            <Input
-              value={brand}
-              placeholder="Wpisz markę"
-              onChange={onBrandChanged}
-            />
-          ) : (
-            <Input
-              value={brand}
-              placeholder="Wpisz markę"
-              onChange={onBrandChanged}
-            />
-          )}
-        </FormControl>
-        <FormControl id="brand">
-          <FormLabel>model</FormLabel>
-          {mode == "edit" ? (
-            <Input
-              value={model}
-              placeholder="Wpisz model"
-              onChange={onModelChanged}
-            />
-          ) : (
-            <Input
-              value={model}
-              placeholder="Wpisz model"
-              onChange={onModelChanged}
-            />
-          )}
-        </FormControl>
-        <FormControl id="uwagi">
-          <FormLabel>Uwagi</FormLabel>
-          {mode == "edit" ? (
-            <Textarea
-              value={notes}
-              placeholder="Wpisz uwagi"
-              onChange={onNoteChanged}
-            />
-          ) : (
-            <Textarea placeholder="Wpisz uwagi" onChange={onNoteChanged} />
-          )}
-        </FormControl>
-        <Button
-          colorScheme="blue"
-          width="100%"
-          style={{ marginTop: 15 }}
-          onClick={onSaveItemClicked}
-          isLoading={isLoading}
-        >
-          Dodaj
-        </Button>
-      </VStack>
+        </Table>
+      </TableContainer>
     </>
   );
 };
-
-export default NewItemForm;
+export default ItemsTable;
