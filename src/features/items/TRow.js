@@ -82,7 +82,7 @@ const TRow = ({ edit, item, view, index }) => {
     );
   };
   const selectedUser = useSelector((state) => state.selectedUser.selectedUser);
-  console.log(index);
+  // console.log(index);
   const [content, setContent] = useState(
     <Tr>
       {view !== "serviceRow" && view !== "service" && (
@@ -150,8 +150,8 @@ const TRow = ({ edit, item, view, index }) => {
     </Tr>,
   );
   const setUpItemModal = ({ mode, item }) => {
-    console.log("tu1");
-    console.log(item);
+    // console.log("tu1");
+    // console.log(item);
     if (itemModalMode != "service") dispatch(setItemModalMode(mode));
     if (itemModalMode != "service") {
       dispatch(setUserObj(item.user));
@@ -164,10 +164,10 @@ const TRow = ({ edit, item, view, index }) => {
     dispatch(setIsItemsModalOpen(true));
   };
   useEffect(() => {
-    console.log("tu2");
+    // console.log("tu2");
     if (item?._id == null) {
-      console.log("tu3");
-      console.log(item);
+      // console.log("tu3");
+      // console.log(item);
       setContent(
         <>
           <Tr>
@@ -179,8 +179,8 @@ const TRow = ({ edit, item, view, index }) => {
         </>,
       );
     } else {
-      console.log("tu4");
-      console.log(item);
+      // console.log("tu4");
+      // console.log(item);
       setContent(
         <Tr>
           {view !== "serviceRow" && view !== "service" && (
@@ -252,8 +252,8 @@ const TRow = ({ edit, item, view, index }) => {
   }, []);
   useEffect(() => {
     if (item?._id == null) {
-      console.log("tu5");
-      console.log(item);
+      // console.log("tu5");
+      // console.log(item);
       setContent(
         <>
           <Tr>
@@ -265,8 +265,8 @@ const TRow = ({ edit, item, view, index }) => {
         </>,
       );
     } else {
-      console.log("tu6");
-      console.log(item);
+      // console.log("tu6");
+      // console.log(item);
       setContent(
         <Tr>
           {view !== "serviceRow" && view !== "service" && (

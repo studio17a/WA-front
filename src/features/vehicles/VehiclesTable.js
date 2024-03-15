@@ -56,6 +56,14 @@ const VeiclesTable = ({ user, vehiclesRaw, view }) => {
         if (vehicle._id.toLowerCase().includes(searchWord.toLowerCase()))
           return { ...vehicle };
       }
+      if (vehicle?.user?.username) {
+        if (
+          vehicle.user?.username
+            .toLowerCase()
+            .includes(searchWord.toLowerCase())
+        )
+          return { ...vehicle };
+      }
       if (vehicle?.reg) {
         if (vehicle.reg.toLowerCase().includes(searchWord.toLowerCase()))
           return { ...vehicle };
@@ -101,12 +109,12 @@ const VeiclesTable = ({ user, vehiclesRaw, view }) => {
                 </Button>
               </Th>
               <Th>
-                nr/nazwa
+                nr/nazwa/właściciel
                 {view !== "raw" && (
                   <>
                     <p>
                       <Input
-                        placeholder="nr rejestracyjny"
+                        placeholder="nr rejestracyjny/właściciel"
                         margin="0 0 5px 0"
                         onBlur={(e) => {
                           e.target.value = "";

@@ -237,7 +237,10 @@ Table {
 .infoRow:hover {
   background-color: #c4e9f5;
 }
-
+.hand {
+  cursor: pointer;
+  cursor: hand;
+}
 .infoNew {
   font-weight: bold;
 }

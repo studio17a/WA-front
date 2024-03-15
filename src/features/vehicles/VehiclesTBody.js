@@ -13,7 +13,7 @@ import VehiclesTRow from "./VehiclesTRow";
 const VehiclesTBody = ({ vehicles, view }) => {
   console.log(view);
   let tableContent = null;
-  if (Array.isArray(vehicles[0])) {
+  if (vehicles && Array.isArray(vehicles[0])) {
     tableContent = vehicles[0]?.map((vehicle, index) => {
       return <VehiclesTRow vehicle={vehicle} view={view} />;
     });
