@@ -115,6 +115,7 @@ const TRow = ({ edit, item, view, index }) => {
               />
             </span>
             <span className="green small">własność klienta</span>
+            <p className="gray">{item?.user?.username}</p>
           </HStack>
         </p>
         <span className="proper darkGray">
@@ -308,6 +309,7 @@ const TRow = ({ edit, item, view, index }) => {
                   </span>
                   <span className="green small">własność klienta</span>
                 </HStack>
+                <p className="gray small">{item?.user?.username}</p>
               </p>
             )}
             <span className="proper darkGray">

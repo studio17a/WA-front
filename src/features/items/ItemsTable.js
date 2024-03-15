@@ -63,6 +63,12 @@ const ItemsTable = ({ itemsRaw, view }) => {
         if (item._id.toLowerCase().includes(searchWord.toLowerCase()))
           return { ...item };
       }
+      if (item?.user?.username) {
+        if (
+          item.user?.username.toLowerCase().includes(searchWord.toLowerCase())
+        )
+          return { ...item };
+      }
       if (item?.name) {
         if (item.name.toLowerCase().includes(searchWord.toLowerCase()))
           return { ...item };
@@ -145,12 +151,12 @@ const ItemsTable = ({ itemsRaw, view }) => {
                 </Button>
               </Th>
               <Th>
-                nr/nazwa
+                nr/nazwa/klient
                 {view !== "raw" && (
                   <>
                     <p>
                       <Input
-                        placeholder="nr/nazwa"
+                        placeholder="nr/nazwa/klient"
                         margin="0 0 5px 0"
                         onBlur={(e) => {
                           e.target.value = "";
