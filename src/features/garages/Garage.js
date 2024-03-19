@@ -18,36 +18,39 @@ const Garage = ({ garage }) => {
   };
   return (
     <>
-      <Button
-        alignSelf={"flex-start"}
-        textAlign={"left"}
-        fontWeight="light"
-        height="100px"
-        borderRadius="6px"
-        margin="0 auto"
-        padding="5px 15px 5px 15px"
-        colorScheme={"cyan"}
-        width={"auto"}
-        onClick={handleEdit}
-        textColor={"#555555"}
-        background={"#f5f5f5"}
-      >
-        <VStack textAlign={"left"}>
-          <div textAlign={"left"}>{garage.name}</div>
-          <HStack textAlign={"left"}>
-            <span>
-              <span className="gray">adres: </span> {garage.street}
-              {garage.nr}
-            </span>
-          </HStack>
-          <div>
-            <span className="gray">telefon: </span> <b>{garage.phones[0]}</b>
-          </div>
-        </VStack>
-      </Button>
+      <Box width={"100%"} marginBottom={"10px"} textAlign={"left"}>
+        <Button
+          alignSelf={"flex-start"}
+          textAlign={"left"}
+          fontWeight="light"
+          height="100px"
+          borderRadius="6px"
+          margin="0 auto"
+          padding="5px 15px 5px 15px"
+          colorScheme={"cyan"}
+          width={"auto"}
+          onClick={handleEdit}
+          textColor={"#555555"}
+          background={"#f5f5f5"}
+        >
+          <VStack textAlign={"left"}>
+            <div textAlign={"left"}>{garage.name}</div>
+            <HStack textAlign={"left"}>
+              <span>
+                <span className="gray">adres: </span> {garage.street}
+                {garage.nr}
+              </span>
+            </HStack>
+            <div>
+              <span className="gray">telefon: </span> <b>{garage.phones[0]}</b>
+            </div>
+          </VStack>
+        </Button>
+      </Box>
     </>
   );
 };
+
 const memoizedGarage = memo(Garage);
 
 export default memoizedGarage;
