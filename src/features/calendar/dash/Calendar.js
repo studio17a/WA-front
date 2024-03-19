@@ -7,8 +7,8 @@ import ServicesList from "../../services/ServicesList";
 const Calendar = () => {
   const url = window.location.href;
 
-  const { username, isManager, isAdmin } = useAuth();
-  const { garageId } = useParams();
+  // const { username, isManager, isAdmin } = useAuth();
+  // const { garageId } = useParams();
   return (
     <>
       {/* <div>g: {garageId}</div> */}

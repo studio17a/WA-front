@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
 const EditServiceForm = ({ service, users }) => {
-  const { isManager, isAdmin } = useAuth();
+  const { UserInfo } = useAuth();
 
   const [updateService, { isLoading, isSuccess, isError, error }] =
     useUpdateServiceMutation();
@@ -89,7 +89,7 @@ const EditServiceForm = ({ service, users }) => {
   const errContent = (error?.data?.message || delerror?.data?.message) ?? "";
 
   let deleteButton = null;
-  if (isManager || isAdmin) {
+  if (UserInfo?.roles.isadmin.filter((g) => g._id === garageId).length > 0) {
     deleteButton = (
       <button
         className="icon-button"

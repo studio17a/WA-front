@@ -16,12 +16,18 @@ import { useDisclosure } from "@chakra-ui/react";
 import NewUserForm from "./NewUserForm";
 import { Button } from "@chakra-ui/react";
 import useAuth from "../../hooks/useAuth";
+import { useParams } from "react-router-dom";
 
 const UsersModal = ({ children }) => {
+  const { garageId } = useParams();
+
+  const UserInfo = useAuth();
+  let isadmin = false;
+  if (UserInfo?.roles.isadmin.filter((g) => g._id === garageId).length > 0)
+    isadmin = true;
   const userModalMode = useSelector(
     (state) => state.userModalMode.userModalMode,
   );
-  const UserInfo = useAuth();
   const dispatch = useDispatch();
   const isUsersModalOpen = useSelector(
     (state) => state.isUsersModalOpen.isUsersModalOpen,
@@ -49,7 +55,7 @@ const UsersModal = ({ children }) => {
           <ModalHeader> </ModalHeader>
           <ModalCloseButton />
           <ModalBody padding="10px 100px 60px 100px">
-            <NewUserForm isAdmin={UserInfo.isAdmin} mode={userModalMode} />
+            <NewUserForm isAdmin={isadmin} mode={userModalMode} />
           </ModalBody>
         </ModalContent>
       </Modal>

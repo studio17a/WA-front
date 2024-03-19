@@ -29,6 +29,7 @@ import VehiclesTable from "./VehiclesTable";
 import useAuth from "../../hooks/useAuth";
 import ChangeUserComponent from "../users/ChangeUserComponent";
 import ServiceDetailsTable from "../services/ServiceDetailsTable";
+import { useParams } from "react-router-dom";
 
 const VehiclesModal = ({ children, mode }) => {
   const selectedUserObj = useSelector(
@@ -40,7 +41,12 @@ const VehiclesModal = ({ children, mode }) => {
   const vehicleModalMode = useSelector(
     (state) => state.vehicleModalMode.vehicleModalMode,
   );
-  const VehicleInfo = useAuth();
+  const { garageId } = useParams();
+
+  const UserInfo = useAuth();
+  let isadmin = false;
+  if (UserInfo?.roles.isadmin.filter((g) => g._id === garageId).length > 0)
+    isadmin = true;
   const dispatch = useDispatch();
   const isVehiclesModalOpen = useSelector(
     (state) => state.isVehiclesModalOpen.isVehiclesModalOpen,
@@ -74,7 +80,7 @@ const VehiclesModal = ({ children, mode }) => {
             vehicleModalMode === "forward" ? (
               <>
                 {vehicleModalMode !== "add" && <ChangeUserComponent />}
-                <NewVehicleForm isAdmin={VehicleInfo.isAdmin} mode={mode} />
+                <NewVehicleForm isAdmin={isadmin} mode={mode} />
               </>
             ) : vehicleModalMode === "service" ? (
               <Box

@@ -19,8 +19,6 @@ import Login from "../features/auth/Login";
 const UserPanel = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const UserInfo = useAuth();
-  console.log(`UserInfo`);
-  console.log(UserInfo);
   const [sendLogout, { isLoading, isSuccess, isError, error }] =
     useSendLogoutMutation();
   return (

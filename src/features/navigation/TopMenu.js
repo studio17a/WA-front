@@ -32,22 +32,20 @@ const TopMenu = () => {
   );
   const { isOpen, onOpen, onClose } = useDisclosure({ defaultIsOpen: false });
   const UserInfo = useAuth();
-
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
   const carsButton = (
     <>
-      {UserInfo?.isManager ||
-        (UserInfo?.isAdmin && (
-          <Button
-            onClick={() => navigate(`/dash/${garageId}/vehicles`)}
-            colorScheme="cyan"
-            color="#fff"
-          >
-            <FontAwesomeIcon icon={faCarSide} />
-          </Button>
-        ))}
+      {UserInfo?.roles.isadmin.filter((g) => g._id === garageId).length > 0 && (
+        <Button
+          onClick={() => navigate(`/dash/${garageId}/vehicles`)}
+          colorScheme="cyan"
+          color="#fff"
+        >
+          <FontAwesomeIcon icon={faCarSide} />
+        </Button>
+      )}
     </>
   );
   const homeButton = (
@@ -59,30 +57,28 @@ const TopMenu = () => {
   );
   const usersButton = (
     <>
-      {UserInfo?.isManager ||
-        (UserInfo?.isAdmin && (
-          <Button
-            onClick={() => navigate(`/dash/${garageId}/users`)}
-            colorScheme="cyan"
-            color="#fff"
-          >
-            <FontAwesomeIcon icon={faAddressBook} />
-          </Button>
-        ))}
+      {UserInfo?.roles.isadmin.filter((g) => g._id === garageId).length > 0 && (
+        <Button
+          onClick={() => navigate(`/dash/${garageId}/users`)}
+          colorScheme="cyan"
+          color="#fff"
+        >
+          <FontAwesomeIcon icon={faAddressBook} />
+        </Button>
+      )}
     </>
   );
   const itemsButton = (
     <>
-      {UserInfo?.isManager ||
-        (UserInfo?.isAdmin && (
-          <Button
-            onClick={() => navigate(`/dash/${garageId}/items`)}
-            colorScheme="cyan"
-            color="#fff"
-          >
-            <FontAwesomeIcon icon={faListUl} />
-          </Button>
-        ))}
+      {UserInfo?.roles.isadmin.filter((g) => g._id === garageId).length > 0 && (
+        <Button
+          onClick={() => navigate(`/dash/${garageId}/items`)}
+          colorScheme="cyan"
+          color="#fff"
+        >
+          <FontAwesomeIcon icon={faListUl} />
+        </Button>
+      )}
     </>
   );
   const datePicker = (
@@ -92,26 +88,24 @@ const TopMenu = () => {
   );
   const calendarButton = (
     <>
-      {UserInfo?.isManager ||
-        (UserInfo?.isAdmin && (
-          <Button
-            onClick={() =>
-              navigate(`/dash/${garageId}/calendar/${cDay}/${cMonth}/${cYear}`)
-            }
-            colorScheme="cyan"
-            color="#fff"
-          >
-            <FontAwesomeIcon icon={faCalendarDays} />
-          </Button>
-        ))}
+      {UserInfo?.roles.isadmin.filter((g) => g._id === garageId).length > 0 && (
+        <Button
+          onClick={() =>
+            navigate(`/dash/${garageId}/calendar/${cDay}/${cMonth}/${cYear}`)
+          }
+          colorScheme="cyan"
+          color="#fff"
+        >
+          <FontAwesomeIcon icon={faCalendarDays} />
+        </Button>
+      )}
     </>
   );
   const nearestButton = (
     <>
-      {UserInfo?.isManager ||
-        (UserInfo?.isAdmin && (
-          <NearestAvailable key="nearest" onOpen={onOpen}></NearestAvailable>
-        ))}
+      {UserInfo?.roles.isadmin.filter((g) => g._id === garageId).length > 0 && (
+        <NearestAvailable key="nearest" onOpen={onOpen}></NearestAvailable>
+      )}
     </>
   );
   const userPanelButton = <UserPanel bg="edf9ff" />;
@@ -121,10 +115,10 @@ const TopMenu = () => {
       <HStack padding="10px">
         {userPanelButton}
         {homeButton}
-        {carsButton}
         {usersButton}
-        {calendarButton}
+        {carsButton}
         {itemsButton}
+        {calendarButton}
         {day && nearestButton}
         {day && datePicker}
       </HStack>

@@ -6,6 +6,7 @@ import { setGarage } from "./selectedGarageSlice";
 import { Box, HStack, Button, VStack } from "@chakra-ui/react";
 
 const Garage = ({ garage }) => {
+  console.log(garage);
   const dispatch = useDispatch();
   const date = new Date();
   const formattedDate = date.toLocaleDateString("en-GB");

@@ -1,13 +1,14 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
 import DashHeader from "./DashHeader";
 import DashFooter from "./DashFooter";
 import { VStack, Container, Box } from "@chakra-ui/react";
 import useAuth from "../hooks/useAuth";
 
 const DashLayout = () => {
-  const { username, isManager, isAdmin } = useAuth();
+  const { garageId } = useParams();
+  const UserInfo = useAuth();
   let dashContent = <></>;
-  if (isAdmin) {
+  if (UserInfo?.roles.isadmin.filter((g) => g._id === garageId).length > 0) {
     dashContent = (
       <VStack w="100%" backgroundColor="#edf9ff">
         <DashHeader />
