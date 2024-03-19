@@ -18,7 +18,6 @@ const useAuth = () => {
   // console.log(garageId);
   // isManager = roles.includes("Manager");
   // isAdmin = roles.includes("Admin");
-
   return {
     _id: _id,
     username: username,

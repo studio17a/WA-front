@@ -188,7 +188,6 @@ const EditServiceForm = ({ service, users }) => {
       </form>
     </>
   );
-
   return content;
 };
 

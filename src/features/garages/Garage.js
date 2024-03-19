@@ -48,7 +48,6 @@ const Garage = ({ garage }) => {
     </>
   );
 };
-
 const memoizedGarage = memo(Garage);
 
 export default memoizedGarage;

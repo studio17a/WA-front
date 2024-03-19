@@ -61,7 +61,6 @@ const UsersModal = ({ children }) => {
       </Modal>
     </>
   );
-
   return content;
 };
 

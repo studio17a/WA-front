@@ -30,4 +30,5 @@ const DashLayout = () => {
   }
   return dashContent;
 };
+
 export default DashLayout;

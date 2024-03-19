@@ -132,7 +132,6 @@ const VehiclesModal = ({ children, mode }) => {
       </Modal>
     </>
   );
-
   return content;
 };
 
