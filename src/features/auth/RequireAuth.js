@@ -7,8 +7,10 @@ const RequireAuth = ({ allowedRoles }) => {
   const dispatch = useDispatch();
   const location = useLocation();
   const UserInfo = useAuth();
+  let allowed = false;
   const { garageId } = useParams();
-  const allowed = UserInfo?.roles.filter((g) => g._id === garageId).length > 0;
+
+  if (UserInfo?.roles) allowed = true;
   if (!allowed) {
     dispatch(setLoginModalOpen(true));
   }
