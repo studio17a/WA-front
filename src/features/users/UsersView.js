@@ -21,14 +21,15 @@ import useAuth from "../../hooks/useAuth";
 
 const UsersView = () => {
   const UserInfo = useAuth();
-  const { garageId } = useParams();
+  const { garageId, uid } = useParams();
+  const [details, setDetails] = useState(false);
   useEffect(() => {
     // setVehicles(user?.vehicles);
   }, [garageId]);
   let content = <Spinner />;
 
   const { users, isLoading, isSuccess, isError, error } = useGetUsersQuery(
-    { gid: garageId, uid: UserInfo._id },
+    { gid: garageId, uid: UserInfo._id, detailsId: uid },
     {
       selectFromResult: ({ data }) => ({
         users: data?.ids.map((id) => data?.entities[id]),

@@ -68,9 +68,9 @@ function App() {
                   />
                   <Route path=":garageId/items" element={<ItemsView />} />
                   <Route path=":garageId/users" element={<UsersView />} />
+                  <Route path=":garageId/users/:uid" element={<UsersView />} />
                   <Route path=":garageId/vehicles">
                     <Route index element={<VehiclesView />} />
-                    <Route path=":vehicleId" element={<VehicleDetails />} />
                   </Route>
                 </Route>
 

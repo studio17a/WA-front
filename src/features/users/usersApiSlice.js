@@ -8,10 +8,10 @@ const initialState = usersAdapter.getInitialState();
 export const usersApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getUsers: builder.query({
-      query: ({ gid, uid }) => ({
+      query: ({ gid, uid, detailsId }) => ({
         url: `/users/getusers/${gid}`,
         method: "POST",
-        body: { uid },
+        body: { uid, detailsId },
         validateStatus: (response, result) => {
           return response.status === 200 && !result.isError;
         },
