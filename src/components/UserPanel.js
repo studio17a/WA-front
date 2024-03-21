@@ -30,6 +30,7 @@ import { useEffect, useState } from "react";
 import is from "date-fns/locale/is";
 import { useParams } from "react-router-dom";
 import { useLazyGetGaragesQuery } from "../features/garages/garagesApiSlice";
+import SettingsComponent from "./settings/SettingsComponent";
 const UserPanel = ({ garage }) => {
   const { garageId } = useParams();
   const [isAdmin, setIsAdmin] = useState(false);
@@ -44,6 +45,10 @@ const UserPanel = ({ garage }) => {
       setIsAdmin(true);
     else setIsAdmin(false);
   }, [UserInfo]);
+  useEffect(() => {
+    if (isAdmin) setDrawerSize("lg");
+    else setDrawerSize("md");
+  }, [isAdmin]);
   return (
     <>
       <Button marginLeft="15px" colorScheme="teal" onClick={onOpen}>
@@ -113,24 +118,9 @@ const UserPanel = ({ garage }) => {
                         </Button>
                       </Td>
                     </Tr>
-                    {isAdmin && (
-                      <Tr>
-                        <Td>
-                          <Button backgroundColor={"transparent"}>
-                            <FontAwesomeIcon color="#aaa" icon={faGear} />
-                          </Button>
-                        </Td>
-                        <Td>
-                          <span>
-                            ustawienia firmy: {garage?.name}
-                            {garage?.street}
-                            {garage?.city}
-                          </span>
-                        </Td>
-                      </Tr>
-                    )}
                   </Tbody>
                 </Table>
+                {isAdmin && <SettingsComponent />}
               </>
             )}
           </DrawerBody>
