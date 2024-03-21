@@ -21,8 +21,11 @@ import PulseLoader from "react-spinners/PulseLoader";
 import NearestAvailable from "../calendar/dash/NearestAvailable";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { useGetAGarageMutation } from "../garages/garagesApiSlice";
 
 const TopMenu = () => {
+  const [getAGarage, { data: garage, isLoading, isSuccess, isError, error }] =
+    useGetAGarageMutation();
   const cDay = format(new Date(), "dd");
   const cMonth = format(new Date(), "MM");
   const cYear = format(new Date(), "yyyy");
@@ -35,6 +38,17 @@ const TopMenu = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
+  const selectedGarage = useSelector((state) => state.selectedGarage.garage);
+  useEffect(() => {
+    if (!selectedGarage._id && garageId) {
+      getAGarage({ gid: garageId });
+    }
+  }, []);
+  if (isSuccess) {
+    console.log("garage");
+    console.log(garage);
+    console.log("garage");
+  }
   const carsButton = (
     <>
       {UserInfo?.roles.isadmin.filter((g) => g._id === garageId).length > 0 && (
@@ -57,15 +71,15 @@ const TopMenu = () => {
   );
   const usersButton = (
     <>
-      {UserInfo?.roles.isadmin.filter((g) => g._id === garageId).length > 0 && (
-        <Button
-          onClick={() => navigate(`/dash/${garageId}/users`)}
-          colorScheme="cyan"
-          color="#fff"
-        >
-          <FontAwesomeIcon icon={faAddressBook} />
-        </Button>
-      )}
+      {/* {UserInfo?.roles.isadmin.filter((g) => g._id === garageId).length > 0 && ( */}
+      <Button
+        onClick={() => navigate(`/dash/${garageId}/users`)}
+        colorScheme="cyan"
+        color="#fff"
+      >
+        <FontAwesomeIcon icon={faAddressBook} />
+      </Button>
+      {/* )} */}
     </>
   );
   const itemsButton = (
@@ -108,7 +122,7 @@ const TopMenu = () => {
       )}
     </>
   );
-  const userPanelButton = <UserPanel bg="edf9ff" />;
+  const userPanelButton = <UserPanel garage={garage} bg="edf9ff" />;
   let buttonContent;
   buttonContent = (
     <>
@@ -130,6 +144,7 @@ const TopMenu = () => {
       <div>{buttonContent}</div>
     </>
   );
+
   return content;
 };
 export default TopMenu;

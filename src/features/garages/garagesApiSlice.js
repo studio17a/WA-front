@@ -29,10 +29,20 @@ const garageApiSlice = apiSlice.injectEndpoints({
         } else return [{ type: "Garage", id: "LIST" }];
       },
     }),
+    getAGarage: builder.mutation({
+      query: ({ gid }) => ({
+        url: `/garages/${gid}`,
+        method: "GET",
+        validateStatus: (response, result) => {
+          return response.status === 200 && !result.isError;
+        },
+      }),
+      invalidatesTags: (result, error, arg) => [{ type: "Garage", id: arg.id }],
+    }),
   }),
 });
 
-export const { useGetGaragesQuery } = garageApiSlice;
+export const { useGetGaragesQuery, useGetAGarageMutation } = garageApiSlice;
 
 export const selectGaragesResult = garageApiSlice.endpoints.getGarages.select();
 

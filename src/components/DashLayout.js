@@ -8,27 +8,26 @@ const DashLayout = () => {
   const { garageId } = useParams();
   const UserInfo = useAuth();
   let dashContent = <></>;
-  if (UserInfo?.roles.isadmin.filter((g) => g._id === garageId).length > 0) {
-    dashContent = (
-      <VStack w="100%" backgroundColor="#edf9ff">
-        <DashHeader />
-        <Box m={0} p={4} w="100%">
-          <Box
-            bg="#fff"
-            border="1px solid #eee"
-            borderRadius="10px"
-            m={0}
-            padding="20px"
-            w="100%"
-          >
-            <Outlet w="100%" />
-          </Box>
+  // if (UserInfo?.roles.isadmin.filter((g) => g._id === garageId).length > 0) {
+  dashContent = (
+    <VStack w="100%" backgroundColor="#edf9ff">
+      <DashHeader />
+      <Box m={0} p={4} w="100%">
+        <Box
+          bg="#fff"
+          border="1px solid #eee"
+          borderRadius="10px"
+          m={0}
+          padding="20px"
+          w="100%"
+        >
+          <Outlet w="100%" />
         </Box>
-        {/* <DashFooter /> */}
-      </VStack>
-    );
-  }
+      </Box>
+      {/* <DashFooter /> */}
+    </VStack>
+  );
+  // }
   return dashContent;
 };
-
 export default DashLayout;

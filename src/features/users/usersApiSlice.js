@@ -7,9 +7,11 @@ const initialState = usersAdapter.getInitialState();
 
 export const usersApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getUsers: builder.query({ 
-      query: (gid) => ({
-        url: `/users/${gid}`,
+    getUsers: builder.query({
+      query: ({ gid, uid }) => ({
+        url: `/users/getusers/${gid}`,
+        method: "POST",
+        body: { uid },
         validateStatus: (response, result) => {
           return response.status === 200 && !result.isError;
         },
@@ -65,8 +67,6 @@ export const usersApiSlice = apiSlice.injectEndpoints({
         },
       }),
       transformResponse: (responseData) => {
-        console.log("qqqqqqqqqqqqqqqqqqqqqqqqqqq::::::::::");
-        console.log(responseData);
         const loadedUsers = responseData.map((user) => {
           user.id = user._id;
           return user;

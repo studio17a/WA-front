@@ -17,8 +17,10 @@ import ItemsModal from "../items/ItemsModal";
 import VehiclesModal from "../vehicles/VehiclesModal";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 const UsersView = () => {
+  const UserInfo = useAuth();
   const { garageId } = useParams();
   useEffect(() => {
     // setVehicles(user?.vehicles);
@@ -26,7 +28,7 @@ const UsersView = () => {
   let content = <Spinner />;
 
   const { users, isLoading, isSuccess, isError, error } = useGetUsersQuery(
-    garageId,
+    { gid: garageId, uid: UserInfo._id },
     {
       selectFromResult: ({ data }) => ({
         users: data?.ids.map((id) => data?.entities[id]),
