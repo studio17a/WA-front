@@ -19,9 +19,10 @@ import { useNavigate, Link, useLocation } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import PulseLoader from "react-spinners/PulseLoader";
 import NearestAvailable from "../calendar/dash/NearestAvailable";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useGetAGarageMutation } from "../garages/garagesApiSlice";
+import { setGarage } from "../garages/selectedGarageSlice";
 
 const TopMenu = () => {
   const [getAGarage, { data: garage, isLoading, isSuccess, isError, error }] =
@@ -37,18 +38,22 @@ const TopMenu = () => {
   const UserInfo = useAuth();
   const navigate = useNavigate();
   const { pathname } = useLocation();
-
+  const dispatch = useDispatch();
   const selectedGarage = useSelector((state) => state.selectedGarage.garage);
   useEffect(() => {
+    console.log(`whatselectedGarage`);
     if (!selectedGarage._id && garageId) {
       getAGarage({ gid: garageId });
     }
   }, []);
   if (isSuccess) {
-    console.log("garage");
-    console.log(garage);
-    console.log("garage");
+    dispatch(setGarage(garage));
   }
+  // useEffect(() => {
+  //   if (garage) {
+  //     setGarage(garage);
+  //   }
+  // }, [garage]);
   const carsButton = (
     <>
       {UserInfo?.roles.isadmin.filter((g) => g._id === garageId).length > 0 && (
