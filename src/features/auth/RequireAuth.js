@@ -9,7 +9,6 @@ const RequireAuth = ({ allowedRoles }) => {
   const UserInfo = useAuth();
   let allowed = false;
   const { garageId } = useParams();
-
   if (UserInfo?.roles) allowed = true;
   if (!allowed) {
     dispatch(setLoginModalOpen(true));
