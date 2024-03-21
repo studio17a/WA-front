@@ -84,4 +84,5 @@ const SettingsComponent = () => {
     </>
   );
 };
+
 export default SettingsComponent;

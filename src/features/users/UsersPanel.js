@@ -18,7 +18,7 @@ import {
 } from "@chakra-ui/react";
 import { useDisclosure } from "@chakra-ui/react";
 import { Button, Spinner } from "@chakra-ui/react";
-import useAuth from "../hooks/useAuth";
+import useAuth from "../../hooks/useAuth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
@@ -124,6 +124,7 @@ const UserPanel = ({ garage }) => {
               </>
             )}
           </DrawerBody>
+
           <DrawerFooter></DrawerFooter>
         </DrawerContent>
       </Drawer>
