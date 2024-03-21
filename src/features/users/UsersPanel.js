@@ -124,7 +124,6 @@ const UserPanel = ({ garage }) => {
               </>
             )}
           </DrawerBody>
-
           <DrawerFooter></DrawerFooter>
         </DrawerContent>
       </Drawer>
