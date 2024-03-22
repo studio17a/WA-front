@@ -8,10 +8,11 @@ export default function TinyMCE() {
       apiKey="qqvalxqg10biapht32f46xrwxc1aodbcvb35nopjx7oo1lip"
       init={{
         content_css: "/index.css",
+        menubar: false,
         plugins:
           "anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount",
         toolbar:
-          "undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat",
+          "undo redo |  | bold italic underline strikethrough |  | align lineheight | numlist bullist indent outdent |  | removeformat",
       }}
       initialValue="Welcome to TinyMCE!"
     />

@@ -87,7 +87,7 @@ const GarageForm = () => {
           </Button>
         </VStack>
       </Box>
-      <Editor />
+      <TinyMCE />
     </>
   );
 };
