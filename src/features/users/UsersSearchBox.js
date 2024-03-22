@@ -42,6 +42,7 @@ const UsersSearchBox = ({ placeholder, data }) => {
   const [title, setTitle] = useState("");
   const [isEditing, setIsEditing] = useState(true);
   const [border, setBorder] = useState("0px");
+  const [background, setBackground] = useState("transparent");
 
   useEffect(() => {
     if (placeholder) setTitle(placeholder);
@@ -79,6 +80,7 @@ const UsersSearchBox = ({ placeholder, data }) => {
     setFilteredData([]);
     setBorder("0px");
   };
+  let popHeader = <></>;
 
   return (
     <>
@@ -94,11 +96,15 @@ const UsersSearchBox = ({ placeholder, data }) => {
               placeholder={title}
               onChange={searchData}
               onFocus={async (e) => {
+                popHeader = <PopoverCloseButton />;
+                setBackground("#fafafa");
                 setOverflow("hidden");
                 await searchData(e);
                 setBorder("1px");
               }}
               onBlur={(e) => {
+                popHeader = <></>;
+                setBackground("transparent");
                 // console.log(e.relatedTarget);
                 // only re-focus if the user clicked on something
                 // that was NOT an input element
@@ -116,21 +122,30 @@ const UsersSearchBox = ({ placeholder, data }) => {
             />
           </Box>
         </PopoverTrigger>
-        <PopoverContent border={border} borderColor="gray.200" boxShadow="none">
+        <PopoverContent
+          background="#fcfcfc"
+          borderColor="gray.200"
+          boxShadow="none"
+          borderWidth={border}
+          borderRadius={"10px"}
+        >
+          {popHeader}
           <PopoverBody maxHeight="200px" overflowY={overflow}>
             {filteredData?.map((d) => {
               return (
                 <Box
+                  width="100%"
                   marginBottom="10px"
                   fontSize="13px"
                   padding="10px"
-                  key={d.id}
-                  onClick={() => userSelected(d)}
-                  border="1px solid #e8faff"
+                  border="1px solid #fafafa"
                   color="#555"
                   cursor="pointer"
-                  _hover={{ bg: "#e8faff" }}
+                  _hover={{ bg: "#ffffff" }}
                   borderRadius="5px"
+                  align="left"
+                  key={d.id}
+                  onClick={() => userSelected(d)}
                 >
                   <HStack key={d.id}>
                     <div>
