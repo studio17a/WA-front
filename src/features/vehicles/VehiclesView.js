@@ -8,6 +8,7 @@ import {
   Td,
   TableCaption,
   TableContainer,
+  Progress,
 } from "@chakra-ui/react";
 import VehiclesTable from "./VehiclesTable";
 import { Spinner } from "@chakra-ui/react";
@@ -17,7 +18,7 @@ import { useParams } from "react-router-dom";
 
 const VehiclesView = () => {
   const { garageId } = useParams();
-  let content = <Spinner />;
+  let content = <Progress size="xs" isIndeterminate />;
   const {
     data: vehicles,
     isLoading,

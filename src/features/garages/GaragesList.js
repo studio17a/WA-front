@@ -32,7 +32,7 @@ const GaragesList = () => {
       ));
     content = (
       <div>
-        <h1>wybierz warsztat: </h1>
+        <div margin="20px 20px 20px 20px">wybierz warsztat: </div>
         <p></p>
         <div margin="20px 20px 20px 20px" padding="20px 20px 20px 20px">
           {listOfGarages}

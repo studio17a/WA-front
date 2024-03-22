@@ -16,6 +16,8 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faGear } from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import AddressForm from "./AddressForm";
+import GarageForm from "./GarageForm";
 const SettingsComponent = () => {
   const { isOpen, onToggle } = useDisclosure();
   const selectedGarage = useSelector((state) => state.selectedGarage.garage);
@@ -69,14 +71,14 @@ const SettingsComponent = () => {
             <Tab>Mailing</Tab>
             <Tab>Uprawnienia pracowników</Tab>
           </TabList>
-          <TabPanels>
+          <TabPanels bg={"#fafafa"}>
             {/* initially mounted */}
             <TabPanel>
-              <p>one!</p>
+              <AddressForm />
             </TabPanel>
             {/* initially not mounted */}
-            <TabPanel>
-              <p>two!</p>
+            <TabPanel bg={"#fafafa"}>
+              <GarageForm />
             </TabPanel>
           </TabPanels>
         </Tabs>

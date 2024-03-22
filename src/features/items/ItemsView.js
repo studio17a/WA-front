@@ -8,6 +8,7 @@ import {
   Td,
   TableCaption,
   TableContainer,
+  Progress,
 } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import ItemsTable from "./ItemsTable";
@@ -20,7 +21,7 @@ import ItemsModal from "./ItemsModal";
 
 const ItemsView = () => {
   const dispatch = useDispatch();
-  let content = <Spinner />;
+  let content = <Progress size="xs" isIndeterminate />;
   const { garageId } = useParams();
   const {
     data: items,

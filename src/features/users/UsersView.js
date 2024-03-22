@@ -8,6 +8,7 @@ import {
   Td,
   TableCaption,
   TableContainer,
+  Progress,
 } from "@chakra-ui/react";
 import UsersTable from "./UsersTable";
 import { Spinner } from "@chakra-ui/react";
@@ -26,7 +27,7 @@ const UsersView = () => {
   useEffect(() => {
     // setVehicles(user?.vehicles);
   }, [garageId]);
-  let content = <Spinner />;
+  let content = <Progress size="xs" isIndeterminate />;
 
   const { users, isLoading, isSuccess, isError, error } = useGetUsersQuery(
     { gid: garageId, uid: UserInfo._id, detailsId: uid },
