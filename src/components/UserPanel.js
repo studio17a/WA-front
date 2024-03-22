@@ -51,7 +51,15 @@ const UserPanel = ({ garage }) => {
   }, [isAdmin]);
   return (
     <>
-      <Button marginLeft="15px" colorScheme="teal" onClick={onOpen}>
+      <Button
+        padding={"20px 13px 20px 13px"}
+        marginLeft="15px"
+        color={"#48b9db"}
+        onClick={onOpen}
+        colorScheme="cyan"
+        variant="outline"
+        backgroundColor={"transparent"}
+      >
         <FontAwesomeIcon icon={faUser} />
       </Button>
       <Drawer
@@ -62,7 +70,7 @@ const UserPanel = ({ garage }) => {
       >
         <DrawerOverlay />
         <DrawerContent bg="#fff">
-          <DrawerCloseButton color={"#555"} size={"lg"} />
+          <DrawerCloseButton color={"#48b9db"} size={"lg"} />
           <DrawerHeader bg={"#fafafa"} color={"#555"}>
             Twoje konto
           </DrawerHeader>
@@ -91,7 +99,7 @@ const UserPanel = ({ garage }) => {
                       <Td>
                         {isLoading && <Spinner />}
                         <Button backgroundColor={"transparent"}>
-                          <FontAwesomeIcon color="#aaa" icon={faGear} />
+                          <FontAwesomeIcon color={"#48b9db"} icon={faGear} />
                         </Button>
                       </Td>
                       <Td>

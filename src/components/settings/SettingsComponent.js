@@ -18,6 +18,7 @@ import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import AddressForm from "./AddressForm";
 import GarageForm from "./GarageForm";
+import Mailing from "./Mailing";
 const SettingsComponent = () => {
   const { isOpen, onToggle } = useDisclosure();
   const selectedGarage = useSelector((state) => state.selectedGarage.garage);
@@ -41,7 +42,7 @@ const SettingsComponent = () => {
           {isOpen ? (
             <FontAwesomeIcon color="#aaa" icon={faXmark} />
           ) : (
-            <FontAwesomeIcon color="#aaa" icon={faGear} />
+            <FontAwesomeIcon color={"#48b9db"} icon={faGear} />
           )}
         </Button>
         <Box p={"10px"} w={"100%"}>
@@ -64,21 +65,22 @@ const SettingsComponent = () => {
         </Box>
       </HStack>
       <Collapse marginTop={"10px"} in={isOpen} animateOpacity>
-        <Tabs isLazy>
+        <Tabs colorScheme="cyan" isLazy>
           <TabList className="small gray" marginTop={"10px"}>
             <Tab>Dane adresowe</Tab>
             <Tab>Warsztat</Tab>
             <Tab>Mailing</Tab>
             <Tab>Uprawnienia pracowników</Tab>
           </TabList>
-          <TabPanels bg={"#fafafa"}>
-            {/* initially mounted */}
+          <TabPanels borderBottom="1px solid #efefef" bg={"#fafafa"}>
             <TabPanel>
               <AddressForm />
             </TabPanel>
-            {/* initially not mounted */}
             <TabPanel bg={"#fafafa"}>
               <GarageForm />
+            </TabPanel>
+            <TabPanel bg={"#fafafa"}>
+              <Mailing />
             </TabPanel>
           </TabPanels>
         </Tabs>

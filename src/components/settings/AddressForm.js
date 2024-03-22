@@ -43,7 +43,10 @@ const AddressForm = () => {
             <PhonesTable phones={selectedGarage.phones} />
           </Box>
           <Button
-            marginTop={"20px"}
+            borderRadius={"10px"}
+            padding={"18px 30px 20px 30px"}
+            color={"gray.100"}
+            marginTop={"30px"}
             leftIcon={
               1 === 2 ? (
                 <FontAwesomeIcon icon={faCheck} />
@@ -52,7 +55,7 @@ const AddressForm = () => {
               )
             }
             // isLoading
-            colorScheme="linkedin"
+            colorScheme="cyan"
             loadingText="Loading"
             spinnerPlacement="end"
           >
