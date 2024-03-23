@@ -4,7 +4,7 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 const InfoRow = () => {
   return (
     <>
-      <HStack>
+      <HStack borderBottom="1px solid #ffffff">
         <Button size="sm" backgroundColor="transparent">
           <FontAwesomeIcon color="red" icon={faXmark} />
         </Button>
@@ -12,7 +12,7 @@ const InfoRow = () => {
           <p className="infoNew">zatwierdzono wizytę w dniu 21/01/2024</p>
         </div>
       </HStack>
-      <HStack>
+      <HStack borderBottom="1px solid #ffffff">
         <Button size="sm" backgroundColor="transparent">
           <FontAwesomeIcon color="red" icon={faXmark} />
         </Button>
@@ -20,7 +20,7 @@ const InfoRow = () => {
           <p className="infoRed">zatwierdzono wizytę w dniu 21/01/2024</p>
         </div>
       </HStack>
-      <HStack>
+      <HStack borderBottom="1px solid #ffffff">
         <Button size="sm" backgroundColor="transparent">
           <FontAwesomeIcon color="red" icon={faXmark} />
         </Button>
@@ -28,7 +28,7 @@ const InfoRow = () => {
           <p className="infoNew">zatwierdzono wizytę w dniu 21/01/2024</p>
         </div>
       </HStack>
-      <HStack>
+      <HStack borderBottom="1px solid #ffffff">
         <Button size="sm" backgroundColor="transparent">
           <FontAwesomeIcon color="red" icon={faXmark} />
         </Button>
@@ -36,7 +36,7 @@ const InfoRow = () => {
           <p className="infoNew">zatwierdzono wizytę w dniu 21/01/2024</p>
         </div>
       </HStack>
-      <HStack>
+      <HStack borderBottom="1px solid #ffffff">
         <Button size="sm" backgroundColor="transparent">
           <FontAwesomeIcon color="red" icon={faXmark} />
         </Button>

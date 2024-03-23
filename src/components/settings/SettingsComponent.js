@@ -16,13 +16,25 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faGear } from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import useAuth from "../../hooks/useAuth";
 import AddressForm from "./AddressForm";
 import GarageForm from "./GarageForm";
 import Mailing from "./Mailing";
 const SettingsComponent = () => {
+  const UserInfo = useAuth();
   const { isOpen, onToggle } = useDisclosure();
   const selectedGarage = useSelector((state) => state.selectedGarage.garage);
   const [garage, setGarage] = useState({});
+
+  const [isAdmin, setIsAdmin] = useState(false);
+  useEffect(() => {
+    if (
+      UserInfo?.roles.isadmin.filter((g) => g._id === selectedGarage._id)
+        .length > 0
+    )
+      setIsAdmin(true);
+    else setIsAdmin(false);
+  }, [UserInfo]);
   useEffect(() => {
     if (selectedGarage._id) {
       setGarage(selectedGarage);
@@ -32,36 +44,51 @@ const SettingsComponent = () => {
   const gphones = garage.phones?.map((phone) => <p>{phone}</p>);
   return (
     <>
+      <h3>Wybrany warsztat:</h3>
       <HStack borderBottom={"1px solid #efefef"}>
         <Button
-          w={"30px"}
+          borderRadius={"40px"}
+          width={"30px"}
+          marginRight="20px"
           marginLeft="30px"
+          className={!isOpen ? "primaryBackground" : ""}
+          color="gray.300"
           onClick={onToggle}
-          backgroundColor={"transparent"}
         >
           {isOpen ? (
-            <FontAwesomeIcon color="#aaa" icon={faXmark} />
+            <FontAwesomeIcon size="lg" icon={faXmark} />
           ) : (
-            <FontAwesomeIcon color={"#48b9db"} icon={faGear} />
+            <FontAwesomeIcon size="lg" icon={faGear} />
           )}
         </Button>
-        <Box p={"10px"} w={"100%"}>
-          <p>
-            <p className="gray small">Nazwa: </p>
-            <p className=" small ">{garage.name}</p>
-          </p>
-          <p>
-            <p className="gray small">tel: </p>
-            <p className=" small ">{gphones}</p>
-          </p>
-          <p>
-            <p className="gray small">adres: </p>
-            <p className=" small ">
+        <Box p={"10px"} marginBottom={"20px"} w={"100%"}>
+          <div>
+            <span className="gray small">Nazwa: </span>
+            <span className=" small ">{garage.name}</span>
+          </div>
+          <div>
+            <span className="gray small">Tel: </span>
+            <span className=" small ">{gphones}</span>
+          </div>
+          <div>
+            <span className="gray small">Adres: </span>
+            <span className=" small ">
               {garage.street} {garage.nr}{" "}
               {garage.postal && <>`, ${garage.postal}`</>}
               {garage.city && <>` ${garage.city}`</>}
-            </p>
-          </p>
+            </span>
+          </div>
+          <div>
+            <span className="gray small">E-mail: </span>
+            <span className=" small ">{garage.email}</span>
+          </div>
+          <div>
+            <span className="gray small">Twój status:</span>
+            <span className="gray small bold">
+              {" "}
+              {isAdmin ? "administrator" : "klient"}
+            </span>
+          </div>
         </Box>
       </HStack>
       <Collapse marginTop={"10px"} in={isOpen} animateOpacity>

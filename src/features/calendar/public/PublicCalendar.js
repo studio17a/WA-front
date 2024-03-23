@@ -16,7 +16,6 @@ const PublicCalendar = () => {
   console.log(selectedGarage);
   return (
     <>
-      <div>warsztat: {selectedGarage.name}</div>
       <Box
         width="96%"
         margin="2%"

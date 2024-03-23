@@ -54,9 +54,8 @@ const UserPanel = ({ garage }) => {
       <Button
         padding={"20px 13px 20px 13px"}
         marginLeft="15px"
-        color={"#48b9db"}
         onClick={onOpen}
-        colorScheme="cyan"
+        className="primaryColor primaryBorderColor"
         variant="outline"
         backgroundColor={"transparent"}
       >
@@ -70,10 +69,8 @@ const UserPanel = ({ garage }) => {
       >
         <DrawerOverlay />
         <DrawerContent bg="#fff">
-          <DrawerCloseButton color={"#48b9db"} size={"lg"} />
-          <DrawerHeader bg={"#fafafa"} color={"#555"}>
-            Twoje konto
-          </DrawerHeader>
+          <DrawerCloseButton className="primaryColor" size={"lg"} />
+          <DrawerHeader className="drawerHeader"></DrawerHeader>
 
           <DrawerBody w={"100%"} margin={"0 auto"} padding={"0"}>
             {UserInfo === null ? (
@@ -83,51 +80,55 @@ const UserPanel = ({ garage }) => {
               </>
             ) : (
               <>
-                <Table
-                  w={"100%"}
-                  borderRadius={6}
-                  padding={"10px"}
-                  textAlign={"left"}
-                  alignContent={"left"}
-                >
-                  <Tbody
-                    textAlign={"left"}
-                    alignContent={"left"}
-                    border={"1px solid #efefef"}
-                  >
-                    <Tr>
-                      <Td>
-                        {isLoading && <Spinner />}
-                        <Button backgroundColor={"transparent"}>
-                          <FontAwesomeIcon color={"#48b9db"} icon={faGear} />
-                        </Button>
-                      </Td>
-                      <Td>
-                        <div border={"1px solid #efefef"} w={"100%"}>
-                          <p>
-                            <b>{UserInfo?.username}</b>
-                          </p>
-                          <p>
-                            <span className="gray small">status: </span>
-                            <span className="gray bold">
-                              {isAdmin ? "administrator" : "klient"}
-                            </span>
-                          </p>
-                        </div>
-                      </Td>
-                      <Td>
-                        <Button
-                          alignSelf={"right"}
-                          onClick={sendLogout}
-                          background={"transparent"}
-                          color="#aaa"
-                        >
-                          <FontAwesomeIcon icon={faRightFromBracket} />
-                        </Button>
-                      </Td>
-                    </Tr>
-                  </Tbody>
-                </Table>
+                <h3>Twoje konto:</h3>
+                <HStack>
+                  <p>
+                    {isLoading && <Spinner />}
+                    <Button
+                      marginLeft="30px"
+                      marginRight="20px"
+                      className="primaryBackground"
+                      color="gray.300"
+                      borderRadius={"40px"}
+                      width={"30px"}
+                    >
+                      <FontAwesomeIcon size="lg" icon={faGear} />
+                    </Button>
+                  </p>
+                  <Box p={"10px"} marginBottom={"20px"} w={"80%"}>
+                    <div>
+                      <span className="gray small">Nazwa:</span>
+                      <span className="primaryColor title">
+                        {" "}
+                        {UserInfo?.username}
+                      </span>
+                    </div>
+                    <div>
+                      <span className="gray small">E-mail:</span>
+                      <span color="gray.300" className="small ">
+                        {" "}
+                        {UserInfo?.email}
+                      </span>
+                    </div>
+                    <div>
+                      <span className="gray small">Telefon:</span>
+                      <span color="gray.300" className="small ">
+                        {" "}
+                        {UserInfo?.phone}
+                      </span>
+                    </div>
+                  </Box>
+                  <Box w={"20%"}>
+                    <Button
+                      marginLeft={"20px"}
+                      alignSelf={"right"}
+                      onClick={sendLogout}
+                      className="primaryColor"
+                    >
+                      <FontAwesomeIcon icon={faRightFromBracket} />
+                    </Button>
+                  </Box>
+                </HStack>
                 {isAdmin && <SettingsComponent />}
               </>
             )}

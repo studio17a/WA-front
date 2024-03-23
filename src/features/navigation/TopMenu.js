@@ -59,8 +59,8 @@ const TopMenu = () => {
       {UserInfo?.roles.isadmin.filter((g) => g._id === garageId).length > 0 && (
         <Button
           onClick={() => navigate(`/dash/${garageId}/vehicles`)}
-          colorScheme="cyan"
-          color="#fff"
+          className="primaryBackground"
+          color="gray.300"
         >
           <FontAwesomeIcon icon={faCarSide} />
         </Button>
@@ -69,7 +69,11 @@ const TopMenu = () => {
   );
   const homeButton = (
     <>
-      <Button onClick={() => navigate(`/`)} colorScheme="cyan" color="#fff">
+      <Button
+        onClick={() => navigate(`/`)}
+        className="primaryBackground"
+        color="gray.300"
+      >
         <FontAwesomeIcon icon={faHouse} />
       </Button>
     </>
@@ -79,8 +83,8 @@ const TopMenu = () => {
       {/* {UserInfo?.roles.isadmin.filter((g) => g._id === garageId).length > 0 && ( */}
       <Button
         onClick={() => navigate(`/dash/${garageId}/users`)}
-        colorScheme="cyan"
-        color="#fff"
+        className="primaryBackground"
+        color="gray.300"
       >
         <FontAwesomeIcon icon={faAddressBook} />
       </Button>
@@ -92,8 +96,8 @@ const TopMenu = () => {
       {UserInfo?.roles.isadmin.filter((g) => g._id === garageId).length > 0 && (
         <Button
           onClick={() => navigate(`/dash/${garageId}/items`)}
-          colorScheme="cyan"
-          color="#fff"
+          className="primaryBackground"
+          color="gray.300"
         >
           <FontAwesomeIcon icon={faListUl} />
         </Button>
@@ -112,8 +116,8 @@ const TopMenu = () => {
           onClick={() =>
             navigate(`/dash/${garageId}/calendar/${cDay}/${cMonth}/${cYear}`)
           }
-          colorScheme="cyan"
-          color="#fff"
+          className="primaryBackground"
+          color="gray.300"
         >
           <FontAwesomeIcon icon={faCalendarDays} />
         </Button>
