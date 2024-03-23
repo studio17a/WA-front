@@ -50,6 +50,7 @@ body {
   position: relative;
   padding: 0px 0px 0px 0px;
   margin: 0 auto;
+  margin-top: -16px;
   text-align: center;
   background-image: url("images/warsztappc.png");
   background-size: 50px;
