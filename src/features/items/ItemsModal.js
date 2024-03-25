@@ -55,7 +55,7 @@ const ItemsModal = ({ children, mode }) => {
       <span onClick={onOpen}>{children}</span>
       <Modal isOpen={isOpen} onClose={closeModal}>
         <ModalOverlay />
-        <ModalContent minWidth="800px" bg={"#efefef"}>
+        <ModalContent minWidth="95%" bg={"#fff"}>
           <ModalHeader
             borderBottom={"1px solid #e5e5e5"}
             width={"100%"}
