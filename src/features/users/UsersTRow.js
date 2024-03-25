@@ -13,8 +13,18 @@ import { useState, useEffect } from "react";
 import ItemsTable from "../items/ItemsTable";
 import ItemsContent from "../items/ItemsContent";
 import DelUserComponent from "./DelUserComponent";
+import { useParams } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 const UsersTRow = ({ user, vehiclesReady }) => {
+  const { garageId, uid } = useParams();
+  const UserInfo = useAuth();
+  const [isStuff, setIsStuff] = useState(false);
+  useEffect(() => {
+    if (UserInfo?.roles.isadmin.filter((g) => g._id === garageId).length > 0) {
+      setIsStuff(true);
+    }
+  }, [UserInfo]);
   // let itemsContent = (
   //   <Button size="sm" colorScheme="yellow">
   //     <FontAwesomeIcon
@@ -101,7 +111,7 @@ const UsersTRow = ({ user, vehiclesReady }) => {
           <Td>
             <ItemsContent user={user} userId={user?._id} />
           </Td>
-          <Td>{user?.notes}</Td>
+          {isStuff && <Td>{user?.notes}</Td>}
         </Tr>
       </>
     );

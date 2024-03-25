@@ -18,34 +18,42 @@ const Garage = ({ garage }) => {
   };
   return (
     <>
-      <Box width={"100%"} marginBottom={"10px"} textAlign={"left"}>
-        <Button
+      <Box onClick={handleEdit} className="garageCard">
+        <VStack
+          width={"100%"}
           alignSelf={"flex-start"}
+          boder={"1px solid red"}
           textAlign={"left"}
-          fontWeight="light"
-          height="100px"
-          borderRadius="6px"
-          margin="0 auto"
-          padding="5px 15px 5px 15px"
-          colorScheme={"cyan"}
-          width={"auto"}
-          onClick={handleEdit}
-          textColor={"#555555"}
-          background={"#f5f5f5"}
         >
-          <VStack textAlign={"left"}>
-            <div textAlign={"left"}>{garage.name}</div>
-            <HStack textAlign={"left"}>
-              <span>
-                <span className="gray">adres: </span> {garage.street}
-                {garage.nr}
-              </span>
-            </HStack>
-            <div>
-              <span className="gray">telefon: </span> <b>{garage.phones[0]}</b>
-            </div>
-          </VStack>
-        </Button>
+          <span className="garageCardName">{garage.name}</span>
+          <HStack
+            padding={"20px"}
+            alignSelf={"flex-start"}
+            boder={"1px solid red"}
+            textAlign={"left"}
+          ></HStack>
+          <HStack
+            padding={"40px"}
+            alignSelf={"flex-start"}
+            boder={"1px solid red"}
+            textAlign={"left"}
+          >
+            <span alignSelf={"flex-start"} boder={"1px solid red"}>
+              <span
+                alignSelf={"flex-start"}
+                boder={"1px solid red"}
+                className="gray"
+              >
+                adres:{" "}
+              </span>{" "}
+              {garage.street}
+              {garage.nr}
+            </span>
+          </HStack>
+          <div>
+            <span className="gray">telefon: </span> <b>{garage.phones[0]}</b>
+          </div>
+        </VStack>
       </Box>
     </>
   );

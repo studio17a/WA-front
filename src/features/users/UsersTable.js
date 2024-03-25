@@ -37,6 +37,7 @@ import UsersTBody from "./UsersTBody";
 import { useDispatch, useSelector } from "react-redux";
 import { setIsUsersModalOpen } from "./isUsersModalOpenSlice";
 import { setUserModalMode } from "./userModalModeSlice";
+import useAuth from "../../hooks/useAuth";
 import { setUserObj } from "./selectedUserSlice";
 import {
   useGetUserByVehicleMutation,
@@ -45,7 +46,9 @@ import {
 import { useParams } from "react-router-dom";
 
 const UsersTable = ({ usersRaw }) => {
+  const UserInfo = useAuth();
   const { garageId } = useParams();
+  const { uid } = useParams();
   console.log(`UsersTable`);
   const isUsersModalOpen = useSelector(
     (state) => state.isUsersModalOpen.isUsersModalOpen,
@@ -72,6 +75,7 @@ const UsersTable = ({ usersRaw }) => {
   const [vehiclesReady, setVehiclesReady] = useState(false);
   const [loading, setLoading] = useState(true);
   const [pozycje, setPozycje] = useState(5);
+  const [isStuff, setIsStuff] = useState(false);
   // if (isSuccess) {
   //   // const { ids, entities } = usersWithVehicles;
   //   // const usersWV = ids.map((uid) => entities[uid]);
@@ -83,6 +87,13 @@ const UsersTable = ({ usersRaw }) => {
   //   getUsersVithVehicles();
   // }, []);
 
+  useEffect(() => {
+    console.log(UserInfo);
+    if (UserInfo?.roles.isadmin.filter((g) => g._id === garageId).length > 0) {
+      setIsStuff(true);
+      console.log(isStuff);
+    }
+  }, [UserInfo]);
   useEffect(() => {
     if (!isUsersModalOpen) {
       setUsers(usersRaw);
@@ -305,79 +316,81 @@ const UsersTable = ({ usersRaw }) => {
 
   return (
     <>
-      <Box
-        maxWidth="100%"
-        border="1px solid #eaeaea"
-        borderRadius="5px"
-        padding="9px 5px 5px 10px"
-        backgroundColor="#fafafa"
-      >
-        <HStack>
-          <Input
-            id="nazwa"
-            value={nazwa}
-            placeholder="nazwa/NIP/REGON/tel/email"
-            margin="0 0 5px 0"
-            onBlur={(e) => {
-              e.target.value = "";
-            }}
-            backgroundColor="#fff"
-            onChange={nazwaChanged}
-          />
-          <InputGroup>
-            {!isLoading && (
-              <InputLeftElement
-                className="InputLeft"
-                pointerEvents="none"
-                children={
-                  <FontAwesomeIcon
-                    color="#fff"
-                    marginLeft="5px"
-                    icon={faUser}
-                  />
-                }
-                size="xs"
-              />
-            )}
-            {isLoading && (
-              <InputLeftElement
-                className="InputLeft"
-                pointerEvents="none"
-                children={<Spinner />}
-                size="xs"
-              />
-            )}
+      {!uid && isStuff && (
+        <Box
+          maxWidth="100%"
+          border="1px solid #eaeaea"
+          borderRadius="5px"
+          padding="9px 5px 5px 10px"
+          backgroundColor="#fafafa"
+        >
+          <HStack>
             <Input
-              value={reg}
-              placeholder="nr rej (min. 3 znaki)"
+              id="nazwa"
+              value={nazwa}
+              placeholder="nazwa/NIP/REGON/tel/email"
               margin="0 0 5px 0"
               onBlur={(e) => {
                 e.target.value = "";
               }}
-              bg="#fff"
-              onChange={regChanged}
+              backgroundColor="#fff"
+              onChange={nazwaChanged}
             />
-            <Input
-              value={itm}
-              placeholder="produkt (min. 3 znaki)"
-              margin="0 0 5px 5px"
-              onBlur={(e) => {
-                e.target.value = "";
-              }}
-              bg="#fff"
-              onChange={itemChanged}
-            />
-            <Button
-              bg="transparent"
-              onClick={() => {
-                clearTheUsers();
-              }}
-            >
-              <FontAwesomeIcon color="red" marginLeft="5px" icon={faXmark} />
-            </Button>
-          </InputGroup>
-        </HStack>
-      </Box>
+            <InputGroup>
+              {!isLoading && (
+                <InputLeftElement
+                  className="InputLeft"
+                  pointerEvents="none"
+                  children={
+                    <FontAwesomeIcon
+                      color="#fff"
+                      marginLeft="5px"
+                      icon={faUser}
+                    />
+                  }
+                  size="xs"
+                />
+              )}
+              {isLoading && (
+                <InputLeftElement
+                  className="InputLeft"
+                  pointerEvents="none"
+                  children={<Spinner />}
+                  size="xs"
+                />
+              )}
+              <Input
+                value={reg}
+                placeholder="nr rej (min. 3 znaki)"
+                margin="0 0 5px 0"
+                onBlur={(e) => {
+                  e.target.value = "";
+                }}
+                bg="#fff"
+                onChange={regChanged}
+              />
+              <Input
+                value={itm}
+                placeholder="produkt (min. 3 znaki)"
+                margin="0 0 5px 5px"
+                onBlur={(e) => {
+                  e.target.value = "";
+                }}
+                bg="#fff"
+                onChange={itemChanged}
+              />
+              <Button
+                bg="transparent"
+                onClick={() => {
+                  clearTheUsers();
+                }}
+              >
+                <FontAwesomeIcon color="red" marginLeft="5px" icon={faXmark} />
+              </Button>
+            </InputGroup>
+          </HStack>
+        </Box>
+      )}
       <TableContainer overflowY="scroll" className="fixedTable">
         <Table>
           <TableCaption>
@@ -407,7 +420,7 @@ const UsersTable = ({ usersRaw }) => {
                 <p></p>
               </Th>
               <Th>produkty</Th>
-              <Th>uwagi</Th>
+              {isStuff && <Th>uwagi</Th>}
             </Tr>
           </Thead>
           <Tbody>
@@ -419,7 +432,7 @@ const UsersTable = ({ usersRaw }) => {
               <Th>nazwa email tel</Th>
               <Th>pojazdy</Th>
               <Th>produkty</Th>
-              <Th>uwagi</Th>
+              {isStuff && <Th>uwagi</Th>}
             </Tr>
           </Tfoot>
         </Table>

@@ -9,7 +9,7 @@ const useAuth = () => {
   if (!token) return null;
   let status = "Employeee";
   const decoded = jwtDecode(token);
-  const { _id, username, email, phone, roles } = decoded.UserInfo;
+  const { _id, username, email, phone, roles, garages } = decoded.UserInfo;
   // console.log(_id);
   // console.log(username);
   // console.log(email);
@@ -18,6 +18,7 @@ const useAuth = () => {
   // console.log(garageId);
   // isManager = roles.includes("Manager");
   // isAdmin = roles.includes("Admin");
+
   return {
     _id: _id,
     username: username,
@@ -25,6 +26,7 @@ const useAuth = () => {
     status: status,
     email: email,
     phone: phone,
+    garages: garages,
   };
 };
 export default useAuth;

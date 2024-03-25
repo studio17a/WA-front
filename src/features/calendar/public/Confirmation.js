@@ -3,7 +3,6 @@ import { useCreateNewAppointmentMutation } from "../../services/servicesApiSlice
 import { useEffect, useState } from "react";
 
 const Confirmation = () => {
-  console.log("cap");
   const [cap, setCap] = useState(false);
   const [
     createNewAppointment,
