@@ -153,8 +153,7 @@ const NewItemForm = ({ mode = "add" }) => {
 
   return (
     <>
-      <VStack spacing="25px">
-        <h2>dodaj przedmiot</h2>
+      <VStack borderRadius={"10px"} spacing="25px">
         {mode !== "top" && (
           <Checkbox
             onChange={(e) => setCheckedItem(e.target.checked)}
@@ -165,55 +164,81 @@ const NewItemForm = ({ mode = "add" }) => {
           </Checkbox>
         )}
         <FormControl id="name" isRequired>
-          <FormLabel>Nazwa</FormLabel>
+          <div className="small gray">Nazwa: </div>
           {mode == "edit" ? (
             <Input
+              bg={"#ffffff"}
               value={name}
               placeholder="Wpisz nazwę "
               onChange={onNameChanged}
             />
           ) : (
-            <Input placeholder="Wpisz nazwę " onChange={onNameChanged} />
+            <Input
+              bg={"#ffffff"}
+              placeholder="Wpisz nazwę "
+              onChange={onNameChanged}
+            />
           )}
         </FormControl>
         <FormControl id="storage">
-          <FormLabel>Magazyn</FormLabel>
+          <div className="small gray">Magazyn: </div>
           {mode == "edit" ? (
             <Input
+              bg={"#ffffff"}
               value={storage}
               placeholder="Wpisz magazyn "
               onChange={onStorageChanged}
             />
           ) : (
-            <Input placeholder="Wpisz magazyn " onChange={onStorageChanged} />
+            <Input
+              bg={"#ffffff"}
+              placeholder="Wpisz magazyn "
+              onChange={onStorageChanged}
+            />
           )}
         </FormControl>
         <FormControl id="id">
-          <FormLabel>Numer</FormLabel>
+          <div className="small gray">Numer: </div>
           {mode == "edit" ? (
-            <Input value={ean} placeholder="Wpisz nr " onChange={onIdChanged} />
+            <Input
+              bg={"#ffffff"}
+              value={ean}
+              placeholder="Wpisz nr "
+              onChange={onIdChanged}
+            />
           ) : (
-            <Input placeholder="Wpisz nr " onChange={onIdChanged} />
+            <Input
+              bg={"#ffffff"}
+              placeholder="Wpisz nr "
+              onChange={onIdChanged}
+            />
           )}
         </FormControl>
         <FormControl id="quantity">
-          <FormLabel>Ilość</FormLabel>
+          <div className="small gray">Ilość: </div>
           {mode == "edit" ? (
-            <Input value={itemq} placeholder="ilość " onChange={onQChanged} />
+            <Input
+              bg={"#ffffff"}
+              value={itemq}
+              placeholder="ilość "
+              onChange={onQChanged}
+            />
           ) : (
-            <Input placeholder="ilość " onChange={onQChanged} />
+            <Input bg={"#ffffff"} placeholder="ilość " onChange={onQChanged} />
           )}
         </FormControl>
         <FormControl id="description">
-          <FormLabel>opis</FormLabel>
+          <div className="small gray">opis: </div>
           {mode == "edit" ? (
             <Input
+              bg={"#ffffff"}
               value={description}
               placeholder="Wpisz uwagi"
               onChange={onDescriptionChanged}
             />
           ) : (
             <Input
+              bg={"#ffffff"}
               value={description}
               placeholder="Wpisz uwagi"
               onChange={onDescriptionChanged}
@@ -221,15 +246,17 @@ const NewItemForm = ({ mode = "add" }) => {
           )}
         </FormControl>
         <FormControl id="brand">
-          <FormLabel>marka</FormLabel>
+          <div className="small gray">marka: </div>
           {mode == "edit" ? (
             <Input
+              bg={"#ffffff"}
               value={brand}
               placeholder="Wpisz markę"
               onChange={onBrandChanged}
             />
           ) : (
             <Input
+              bg={"#ffffff"}
               value={brand}
               placeholder="Wpisz markę"
               onChange={onBrandChanged}
@@ -237,15 +264,17 @@ const NewItemForm = ({ mode = "add" }) => {
           )}
         </FormControl>
         <FormControl id="brand">
-          <FormLabel>model</FormLabel>
+          <div className="small gray">model: </div>
           {mode == "edit" ? (
             <Input
+              bg={"#ffffff"}
               value={model}
               placeholder="Wpisz model"
               onChange={onModelChanged}
             />
           ) : (
             <Input
+              bg={"#ffffff"}
               value={model}
               placeholder="Wpisz model"
               onChange={onModelChanged}
@@ -253,10 +282,11 @@ const NewItemForm = ({ mode = "add" }) => {
           )}
         </FormControl>
         <FormControl id="uwagi">
-          <FormLabel>Uwagi</FormLabel>
+          <div className="small gray">Uwagi: </div>
           {mode == "edit" ? (
             <Textarea
               value={notes}
+              bg={"#ffffff"}
               placeholder="Wpisz uwagi"
               onChange={onNoteChanged}
             />

@@ -417,6 +417,7 @@ const UsersTable = ({ usersRaw }) => {
                 )}
               </Th>
               <Th>nazwa email tel.</Th>
+              {uid && <Th>Twoje zgody</Th>}
               {uid && <Th>Twoje warsztaty</Th>}
               <Th>
                 pojazdy
@@ -433,6 +434,7 @@ const UsersTable = ({ usersRaw }) => {
             <Tr>
               <Th></Th>
               <Th>nazwa email tel</Th>
+              {uid && <Th>Twoje zgody</Th>}
               {uid && <Th>Twoje warsztaty</Th>}
               <Th>pojazdy</Th>
               <Th>produkty</Th>

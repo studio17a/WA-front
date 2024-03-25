@@ -102,6 +102,7 @@ const UsersTRow = ({ user, vehiclesReady }) => {
               {user?.postal} {user?.city}
             </p>
           </Td>
+          {uid && <Td></Td>}
           {uid && (
             <Td>
               <GaragesContent />

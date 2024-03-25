@@ -55,10 +55,26 @@ const ItemsModal = ({ children, mode }) => {
       <span onClick={onOpen}>{children}</span>
       <Modal isOpen={isOpen} onClose={closeModal}>
         <ModalOverlay />
-        <ModalContent minWidth="800px">
-          <ModalHeader> </ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
+        <ModalContent minWidth="800px" bg={"#efefef"}>
+          <ModalHeader
+            borderBottom={"1px solid #e5e5e5"}
+            width={"100%"}
+            align={"center"}
+          >
+            <span
+              alignSelf={"center"}
+              width={"100%"}
+              className="primaryColor small"
+            >
+              DODAJ CZĘŚĆ
+            </span>
+          </ModalHeader>
+          <ModalCloseButton marginTop={"10px"} />
+          <ModalBody
+            padding={"40px 40px"}
+            borderRadius={"0px 0px 10px 10px"}
+            bg={"#fafafa"}
+          >
             {itemModalMode !== "review" ? (
               <NewItemForm mode={mode} />
             ) : (

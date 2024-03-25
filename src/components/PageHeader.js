@@ -12,9 +12,14 @@ import {
 } from "@chakra-ui/react";
 import InfoRow from "../features/info/InfoRow";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 const PageHeader = () => {
   const selectedGarage = useSelector((state) => state.selectedGarage.garage);
+  let garageName = selectedGarage?.name;
+  useEffect(() => {
+    garageName = selectedGarage?.name;
+  }, [selectedGarage]);
   return (
     <>
       <Popover>
@@ -24,10 +29,9 @@ const PageHeader = () => {
               {" "}
               <div className="warsztApp">
                 WarsztApp
-                <div>
-                  <span className="gray small">Warsztat:</span>{" "}
-                  <span className="gray small bold">
-                    {selectedGarage?.name}
+                <div align="left">
+                  <span className="garageName gray small bold">
+                    {garageName}
                   </span>
                 </div>
               </div>

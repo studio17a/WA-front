@@ -41,11 +41,8 @@ const TopMenu = () => {
   const dispatch = useDispatch();
   const selectedGarage = useSelector((state) => state.selectedGarage.garage);
   useEffect(() => {
-    console.log(`whatselectedGarage`);
-    if (!selectedGarage._id && garageId) {
-      getAGarage({ gid: garageId });
-    }
-  }, []);
+    getAGarage({ gid: garageId });
+  }, [garageId]);
   if (isSuccess) {
     dispatch(setGarage(garage));
   }
