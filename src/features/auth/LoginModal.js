@@ -56,7 +56,7 @@ const LoginModal = ({ children, url }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const [login, { isLoading, isSuccess }] = useLoginMutation();
+  const [login, { isLoading, isSuccess, isError, error }] = useLoginMutation();
 
   useEffect(() => {
     if (loginModalOpen == true) {
@@ -106,7 +106,26 @@ const LoginModal = ({ children, url }) => {
 
   const errClass = errMsg ? "errmsg" : "offscreen";
 
-  if (isLoading) return <PulseLoader color={"#FFF"} />;
+  if (isError) {
+    console.log(error);
+  }
+  if (isLoading)
+    return (
+      <Box
+        border={"1px solid #9fd2ed"}
+        padding={"11px 12px 5px 15px"}
+        margin={"0px 0px 0px 15px"}
+        borderRadius={"5px"}
+      >
+        <Spinner
+          thickness="3px"
+          speed="0.65s"
+          emptyColor="gray.200"
+          color="blue.100"
+          size="sm"
+        />
+      </Box>
+    );
   const closeModal = () => {
     dispatch(setLoginModalOpen(false));
   };
