@@ -1,14 +1,14 @@
-import { Table, Tbody } from "@chakra-ui/react";
-import PhonesRow from "./PhonesRow";
-const PhonesTable = ({ phones }) => {
-  let content = phones.map((phone) => <PhonesRow phone={phone} />);
+import useAuth from "../../hooks/useAuth";
+
+const GaragesTable = () => {
+  const UserInfo = useAuth();
   return (
     <>
-      {" "}
-      <Table>
-        <Tbody>{content}</Tbody>
-      </Table>
+      twoje warsztaty:
+      {UserInfo?.garages.map((g) => (
+        <p>{g._id}</p>
+      ))}
     </>
   );
 };
-export default PhonesTable;
+export default GaragesTable;

@@ -24,11 +24,6 @@ const UsersView = () => {
   const UserInfo = useAuth();
   const { garageId, uid } = useParams();
   const [details, setDetails] = useState(false);
-  useEffect(() => {
-    // setVehicles(user?.vehicles);
-  }, [garageId]);
-  let content = <Progress size="xs" isIndeterminate />;
-
   const { users, isLoading, isSuccess, isError, error } = useGetUsersQuery(
     { gid: garageId, uid: UserInfo._id, detailsId: uid },
     {
@@ -37,6 +32,14 @@ const UsersView = () => {
       }),
     },
   );
+  useEffect(() => {
+    // setVehicles(user?.vehicles);
+  }, [garageId]);
+  useEffect(() => {
+    content = <>znaleziono: {users?.length}</>;
+    console.log(users);
+  }, [users]);
+  let content = <Progress size="xs" isIndeterminate />;
 
   // const {
   //   data: users,
@@ -49,6 +52,13 @@ const UsersView = () => {
   // });
   // const { ids, entities } = users;
   // const usersList = ids?.map((uid) => entities[uid]);
+  if (isError) {
+    console.log(error);
+  }
+  if (isSuccess) {
+    content = <>znaleziono: {users.length}</>;
+    console.log(users);
+  }
   if (users) {
     content = (
       <>
