@@ -39,10 +39,41 @@ const garageApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: (result, error, arg) => [{ type: "Garage", id: arg.id }],
     }),
+    getGaragesByUserId: builder.mutation({
+      query: ({ userId }) => ({
+        url: `/Garages`,
+        method: "POST",
+        body: { userId },
+        validateStatus: (response, result) => {
+          // console.log(`userId${userId}`);
+          return response.status === 200 && !result.isError;
+        },
+      }),
+      transformResponse: (responseData) => {
+        const loadGarages = responseData.map((Garage) => {
+          Garage.id = Garage._id;
+          // console.log(Garage);
+          return Garage;
+        });
+        return garageAdapter.setAll(initialState, loadGarages);
+      },
+      providesTags: (result, error, arg) => {
+        if (result?.ids) {
+          return [
+            { type: "Garage", id: "LIST" },
+            ...result.ids.map((id) => ({ type: "Garage", id })),
+          ];
+        } else return [{ type: "Garage", id: "LIST" }];
+      },
+    }),
   }),
 });
 
-export const { useGetGaragesQuery, useGetAGarageMutation } = garageApiSlice;
+export const {
+  useGetGaragesByUserIdMutation,
+  useGetGaragesQuery,
+  useGetAGarageMutation,
+} = garageApiSlice;
 
 export const selectGaragesResult = garageApiSlice.endpoints.getGarages.select();
 

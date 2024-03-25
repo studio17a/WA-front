@@ -401,20 +401,23 @@ const UsersTable = ({ usersRaw }) => {
           <Thead>
             <Tr>
               <Th>
-                <Button
-                  size="sm"
-                  colorScheme="cyan"
-                  onClick={() => setUpModal("add")}
-                >
-                  <AddIcon marginRight="10px" w={3} h={3} color="#fff" />
-                  <FontAwesomeIcon
-                    color="#fff"
-                    marginLeft="5px"
-                    icon={faUser}
-                  />
-                </Button>
+                {!uid && (
+                  <Button
+                    size="sm"
+                    colorScheme="cyan"
+                    onClick={() => setUpModal("add")}
+                  >
+                    <AddIcon marginRight="10px" w={3} h={3} color="#fff" />
+                    <FontAwesomeIcon
+                      color="#fff"
+                      marginLeft="5px"
+                      icon={faUser}
+                    />
+                  </Button>
+                )}
               </Th>
               <Th>nazwa email tel.</Th>
+              {uid && <Th>Twoje warsztaty</Th>}
               <Th>
                 pojazdy
                 <p></p>
@@ -430,6 +433,7 @@ const UsersTable = ({ usersRaw }) => {
             <Tr>
               <Th></Th>
               <Th>nazwa email tel</Th>
+              {uid && <Th>Twoje warsztaty</Th>}
               <Th>pojazdy</Th>
               <Th>produkty</Th>
               {isStuff && <Th>uwagi</Th>}

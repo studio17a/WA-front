@@ -10,6 +10,10 @@ export const refreshSlice = createSlice({
       // console.log(action.payload);
       state.refresh.vehiclesByUser = action.payload;
     },
+    setRefreshGaragesByUser: (state, action) => {
+      // console.log(action.payload);
+      state.refresh.garagesByUser = action.payload;
+    },
     setRefreshItemsByUser: (state, action) => {
       // console.log(action.payload);
       state.refresh.itemsByUser = action.payload;
@@ -17,6 +21,9 @@ export const refreshSlice = createSlice({
   },
 });
 
-export const { setRefreshVehiclesByUser, setRefreshItemsByUser } =
-  refreshSlice.actions;
+export const {
+  setRefreshGaragesByUser,
+  setRefreshVehiclesByUser,
+  setRefreshItemsByUser,
+} = refreshSlice.actions;
 export default refreshSlice.reducer;

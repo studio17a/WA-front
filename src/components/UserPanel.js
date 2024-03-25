@@ -25,6 +25,7 @@ import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { faGear } from "@fortawesome/free-solid-svg-icons";
 import { useSendLogoutMutation } from "../features/auth/authApiSlice";
 import Login from "../features/auth/Login";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import is from "date-fns/locale/is";
@@ -35,6 +36,7 @@ import LoginModal from "../features/auth/LoginModal";
 
 const UserPanel = ({ garage }) => {
   const { garageId } = useParams();
+  const navigate = useNavigate();
   const [isAdmin, setIsAdmin] = useState(false);
   const selectedGarage = useSelector((state) => state.selectedGarage.garage);
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -51,6 +53,10 @@ const UserPanel = ({ garage }) => {
     if (isAdmin) setDrawerSize("lg");
     else setDrawerSize("md");
   }, [isAdmin]);
+  const gotoUsers = () => {
+    navigate(`/dash/${garageId}/users/${UserInfo?._id}`);
+    onClose();
+  };
   return (
     <>
       {UserInfo?._id ? (
@@ -106,6 +112,9 @@ const UserPanel = ({ garage }) => {
                       className="primaryBackground"
                       color="gray.300"
                       borderRadius={"40px"}
+                      onClick={() => {
+                        gotoUsers();
+                      }}
                       width={"30px"}
                     >
                       <FontAwesomeIcon size="lg" icon={faGear} />

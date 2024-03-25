@@ -15,6 +15,7 @@ import ItemsContent from "../items/ItemsContent";
 import DelUserComponent from "./DelUserComponent";
 import { useParams } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import GaragesContent from "../garages/GaragesContent";
 
 const UsersTRow = ({ user, vehiclesReady }) => {
   const { garageId, uid } = useParams();
@@ -101,6 +102,11 @@ const UsersTRow = ({ user, vehiclesReady }) => {
               {user?.postal} {user?.city}
             </p>
           </Td>
+          {uid && (
+            <Td>
+              <GaragesContent />
+            </Td>
+          )}
           <Td>
             <VehiclesContent
               vehiclesReady={vehiclesReady}

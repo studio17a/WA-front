@@ -19,6 +19,7 @@ import isItemsModalOpenReducer from "../features/items/isItemsModalOpenSlice";
 import isUsersModalOpenReducer from "../features/users/isUsersModalOpenSlice";
 import refreshSliceReducer from "../hooks/refreshSlice";
 import isVehiclesModalOpenReducer from "../features/vehicles/isVehiclesModalOpenSlice";
+import isGaragesModalOpenReducer from "../features/garages/isGaragesModalOpenSlice";
 import isAppointmentModalOpenReducer from "../features/calendar/public/isAppointmentModalOpenSlice";
 import loginModalOpenReducer from "../features/auth/loginModalOpenSlice";
 import serviceModalModeReducer from "../features/services/serviceModalModeSlice";
@@ -54,6 +55,7 @@ export const store = configureStore({
     isItemsModalOpen: isItemsModalOpenReducer,
     isUsersModalOpen: isUsersModalOpenReducer,
     isVehiclesModalOpen: isVehiclesModalOpenReducer,
+    isGaragesModalOpen: isGaragesModalOpenReducer,
     serviceModalMode: serviceModalModeReducer,
     userModalMode: userModalModeReducer,
     vehicleModalMode: vehicleModalModeReducer,
