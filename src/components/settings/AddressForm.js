@@ -12,23 +12,31 @@ const AddressForm = () => {
       <Box padding={"20px"}>
         <p className="gray small">Adres</p>
         <VStack>
-          <Input placeholder="Nazwa" value={selectedGarage.name} />
+          <Input bg={"#fff"} placeholder="Nazwa" value={selectedGarage.name} />
           <HStack width={"100%"}>
             <Input
+              bg={"#fff"}
               width={"100%"}
               placeholder="Ulica"
               value={selectedGarage.street}
             />
-            <Input width={"20%"} placeholder="nr" value={selectedGarage.nr} />
+            <Input
+              bg={"#fff"}
+              width={"20%"}
+              placeholder="nr"
+              value={selectedGarage.nr}
+            />
           </HStack>
           <HStack width={"100%"}>
             <Input
+              bg={"#fff"}
               color={"gray.500"}
               width={"30%"}
               placeholder="kod pocztowy"
               value={selectedGarage.postal}
             />
             <Input
+              bg={"#fff"}
               width={"70%"}
               placeholder="miejscowość"
               value={selectedGarage.city}
@@ -36,7 +44,11 @@ const AddressForm = () => {
           </HStack>
           <Box width={"100%"} marginTop={"20px"}>
             <p className="gray small">Email</p>
-            <Input placeholder="email" value={selectedGarage.email} />
+            <Input
+              bg={"#fff"}
+              placeholder="email"
+              value={selectedGarage.email}
+            />
           </Box>
           <Box alignContent={"flex-start"} width={"100%"} marginTop={"20px"}>
             <p className="gray small">Telefony</p>
