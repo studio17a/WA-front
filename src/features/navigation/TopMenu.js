@@ -80,15 +80,15 @@ const TopMenu = () => {
   );
   const usersButton = (
     <>
-      {/* {UserInfo?.roles.isadmin.filter((g) => g._id === garageId).length > 0 && ( */}
-      <Button
-        onClick={() => navigate(`/dash/${garageId}/users`)}
-        className="primaryBackground"
-        color="gray.300"
-      >
-        <FontAwesomeIcon icon={faAddressBook} />
-      </Button>
-      {/* )} */}
+      {UserInfo?.roles.isadmin.filter((g) => g._id === garageId).length > 0 && (
+        <Button
+          onClick={() => navigate(`/dash/${garageId}/users`)}
+          className="primaryBackground"
+          color="gray.300"
+        >
+          <FontAwesomeIcon icon={faAddressBook} />
+        </Button>
+      )}
     </>
   );
   const itemsButton = (

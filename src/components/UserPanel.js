@@ -31,6 +31,8 @@ import is from "date-fns/locale/is";
 import { useParams } from "react-router-dom";
 import { useLazyGetGaragesQuery } from "../features/garages/garagesApiSlice";
 import SettingsComponent from "./settings/SettingsComponent";
+import LoginModal from "../features/auth/LoginModal";
+
 const UserPanel = ({ garage }) => {
   const { garageId } = useParams();
   const [isAdmin, setIsAdmin] = useState(false);
@@ -51,16 +53,33 @@ const UserPanel = ({ garage }) => {
   }, [isAdmin]);
   return (
     <>
-      <Button
-        padding={"20px 13px 20px 13px"}
-        marginLeft="15px"
-        onClick={onOpen}
-        className="primaryColor primaryBorderColor"
-        variant="outline"
-        backgroundColor={"transparent"}
-      >
-        <FontAwesomeIcon icon={faUser} />
-      </Button>
+      {UserInfo?._id ? (
+        <Button
+          padding={"20px 6px 20px 15px"}
+          marginLeft="15px"
+          className="primaryColor primaryBorderColor"
+          variant="outline"
+          onClick={onOpen}
+          backgroundColor={"transparent"}
+          leftIcon={<FontAwesomeIcon icon={faUser} />}
+        ></Button>
+      ) : (
+        <LoginModal>
+          <Button
+            isLoading={isLoading}
+            loadingText="..."
+            spinnerPlacement="start"
+            padding={"20px 6px 20px 15px"}
+            marginLeft="15px"
+            className="primaryColor primaryBorderColor"
+            variant="outline"
+            backgroundColor={"transparent"}
+            leftIcon={<FontAwesomeIcon icon={faUser} />}
+          >
+            <span className="small"> Zaloguj sie... </span>
+          </Button>
+        </LoginModal>
+      )}
       <Drawer
         size={drawerSize}
         isOpen={isOpen}
@@ -74,10 +93,7 @@ const UserPanel = ({ garage }) => {
 
           <DrawerBody w={"100%"} margin={"0 auto"} padding={"0"}>
             {UserInfo === null ? (
-              <>
-                {isLoading && <Spinner />}
-                <Login />
-              </>
+              <></>
             ) : (
               <>
                 <h3>Twoje konto:</h3>
