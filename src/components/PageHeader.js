@@ -25,23 +25,24 @@ const PageHeader = () => {
       <Popover>
         <HStack align="center">
           <PopoverTrigger>
-            <div className="pageHeader">
+            <HStack className="pageHeader">
               {" "}
-              <div className="warsztApp">
-                WarsztApp
-                <div align="left">
-                  <span className="garageName gray small bold">
-                    {garageName}
-                  </span>
-                </div>
-              </div>
               <div className="infoHeader">
                 <span className="gray small">
                   Liczba nieprzeczytanych wiadomości:{" "}
                 </span>{" "}
                 <span className="title primaryColor">5</span>
               </div>
-            </div>
+              <HStack>
+                <div className="logo"></div>
+                <div className="warsztApp">
+                  <div className="warsztAppTitle">WarsztApp</div>
+                  <div align="left">
+                    <span className="garageName small">{garageName}</span>
+                  </div>
+                </div>
+              </HStack>
+            </HStack>
           </PopoverTrigger>
         </HStack>
         <PopoverContent>

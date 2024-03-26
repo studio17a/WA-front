@@ -1,7 +1,7 @@
 html,
 body {
   color: #555555;
-  background-color: #edf9ff;
+  background-color: #fff;
 }
 .infodot {
   position: absolute;
@@ -46,32 +46,33 @@ body {
 .primaryBorderColor:hover {
   border-color: #12b4ff !important;
 }
-.pageHeader {
+.logo {
   position: relative;
-  padding: 0px 0px 0px 0px;
-  margin: 0 auto;
-  margin-top: -16px;
-  text-align: center;
   background-image: url("images/warsztappc.png");
   background-size: 50px;
-  background-position: 15px 7px;
+  background-position: px 0px;
   background-repeat: no-repeat;
-  width: 250px;
-  height: auto;
-  background-color: #fafafa;
+  height: 55px;
+  min-width: 50px;
+}
+.pageHeader {
+  height: 55px;
+  width: auto;
   border-radius: 5px;
   cursor: pointer;
   cursor: hand;
-  box-shadow: rgb(0, 0, 0, 0.25) 0px 9px 29px;
 }
 .warsztApp {
-  padding: 10px 0px 10px 65px;
+  padding: 10px 0px 10px 0px;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
+  text-align: left;
+}
+.warsztAppTitle {
   font-weight: bold;
   font-size: 0.9em;
+  width: auto;
   color: #32a8c0;
-  text-align: left;
 }
 .garageName {
   padding: 0px 0px 5px 1px;
@@ -81,9 +82,12 @@ body {
 }
 .infoHeader {
   background-color: #fff;
-  border-radius: 0px 0px 5px 5px;
-  border-top: 1px solid #efefef;
-  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #efefef;
+  padding: 0px 15px 5px 15px;
+}
+.infoHeader:hover {
+  background-color: #fafafa;
 }
 .graybg {
   background-color: #fafafa !important;
@@ -105,12 +109,6 @@ h3 {
   border-top: solid 1px #eaeaea;
   border-bottom: solid 1px #eaeaea;
   padding: 10px;
-}
-.pageHeader:hover {
-  background-color: #fafafa;
-}
-.pageHeader:hover .warsztApp {
-  color: #88d0ec;
 }
 .thHour,
 /* .thMinute {
@@ -315,22 +313,45 @@ Table {
 .tel {
   color: #32a8c0;
 }
+.garagesListPage {
+  border-top: 1px solid #efefef;
+  border-bottom: 1px solid #efefef;
+  position: relative;
+  margin: 0 auto;
+  padding: 0px;
+  position: relative;
+  height: 85vh;
+  width: 100%;
+}
+.garagesListWrap {
+  position: relative;
+  margin: 0 auto;
+  padding: 0px;
+  position: relative;
+  width: 50%;
+  height: 100%;
+}
 .mapa {
   position: relative;
-  width: 100%;
-  height: 60%;
-  border-radius: 10px;
-  background-color: #fff;
+  width: 50%;
+  height: 100%;
 }
-.listOfGarages {
+.garagesList {
   position: relative;
-  width: 20%;
+  margin: 0 auto;
+  padding: 0px 30px;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+}
+.garagesListHeader {
+  border-bottom: 1px solid#efefef;
 }
 .garageCard {
   background-color: #fff;
+  border: #efefef 1px solid;
   padding: 0px;
   border-radius: 10px;
-  box-shadow: rgb(0, 0, 0, 0.15) 0px 7px 20px;
   margin: 30px 10px;
   cursor: pointer;
   cursor: hand;

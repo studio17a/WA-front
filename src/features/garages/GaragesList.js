@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import Garage from "./Garage";
 import { useGetGaragesQuery } from "./garagesApiSlice";
+import { HStack, VStack } from "@chakra-ui/react";
+import Map from "../../components/Map";
 
 const GaragesList = () => {
   const {
@@ -28,17 +30,22 @@ const GaragesList = () => {
     const listOfGarages =
       ids?.length &&
       ids.map((garageId) => (
-        <Garage key={garageId} garage={entities[garageId]} />
+        <Garage width="100%" key={garageId} garage={entities[garageId]} />
       ));
     content = (
-      <div>
-        <div margin="20px 20px 20px 20px">wybierz warsztat: </div>
-        <p></p>
-        <div margin="20px 20px 20px 20px" padding="20px 20px 20px 20px">
-          {listOfGarages}
+      <HStack className="garagesListPage">
+        <VStack className="garagesListWrap">
+          <div className="garagesList">
+            {listOfGarages}
+            {listOfGarages}
+            {listOfGarages}
+          </div>
+        </VStack>
+        <div className="mapa">
+          <Map />
         </div>
         <footer></footer>
-      </div>
+      </HStack>
     );
   }
   return content;

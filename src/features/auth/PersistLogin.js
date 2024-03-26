@@ -30,7 +30,7 @@ const PersistLogin = () => {
     useRefreshMutation();
 
   // useEffect(() => {
-  //   socket = io("https://warsztap-api.onrender.com", {
+  //   socket = io("https://tg3vhf-3500.csb.app", {
   //     transports: ["websocket", "polling", "flashsocket"],
   //   });
   //   socket.emit("setup", UserInfo);
@@ -98,12 +98,11 @@ const PersistLogin = () => {
 
   return (
     <>
-      <VStack backgroundColor="#edf9ff">
-        <VStack className="pageTop" backgroundColor="#edf9ff">
+      <VStack>
+        <VStack className="pageTop">
           <HStack alignContent={"center"} className="topMenuWrapper">
             <TopMenu alignContent={"center"} align="center" />
           </HStack>
-          <PageHeader className="pageHeader" />
         </VStack>
         {content}
       </VStack>

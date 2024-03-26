@@ -66,12 +66,13 @@ const ServicesList = () => {
   );
 
   useEffect(() => {
-    socket = io("https://warsztap-api.onrender.com", {
+    socket = io("https://tg3vhf-3500.csb.app", {
       transports: ["websocket", "polling", "flashsocket"],
     });
     socket.emit("setup", UserInfo);
     socket.emit("join room", "updates");
     socket.on("xxx", () => {
+      console.log("############################");
       console.log("zapisuje");
       getServices({ id: garageId, day, month, year });
     });

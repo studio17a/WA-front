@@ -23,6 +23,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useGetAGarageMutation } from "../garages/garagesApiSlice";
 import { setGarage } from "../garages/selectedGarageSlice";
+import PageHeader from "../../components/PageHeader";
 
 const TopMenu = () => {
   const [getAGarage, { data: garage, isLoading, isSuccess, isError, error }] =
@@ -128,7 +129,7 @@ const TopMenu = () => {
       )}
     </>
   );
-  const userPanelButton = <UserPanel garage={garage} bg="edf9ff" />;
+  const userPanelButton = <UserPanel garage={garage} />;
   let buttonContent;
   buttonContent = (
     <>
@@ -141,6 +142,7 @@ const TopMenu = () => {
         {calendarButton}
         {day && nearestButton}
         {day && datePicker}
+        <PageHeader className="pageHeader" />
       </HStack>
     </>
   );

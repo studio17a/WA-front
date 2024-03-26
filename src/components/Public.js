@@ -16,14 +16,7 @@ import {
 const Public = () => {
   // const { username } = useAuth();
   const content = (
-    <Box
-      margin="2% 2%"
-      bg="white"
-      w="96%"
-      p={4}
-      borderRadius="lg"
-      borderWidth="1px"
-    >
+    <Box w="100%" p={0} borderRadius="lg">
       <section>
         <main>
           <GaragesList />
