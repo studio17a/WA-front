@@ -120,6 +120,9 @@ h3 {
 .darkGray {
   color: #646262;
 }
+.regular {
+  size: 0.9em;
+}
 .small {
   font-size: 0.8em;
 }
@@ -348,21 +351,42 @@ Table {
   border-bottom: 1px solid#efefef;
 }
 .garageCard {
-  background-color: #fff;
+  background-color: #fafafa;
   border: #efefef 1px solid;
   padding: 0px;
-  border-radius: 10px;
+  border-radius: 6px;
   margin: 30px 10px;
   cursor: pointer;
   cursor: hand;
+  color: #555;
 }
 .garageCardName {
+  font-size: 0.9em;
+  font-weight: 400;
+  color: #555;
   padding: 10px;
   position: relative;
   width: 100%;
-  font-weight: bold;
   border-bottom: 1px solid #eee;
 }
+.garageCardBody {
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  text-align: left;
+}
+.avaliableComponentBox {
+  position: relative;
+  margin-right: 15px;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  padding: 20px;
+  text-align: center;
+  border: 1px solid #efefef;
+  border-radius: 10px;
+}
+
 /*
 Td {
   color: #5e5252;

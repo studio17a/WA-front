@@ -22,8 +22,14 @@ import PublicRow from "./PublicRow";
 
 let content;
 
-const PublicCalendarTable = () => {
-  const { garageId, day, month, year } = useParams();
+const PublicCalendarTable = ({ mode, garageId, day, month, year }) => {
+  const params = useParams();
+  if (params.garageId) {
+    garageId = params.garageId;
+    day = params.day;
+    month = params.month;
+    year = params.year;
+  }
   const navigate = useNavigate();
   const {
     data: appointments,
@@ -31,11 +37,15 @@ const PublicCalendarTable = () => {
     isSuccess,
     isError,
     error,
-  } = useGetServicesQuery({ id: garageId, day, month, year }, "servicesList", {
-    pollingInterval: 60000,
-    refetchOnFocus: true,
-    refetchOnMountOrArgChange: true,
-  });
+  } = useGetServicesQuery(
+    { mode, id: garageId, day, month, year },
+    "servicesList",
+    {
+      pollingInterval: 60000,
+      refetchOnFocus: true,
+      refetchOnMountOrArgChange: true,
+    },
+  );
 
   useEffect(() => {
     // getServices({ id: garageId, day, month, year });
@@ -48,12 +58,23 @@ const PublicCalendarTable = () => {
 
   if (isSuccess) {
     const { ids, entities } = appointments;
-    const tableContent = <Service />;
+    const tableContent = (
+      <Service
+        mode={mode}
+        day={day}
+        month={month}
+        year={year}
+        garageId={garageId}
+      />
+    );
     const handleEdit = () => navigate(`/dash/${garageId}/calendar`);
     content = (
       <>
         <TableContainer>
-          <Table variant="simple">{tableContent}</Table>
+          <Table variant="simple">
+            <TableCaption>WARSZTapp 2.15 2024</TableCaption>
+            {tableContent}
+          </Table>
         </TableContainer>
       </>
     );

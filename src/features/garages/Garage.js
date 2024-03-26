@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { setGarage } from "./selectedGarageSlice";
 import { Box, HStack, Button, VStack } from "@chakra-ui/react";
+import AvaliableComponent from "./AvailableComponent";
 
 const Garage = ({ garage }) => {
   console.log(garage);
@@ -18,41 +19,42 @@ const Garage = ({ garage }) => {
   };
   return (
     <>
-      <Box onClick={handleEdit} className="garageCard">
-        <VStack
-          width={"100%"}
-          alignSelf={"flex-start"}
-          boder={"1px solid red"}
-          textAlign={"left"}
-        >
-          <span className="garageCardName">{garage.name}</span>
-          <HStack
-            padding={"20px"}
-            alignSelf={"flex-start"}
-            boder={"1px solid red"}
-            textAlign={"left"}
-          ></HStack>
-          <HStack
-            padding={"40px"}
-            alignSelf={"flex-start"}
-            boder={"1px solid red"}
-            textAlign={"left"}
-          >
-            <span alignSelf={"flex-start"} boder={"1px solid red"}>
-              <span
-                alignSelf={"flex-start"}
-                boder={"1px solid red"}
-                className="gray"
-              >
+      <Box className="garageCard">
+        <VStack padding={"5px"} width={"100%"} alignItems={"left"}>
+          <span className="garageCardName">
+            <span className="gray small">WarsztApp: </span>
+            {garage.name}
+          </span>
+
+          <HStack alignItems={"left"} w={"100%"}>
+            <VStack alignItems={"left"} className="garageCardBody">
+              <p wid className="gray small">
                 adres:{" "}
-              </span>{" "}
-              {garage.street}
-              {garage.nr}
-            </span>
+              </p>{" "}
+              <p className="regular">
+                {garage.street}
+                {garage.nr}
+              </p>
+              <p className="gray small">telefon:</p>
+              <p className="regular">{garage.phones[0]}</p>
+            </VStack>
+            <AvaliableComponent
+              garageId={garage._id}
+              alignSelf={"flex-start"}
+            />
           </HStack>
-          <div>
-            <span className="gray">telefon: </span> <b>{garage.phones[0]}</b>
-          </div>
+          <Button
+            colorScheme="cyan"
+            loadingText="Loading"
+            spinnerPlacement="end"
+            padding={"18px 30px 20px 30px"}
+            color={"gray.100"}
+            marginTop={"30px"}
+            borderRadius={"4px"}
+            onClick={handleEdit}
+          >
+            <span className="small bold">WYBIERZ</span>
+          </Button>
         </VStack>
       </Box>
     </>

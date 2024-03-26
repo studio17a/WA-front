@@ -34,10 +34,16 @@ import NewServiceModal from "./NewServiceModal";
 import { setDate } from "../calendar/selectedDateSlice";
 import { useSelector } from "react-redux";
 
-const Services = () => {
+const Services = ({ mode, garageId, day, month, year }) => {
   const hourParts = [0, 30, 50];
   const stations = 2;
-  const { garageId, day, month, year } = useParams();
+  const params = useParams();
+  if (params.garageId) {
+    garageId = params.garageId;
+    day = params.day;
+    month = params.month;
+    year = params.year;
+  }
   let idz = [];
   const dispatch = useDispatch();
   useEffect(() => {
@@ -119,6 +125,7 @@ const Services = () => {
         const row = hour.map((part, index) => (
           <td padding="5px 15px 5px 15px">
             <PublicAppointment
+              mode={mode}
               className="publicAppointment"
               hour={i}
               hourPart={hourParts[index]}
@@ -139,7 +146,7 @@ const Services = () => {
         <Thead>
           <Tr>
             <Th textAlign="center">godzina</Th>
-            <Th colspan="3" textAlign="center">
+            <Th colSpan="3" textAlign="center">
               minuta
             </Th>
           </Tr>
@@ -148,7 +155,7 @@ const Services = () => {
         <Tfoot>
           <Tr>
             <Th textAlign="center">godzina</Th>
-            <Th colspan="3" textAlign="center">
+            <Th colSpan="3" textAlign="center">
               minuta
             </Th>
           </Tr>

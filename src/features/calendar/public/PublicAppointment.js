@@ -7,7 +7,7 @@ import { setHour } from "../../services/selectedHourSlice";
 import { setMinute } from "../../services/selectedMinuteSlice";
 import { setLoginModalOpen } from "../../auth/loginModalOpenSlice";
 
-const PublicAppointment = ({ hour, hourPart, part }) => {
+const PublicAppointment = ({ mode, hour, hourPart, part }) => {
   const loginModalOpen = useSelector(
     (state) => state.loginModalOpen.loginModalOpen,
   );
@@ -22,22 +22,36 @@ const PublicAppointment = ({ hour, hourPart, part }) => {
     }
   }, []);
   const setAppointment = async () => {
-    if (UserInfo?.username) {
-      dispatch(setHour(hour + 9));
-      dispatch(setMinute(hourPart));
-      dispatch(setIsAppointmentModalOpen(true));
-    } else {
-      dispatch(setLoginModalOpen(true));
+    if (mode != "garage") {
+      if (UserInfo?.username) {
+        dispatch(setHour(hour + 9));
+        dispatch(setMinute(hourPart));
+        dispatch(setIsAppointmentModalOpen(true));
+      } else {
+        dispatch(setLoginModalOpen(true));
+      }
     }
   };
+  let height = "100px";
+  if (mode == "garage") {
+    height = "40px";
+  }
+  let width = "100%";
+  if (mode == "garage") {
+    width = "50px";
+  }
+  let br = "10px";
+  if (mode == "garage") {
+    br = "3px";
+  }
   return (
     <>
       <Button
         fontWeight="light"
-        height="100px"
-        borderRadius="10px"
+        height={height}
+        borderRadius={br}
         onClick={setAppointment}
-        width="100%"
+        width={width}
         color="white"
         margin="0 auto"
         padding="5px 15px 5px 15px"
