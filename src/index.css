@@ -272,13 +272,13 @@ Table {
   overflow: hidden;
 }
 
-.topMenuWrapper {
+/* .topMenuWrapper {
   margin: 0 auto;
   padding: 0px;
   text-align: center;
   width: 100vw;
   overflow-x: auto;
-}
+} */
 
 .infoRow {
   position: relative;
@@ -378,8 +378,6 @@ Table {
 .avaliableComponentBox {
   position: relative;
   margin-right: 15px;
-  width: 100%;
-  height: 100%;
   background-color: #fff;
   padding: 20px;
   text-align: center;

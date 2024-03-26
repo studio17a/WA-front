@@ -34,7 +34,7 @@ const PublicAppointment = ({ mode, hour, hourPart, part }) => {
   };
   let height = "100px";
   if (mode == "garage") {
-    height = "40px";
+    height = "20px";
   }
   let width = "100%";
   if (mode == "garage") {
@@ -43,6 +43,14 @@ const PublicAppointment = ({ mode, hour, hourPart, part }) => {
   let br = "10px";
   if (mode == "garage") {
     br = "3px";
+  }
+  let fontSize = "1.5em";
+  if (mode == "garage") {
+    fontSize = "0.8em";
+  }
+  let padding = "5px 15px 5px 15px";
+  if (mode == "garage") {
+    padding = "2px 5px 2px 5px";
   }
   return (
     <>
@@ -54,23 +62,30 @@ const PublicAppointment = ({ mode, hour, hourPart, part }) => {
         width={width}
         color="white"
         margin="0 auto"
-        padding="5px 15px 5px 15px"
+        padding={padding}
         colorScheme={bg}
         isDisabled={disable}
       >
-        <div padding="5px 15px 5px 15px">
-          <p fontSize="1.5em">
-            <b>
-              {hour + 9} : {hourPart}
-            </b>
-          </p>
-          {!disable && (
-            <>
-              <p>umów</p>
-              <p>wizytę</p>
-            </>
-          )}
-        </div>
+        {!mode && (
+          <div padding={padding}>
+            <p fontSize={fontSize}>
+              <b>
+                {hour + 9} : {hourPart}
+              </b>
+            </p>
+            {!disable && (
+              <>
+                <p>umów</p>
+                <p>wizytę</p>
+              </>
+            )}
+          </div>
+        )}
+        {mode && (
+          <span className="small">
+            {hour + 9} : {hourPart}
+          </span>
+        )}
       </Button>
     </>
   );
