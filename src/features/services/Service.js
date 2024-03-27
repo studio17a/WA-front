@@ -1,4 +1,4 @@
-import { useGetServicesQuery } from "./servicesApiSlice";
+import { useGetPublicServicesMutation } from "./servicesApiSlice";
 import Service from "./Service";
 import useTitle from "../../hooks/useTitle";
 import { useParams } from "react-router-dom";
@@ -26,13 +26,13 @@ import {
   TableContainer,
   Button,
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
 import { setUserObj } from "../users/selectedUserSlice";
 import { format } from "date-fns";
 import ServiceRow from "./ServiceRow";
 import NewServiceModal from "./NewServiceModal";
 import { setDate } from "../calendar/selectedDateSlice";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 const Services = ({ mode, garageId, day, month, year }) => {
   const hourParts = [0, 30, 50];
@@ -46,27 +46,11 @@ const Services = ({ mode, garageId, day, month, year }) => {
   }
   let idz = [];
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(
-      setDate(format(new Date(`${year}/${month}/${day}`), "dd/MM/yyyy")),
-    );
-  }, []);
-  useTitle("techServices: Services List");
-
-  const {
-    data: services,
-    isLoading,
-    isSuccess,
-    isError,
-    error,
-  } = useGetServicesQuery({ id: garageId, day, month, year }, "servicesList", {
-    pollingInterval: 60000,
-    refetchOnFocus: true,
-    refetchOnMountOrArgChange: true,
-  });
-  useEffect(() => {
-    // getServices({ id: garageId, day, month, year });
-  }, []);
+  const selectedDate = useSelector((state) => state.selectedDate.date);
+  const [
+    getServices,
+    { data: services, isLoading, isSuccess, isError, error },
+  ] = useGetPublicServicesMutation();
   const setUpModal = (hour, mode) => {
     dispatch(setStId([]));
     dispatch(setItemsId([]));
@@ -75,14 +59,21 @@ const Services = ({ mode, garageId, day, month, year }) => {
     dispatch(setVehicle(null));
     dispatch(setServiceModalMode(mode));
     dispatch(setIsServiceModalOpen(true));
-    dispatch(
-      setDate(format(new Date(`${year}/${month}/${day}`), "dd/MM/yyyy")),
-    );
     setTime(hour);
   };
   let content;
+  useEffect(() => {
+    const split = selectedDate?.split("/");
 
-  if (isLoading) content = <PulseLoader color={"#FFF"} />;
+    console.log(garageId, split[0], split[1], split[2]);
+    getServices({
+      id: garageId,
+      day: split[0],
+      month: split[1],
+      year: split[2],
+    });
+  }, [selectedDate]);
+  if (isLoading) content = <PulseLoader color={"#aaa"} />;
 
   if (isError) {
     content = <p className="errmsg">{error?.data?.message}</p>;
@@ -93,7 +84,7 @@ const Services = ({ mode, garageId, day, month, year }) => {
   };
   const hours = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
   if (isSuccess) {
-    // console.log("idz1");
+    console.log(services);
     const { ids, entities } = services;
     if (1 == 1) {
       // if (ids?.length > 0) {
@@ -101,7 +92,7 @@ const Services = ({ mode, garageId, day, month, year }) => {
       let getIdz = () => {
         const b = hours.map((hour) =>
           hourParts.map((hp) =>
-            ids.filter(
+            ids?.filter(
               (serviceId) =>
                 entities[serviceId].hour == hour &&
                 entities[serviceId].minute == hp,
@@ -117,8 +108,6 @@ const Services = ({ mode, garageId, day, month, year }) => {
       [...idz] = hours.map((h) => []);
     }
     let h = 8;
-    console.log(`idz`);
-    console.log(idz);
     const tableContent =
       idz?.length &&
       idz.map((hour, i) => {

@@ -71,7 +71,6 @@ const Garage = ({ garage }) => {
               height={"100%"}
               leftIcon={<FontAwesomeIcon icon={faChevronLeft} />}
             />
-            z
             <span className="gray small">
               Dzien:{paramsYear}
               {paramsMonth}
