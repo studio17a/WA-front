@@ -48,33 +48,6 @@ export const servicesApiSlice = apiSlice.injectEndpoints({
       //   { type: "Service", id: arg.id },
       // ],
     }),
-    getPublicServices: builder.mutation({
-      query: ({ id, day, month, year }) => ({
-        url: `/services/${id}/${day}/${month}/${year}`,
-        validateStatus: (response, result) => {
-          return response.status === 200 && !result.isError;
-        },
-      }),
-      transformResponse: (responseData) => {
-        let loadedServices = [];
-        if (responseData?.length > 0) {
-          loadedServices = responseData.map((service) => {
-            service.id = service._id;
-            // console.log(service);
-            return service;
-          });
-        }
-        return servicesAdapter.setAll(initialState, loadedServices);
-      },
-      providesTags: (result, error, arg) => {
-        if (result?.ids) {
-          return [
-            { type: "Service", id: "LIST" },
-            ...result.ids.map((id) => ({ type: "Service", id })),
-          ];
-        } else return [{ type: "Service", id: "LIST" }];
-      },
-    }),
     getServicesByVehicleId: builder.mutation({
       query: ({ garageId, vehicleId }) => ({
         url: `/services/details/${garageId}/${vehicleId}`,
@@ -208,7 +181,6 @@ export const {
   useLazyGetServicesQuery,
   useGetServicesQuery,
   useGetAllServicesMutation,
-  useGetPublicServicesMutation,
   useGetServicesByVehicleIdMutation,
   useCreateNewAppointmentMutation,
   useHandleServiceMutation,
