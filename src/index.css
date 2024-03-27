@@ -272,13 +272,13 @@ Table {
   overflow: hidden;
 }
 
-/* .topMenuWrapper {
+.topMenuWrapper {
   margin: 0 auto;
   padding: 0px;
   text-align: center;
   width: 100vw;
   overflow-x: auto;
-} */
+}
 
 .infoRow {
   position: relative;
