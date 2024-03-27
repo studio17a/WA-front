@@ -35,11 +35,7 @@ const GaragesList = () => {
     content = (
       <HStack className="garagesListPage">
         <VStack className="garagesListWrap">
-          <div className="garagesList">
-            {listOfGarages}
-            {listOfGarages}
-            {listOfGarages}
-          </div>
+          <div className="garagesList">{listOfGarages}</div>
         </VStack>
         <div className="mapa">
           <Map />

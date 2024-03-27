@@ -397,11 +397,19 @@ Table {
 .avaliableComponentBox {
   position: relative;
   margin-right: 15px;
+  height: 100%;
+  width: 100%;
+  border: 1px solid #efefef;
+  border-radius: 10px;
   background-color: #fff;
   padding: 20px;
   text-align: center;
   border: 1px solid #efefef;
   border-radius: 10px;
+}
+.garageCardDateButton {
+  position: relative;
+  padding: 40% 0%;
 }
 
 /*

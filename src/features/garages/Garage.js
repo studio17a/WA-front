@@ -13,6 +13,7 @@ import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { faGear } from "@fortawesome/free-solid-svg-icons";
 import { setDate } from "../calendar/selectedDateSlice";
 import { format, set } from "date-fns";
+import { transform } from "framer-motion";
 
 const Garage = ({ garage }) => {
   console.log(garage);
@@ -63,34 +64,40 @@ const Garage = ({ garage }) => {
               <p className="gray small">telefon:</p>
               <p className="regular">{garage.phones[0]}</p>
             </VStack>
-            <Button
-              onClick={() => {
-                const newDate = today.setDate(today.getDate() - 1);
-                dispatch(setDate(format(new Date(newDate), "dd/MM/yyyy")));
-              }}
-              height={"100%"}
-              leftIcon={<FontAwesomeIcon icon={faChevronLeft} />}
-            />
-            <span className="gray small">
-              Dzien:{paramsYear}
-              {paramsMonth}
-              {paramsDay}
-            </span>
-            <AvaliableComponent
-              day={paramsDay}
-              month={paramsMonth}
-              year={paramsYear}
-              garageId={garage._id}
-              alignSelf={"flex-start"}
-            />
-            <Button
-              onClick={() => {
-                const newDate = today.setDate(today.getDate() + 1);
-                dispatch(setDate(format(new Date(newDate), "dd/MM/yyyy")));
-              }}
-              height={"100%"}
-              leftIcon={<FontAwesomeIcon icon={faChevronRight} />}
-            />
+            <VStack className="garageCardBody">
+              <span className="gray small">
+                {paramsYear}-{paramsMonth}-{paramsDay}
+              </span>
+              <HStack className="" minWidth={"510px"} minHeight={"415px"}>
+                <Button
+                  className="primaryColor"
+                  onClick={() => {
+                    const newDate = today.setDate(today.getDate() - 1);
+                    dispatch(setDate(format(new Date(newDate), "dd/MM/yyyy")));
+                  }}
+                  bg={"transparent"}
+                  fontSize={"2.5em"}
+                  leftIcon={<FontAwesomeIcon icon={faChevronLeft} />}
+                />
+                <AvaliableComponent
+                  day={paramsDay}
+                  month={paramsMonth}
+                  year={paramsYear}
+                  garageId={garage._id}
+                  alignSelf={"flex-start"}
+                />
+                <Button
+                  className="primaryColor"
+                  bg={"transparent"}
+                  fontSize={"2.5em"}
+                  onClick={() => {
+                    const newDate = today.setDate(today.getDate() + 1);
+                    dispatch(setDate(format(new Date(newDate), "dd/MM/yyyy")));
+                  }}
+                  leftIcon={<FontAwesomeIcon icon={faChevronRight} />}
+                />
+              </HStack>
+            </VStack>
           </HStack>
           <Button
             colorScheme="cyan"
