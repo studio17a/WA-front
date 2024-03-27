@@ -5,7 +5,7 @@ import Service from "../../services/Service";
 import { useEffect, useState } from "react";
 import { Grid, GridItem } from "@chakra-ui/react";
 import { Spinner } from "@chakra-ui/react";
-import { useGetServicesQuery } from "../../../../src/features/services/servicesApiSlice";
+import { useLazyGetServicesQuery } from "../../../../src/features/services/servicesApiSlice";
 
 import {
   Table,
@@ -19,11 +19,13 @@ import {
   TableContainer,
 } from "@chakra-ui/react";
 import PublicRow from "./PublicRow";
+import { useSelector } from "react-redux";
 
 let content;
 
 const PublicCalendarTable = ({ mode, garageId, day, month, year }) => {
   const params = useParams();
+  const selectedDate = useSelector((state) => state.selectedDate.date);
   if (params.garageId) {
     garageId = params.garageId;
     day = params.day;
@@ -31,25 +33,15 @@ const PublicCalendarTable = ({ mode, garageId, day, month, year }) => {
     year = params.year;
   }
   const navigate = useNavigate();
-  const {
-    data: appointments,
-    isLoading,
-    isSuccess,
-    isError,
-    error,
-  } = useGetServicesQuery(
-    { mode, id: garageId, day, month, year },
-    "servicesList",
-    {
-      pollingInterval: 60000,
-      refetchOnFocus: true,
-      refetchOnMountOrArgChange: true,
-    },
-  );
+  const [
+    getServices,
+    { data: appointments, isLoading, isSuccess, isError, error },
+  ] = useLazyGetServicesQuery();
 
   useEffect(() => {
-    // getServices({ id: garageId, day, month, year });
-  }, []);
+    getServices({ id: garageId, day, month, year });
+  }, [selectedDate]);
+  useEffect(() => {});
   if (isLoading) content = <Spinner />;
 
   if (isError) {
@@ -71,10 +63,7 @@ const PublicCalendarTable = ({ mode, garageId, day, month, year }) => {
     content = (
       <>
         <TableContainer>
-          <Table variant="simple">
-            <TableCaption>WARSZTapp 2.15 2024</TableCaption>
-            {tableContent}
-          </Table>
+          <Table variant="simple">{tableContent}</Table>
         </TableContainer>
       </>
     );

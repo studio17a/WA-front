@@ -50,7 +50,7 @@ const PublicAppointment = ({ mode, hour, hourPart, part }) => {
   }
   let padding = "5px 15px 5px 15px";
   if (mode == "garage") {
-    padding = "2px 5px 2px 5px";
+    padding = "1px";
   }
   return (
     <>

@@ -123,20 +123,22 @@ const Services = ({ mode, garageId, day, month, year }) => {
       idz?.length &&
       idz.map((hour, i) => {
         const row = hour.map((part, index) => (
-          <td>
+          <Td className="garageTd">
             <PublicAppointment
               mode={mode}
               hour={i}
               hourPart={hourParts[index]}
               part={part}
             />
-          </td>
+          </Td>
         ));
         return (
-          <tr>
-            <td width="20px">{9 + i}</td>
-            {row}
-          </tr>
+          <Tr>
+            <Td className="small garageTd" width="20px">
+              {9 + i}
+            </Td>
+            <span className="small">{row}</span>
+          </Tr>
         );
       });
 
@@ -144,9 +146,11 @@ const Services = ({ mode, garageId, day, month, year }) => {
       <>
         <Thead>
           <Tr>
-            <Th textAlign="center">godzina</Th>
+            <Th textAlign="center">
+              <span className="small">godzina</span>
+            </Th>
             <Th colSpan="3" textAlign="center">
-              minuta
+              <span className="small">minuta</span>
             </Th>
           </Tr>
         </Thead>

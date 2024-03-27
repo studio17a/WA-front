@@ -272,13 +272,13 @@ Table {
   overflow: hidden;
 }
 
- .topMenuWrapper {
+/* .topMenuWrapper {
   margin: 0 auto;
   padding: 0px;
   text-align: center;
   width: 100vw;
   overflow-x: auto;
-} 
+} */
 
 .infoRow {
   position: relative;
@@ -317,6 +317,7 @@ Table {
   color: #32a8c0;
 }
 .garagesListPage {
+  background-color: #fff;
   border-top: 1px solid #efefef;
   border-bottom: 1px solid #efefef;
   position: relative;
@@ -350,6 +351,14 @@ Table {
 .garagesListHeader {
   border-bottom: 1px solid#efefef;
 }
+.garageTd {
+  padding: 6px 9px !important;
+  border: none !important;
+}
+/* .garageTd button{
+  background-color: #fafafa !important;
+  color: hsl(197, 100%, 50%);
+} */
 .garageCard {
   background-color: #fafafa;
   border: #efefef 1px solid;
@@ -359,6 +368,16 @@ Table {
   cursor: pointer;
   cursor: hand;
   color: #555;
+}
+.garageCard:hover {
+  box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.09);
+}
+.garageCard:hover .garageCardName {
+  border-bottom: 1px solid #dedede;
+  color: #32a8c0;
+}
+.garageCard:hover .avaliableComponentBox {
+  border-color: hsl(29, 100%, 49%);
 }
 .garageCardName {
   font-size: 0.9em;
