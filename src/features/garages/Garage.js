@@ -51,7 +51,7 @@ const Garage = ({ garage }) => {
             <span className="gray small">WarsztApp: </span>
             {garage.name}
           </span>
-
+          <div></div>
           <HStack alignItems={"left"} w={"100%"}>
             <VStack alignItems={"left"} className="garageCardBody">
               <p wid className="gray small">
